@@ -1,1 +1,0 @@
-<h1>Hello Smart Home users. Welcome.</h1>
