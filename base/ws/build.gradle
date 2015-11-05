@@ -24,4 +24,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile project (':core')
     compile project (':db')
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta1'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta1'
 }
