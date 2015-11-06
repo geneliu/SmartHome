@@ -53,11 +53,11 @@ class Baza {
             if($skripta != ""){
                 header("Location: $skripta");
             }
-            return $rezultat;
+            return true;
     } else {
         echo "Pogreška: " .$veza->error;
        self::zatvoriDB($veza);
-        return $rezultat;
+        return false;
         }
     }
     
