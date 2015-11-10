@@ -1,8 +1,28 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <item name="android:actionBarStyle">@style/ActionBarGreen</item>
+        <item name="actionBarStyle">@style/ActionBarGreen</item>
+
+
+    </style>
+
+    <style name="ActionBarGreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/primary</item>
+        <item name="background">@color/primary</item>
+        <item name="android:titleTextStyle">@style/ActionBarGreenTitleText</item>
+        <item name="titleTextStyle">@style/ActionBarGreenTitleText</item>
+
+    </style>
+
+    <style name="ActionBarGreenTitleText"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textColor">@color/action_bar_text</item>
     </style>
 
 </resources>
