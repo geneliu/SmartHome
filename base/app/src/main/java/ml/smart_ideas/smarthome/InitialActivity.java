@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ml.smart_ideas.smarthome.Fragments.LoginFragment;
 import ml.smart_ideas.smarthome.ws.model.Odgovor;
 import ml.smart_ideas.smarthome.ws.rest.RestClient;
 import retrofit.Call;
@@ -35,6 +36,27 @@ public class InitialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
         ButterKnife.bind(this);
+
+        if (findViewById(R.id.fragment_container) != null) {
+
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+
+
+            LoginFragment loginFragment = new LoginFragment();
+
+            // In case this activity was started with special instructions from an
+            // Intent, pass the Intent's extras to the fragment as arguments
+            loginFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, loginFragment).commit();
+        }
     }
 
     @Override
@@ -62,63 +84,7 @@ public class InitialActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Pozivanje web servisa i prelazak na novi activity
-    @OnClick(R.id.btnLogin)
-    public void login()
-    {
-        EditText username = (EditText) findViewById(R.id.username);
-        EditText password = (EditText) findViewById(R.id.password);
 
-        user= username.getText().toString();
-        pw= password.getText().toString();
-
-
-        RestClient.loginInterface service= RestClient.getClient();
-        //     Call<Odgovor> call = service.postWithJson(new LoginInfo("test1", "test1"));
-        Call<Odgovor> call = service.postWithFormParams(user, pw);
-        call.enqueue(new Callback<Odgovor>() {
-            @Override
-            public void onResponse(Response<Odgovor> response) {
-
-                Log.d("MainActivity", "Status Code = " + response.code());
-                if (response.isSuccess()) {
-                    // request successful (status code 200, 201)
-                    Odgovor result = response.body();
-                    Log.d("MainActivity", "response = " + new Gson().toJson(result));
-
-                    String o=result.getUsername();
-                    Log.d("MainActivity", "username = " + o);
-                    if(o!=null) {
-                        String message="";
-
-                        message="Pozdrav "+o;
-                        Intent intent= new Intent(InitialActivity.this,AfterLogin.class);
-                        intent.putExtra(EXTRA_MESSAGE, message);
-                        startActivity(intent);
-                    }
-                    else
-                    {
-                        String message="";
-                        message="Krivi podaci";
-                        Intent intent= new Intent(InitialActivity.this,AfterLogin.class);
-                        intent.putExtra(EXTRA_MESSAGE, message);
-                        startActivity(intent);
-                    }
-
-
-                } else {
-                    // response received but request not successful (like 400,401,403 etc)
-                    //Handle errors
-
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        });
-    }
 
 
 }

@@ -6,41 +6,9 @@
     android:orientation="vertical">
 
 
-    <EditText
-        android:layout_width="227dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/username"
-        android:id="@+id/username"
-        android:layout_marginTop="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="50dp" />
-
-    <EditText
-        android:layout_width="227dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/password"
-        android:ems="10"
-        android:id="@+id/password"
-        android:layout_below="@+id/username"
-        android:layout_alignLeft="@+id/username"
-        android:layout_alignStart="@+id/username"
-        android:layout_marginTop="34dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="50dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnLogin"
-        android:id="@+id/btnLogin"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/password"
-        android:layout_alignStart="@+id/password"
-        android:layout_marginLeft="80dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="20dp" />
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
