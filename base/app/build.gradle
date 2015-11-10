@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "ml.smart_ideas.smarthome"
-        minSdkVersion 16
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
