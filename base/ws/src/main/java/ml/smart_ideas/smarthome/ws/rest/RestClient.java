@@ -20,7 +20,7 @@ import retrofit.http.POST;
 public class RestClient {
     private static loginInterface gitApiInterface ;
     //  private static String baseUrl = "http://192.168.1.2" ;
-    private static String baseUrl = "http://yourlolfriends.com" ;
+    private static String baseUrl = "http://smart-ideas.ml" ;
     public static loginInterface getClient() {
         Log.d("MainActivity", "Status Code = " + "dasdsd");
         if (gitApiInterface == null) {
@@ -49,12 +49,12 @@ public class RestClient {
 
         // @Headers("User-Agent: Retrofit2.0Tutorial-App")
         @FormUrlEncoded
-        @POST("/ServerAPI/Register.php")
+        @POST("/register.php")
         Call<Odgovor> register(
                 //tu treba implementirati da se šalju podaci preko json formata jer je više fieldova.
         );
         @FormUrlEncoded
-        @POST("/airAPI/login.php")
+        @POST("/login.php")
         Call<Odgovor> postWithFormParams(
                 @Field("username") String username,
                 @Field("lozinka") String lozinka
