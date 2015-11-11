@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import com.google.gson.Gson;
 
 import butterknife.OnClick;
-import ml.smart_ideas.smarthome.AfterLogin;
+import ml.smart_ideas.smarthome.HomeScreenActivity;
 import ml.smart_ideas.smarthome.R;
 import ml.smart_ideas.smarthome.ws.model.Odgovor;
 import ml.smart_ideas.smarthome.ws.rest.RestClient;
@@ -41,7 +41,6 @@ public class LoginFragment extends Fragment {
 
         View viewInflater = inflater.inflate(R.layout.login_fragment, container, false);
 
-        //LinearLayout loginLayout = (LinearLayout) new Activity().getLayoutInflater().inflate(R.layout.login_fragment, null);
         ETusername = (EditText) viewInflater.findViewById(R.id.username);
         ETpassword = (EditText) viewInflater.findViewById(R.id.password);
         Button BtnLogin = (Button) viewInflater.findViewById(R.id.btnLogin);
@@ -56,17 +55,11 @@ public class LoginFragment extends Fragment {
         return viewInflater;
     }
 
+    public void login() {
+        String user = ETusername.getText().toString();
+        String pw = ETpassword.getText().toString();
 
-
-
-    public void login()
-    {
-
-        String user= ETusername.getText().toString();
-        String pw= ETpassword.getText().toString();
-
-
-        RestClient.loginInterface service= RestClient.getClient();
+        RestClient.loginInterface service = RestClient.getClient();
         //     Call<Odgovor> call = service.postWithJson(new LoginInfo("test1", "test1"));
         Call<Odgovor> call = service.postWithFormParams(user, pw);
         call.enqueue(new Callback<Odgovor>() {
@@ -79,21 +72,19 @@ public class LoginFragment extends Fragment {
                     Odgovor result = response.body();
                     Log.d("MainActivity", "response = " + new Gson().toJson(result));
 
-                    String o=result.getUsername();
-                    Log.d("MainActivity", "username = " + o);
-                    if(o!=null) {
-                        String message="";
+                    String stringUsername = result.getUsername();
+                    Log.d("MainActivity", "username = " + stringUsername);
+                    if (stringUsername != null) {
+                        String message = "";
 
-                        message="Pozdrav "+o;
-                        Intent intent= new Intent(getContext(),AfterLogin.class);
+                        message = "Pozdrav " + stringUsername;
+                        Intent intent = new Intent(getContext(), HomeScreenActivity.class);
                         intent.putExtra(EXTRA_MESSAGE, message);
                         startActivity(intent);
-                    }
-                    else
-                    {
-                        String message="";
-                        message="Krivi podaci";
-                        Intent intent= new Intent(getContext(),AfterLogin.class);
+                    } else {
+                        String message = "";
+                        message = "Krivi podaci";
+                        Intent intent = new Intent(getContext(), HomeScreenActivity.class);
                         intent.putExtra(EXTRA_MESSAGE, message);
                         startActivity(intent);
                     }

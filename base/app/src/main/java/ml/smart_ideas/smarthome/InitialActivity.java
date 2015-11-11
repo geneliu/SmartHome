@@ -27,10 +27,8 @@ import retrofit.Response;
 
 public class InitialActivity extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAGE = "ml.smart_ideas.smarthome";
 
-    String user="";
-    String pw="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,21 +37,15 @@ public class InitialActivity extends AppCompatActivity {
 
         if (findViewById(R.id.fragment_container) != null) {
 
-            // However, if we're being restored from a previous state,
-            // then we don't need to do anything and should return or else
-            // we could end up with overlapping fragments.
+            // u slučaju postojanja fragmenta
             if (savedInstanceState != null) {
                 return;
             }
 
-
             LoginFragment loginFragment = new LoginFragment();
 
-            // In case this activity was started with special instructions from an
-            // Intent, pass the Intent's extras to the fragment as arguments
             loginFragment.setArguments(getIntent().getExtras());
 
-            // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, loginFragment).commit();
         }
@@ -61,7 +53,7 @@ public class InitialActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_initial, menu);
 
         getSupportActionBar().setTitle(R.string.app_view_name);
@@ -71,12 +63,9 @@ public class InitialActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
