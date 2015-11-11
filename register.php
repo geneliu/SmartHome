@@ -1,5 +1,5 @@
 <?php
-require_once '/Baza/DB_Funkcije.class.php';
+require_once(dirname(__FILE__) .'/Baza/DB_Funkcije.class.php');
 $db= new DB_Funckije();
 $response = array("error" => FALSE);
 

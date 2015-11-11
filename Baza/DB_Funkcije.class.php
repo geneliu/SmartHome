@@ -4,7 +4,7 @@ class DB_Funckije{
     
     private $baza;
     function __construct() {
-        require_once '/Baza/baza.class.php';
+        require_once(dirname(__FILE__) .'/baza.class.php');
         $this->baza=new Baza();
     }
     

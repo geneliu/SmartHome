@@ -11,11 +11,17 @@ class Baza {
     const baza = "api";
     const korisnik = "root";
     const lozinka = "";
-  */
+  
     
     const server = "50.62.209.157:3306";
     const baza = "air";
     const korisnik = "Xz0mbieX";
+    const lozinka = "temp4ret";
+    */
+   
+    const server = "mysql.hostinger.hr";
+    const baza = "u649007527_air";
+    const korisnik = "u649007527_zmb";
     const lozinka = "temp4ret";
     
     function spojiDB() {       
