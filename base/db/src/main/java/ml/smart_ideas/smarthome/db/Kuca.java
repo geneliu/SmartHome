@@ -3,12 +3,11 @@ package ml.smart_ideas.smarthome.db;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 
 import java.util.List;
 
-/**
- * Created by Admin on 13.11.2015..
- */
+
 @Table(name="Kuce")
 public class Kuca extends Model {
     @Column(name = "naziv")
@@ -33,9 +32,11 @@ public class Kuca extends Model {
     }
 
     //Upiti
-    public List<Kuca> popisSvihKuca()
+    public static List<Kuca> getSveKuce()
     {
-        return getMany(Kuca.class,"Kuca");
+        return new Select()
+                .from(Kuca.class)
+                .execute();
     }
 
 
