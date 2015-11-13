@@ -1,5 +1,6 @@
 package ml.smart_ideas.smarthome.db;
 
+import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
