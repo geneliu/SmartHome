@@ -12,18 +12,17 @@ import ml.smart_ideas.smarthome.ws.model.Odgovor;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
-import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.POST;
 
 public class RestClient {
-    private static loginInterface gitApiInterface ;
+    private static loginInterface WSinterface;
     //  private static String baseUrl = "http://192.168.1.2" ;
     private static String baseUrl = "http://smart-ideas.ml" ;
     public static loginInterface getClient() {
-        Log.d("MainActivity", "Status Code = " + "dasdsd");
-        if (gitApiInterface == null) {
+      //  Log.d("MainActivity", "Status Code = " + "dasdsd");
+        if (WSinterface == null) {
 
             OkHttpClient okClient = new OkHttpClient();
             okClient.interceptors().add(new Interceptor() {
@@ -40,9 +39,9 @@ public class RestClient {
                     .client(okClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            gitApiInterface = client.create(loginInterface.class);
+            WSinterface = client.create(loginInterface.class);
         }
-        return gitApiInterface ;
+        return WSinterface;
     }
 
     public interface loginInterface {
