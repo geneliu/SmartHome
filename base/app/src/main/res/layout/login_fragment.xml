@@ -33,7 +33,8 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:background="#ffffff"
-        android:paddingLeft="30dp" />
+        android:paddingLeft="30dp"
+        android:password="false" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -50,5 +51,16 @@
         android:elevation="0dp"
         android:stateListAnimator="@null"
         android:textSize="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="30dp"
+        android:id="@+id/txtRegister"
+        android:hint="@string/txtRegister"
+        android:layout_gravity="center_horizontal"
+        android:textSize="12dp"
+        android:textColor="@color/accent" />
 
 </LinearLayout>
