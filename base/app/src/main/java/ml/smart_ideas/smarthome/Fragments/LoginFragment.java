@@ -1,7 +1,6 @@
 package ml.smart_ideas.smarthome.Fragments;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,13 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 
-import butterknife.OnClick;
 import ml.smart_ideas.smarthome.HomeScreenActivity;
 import ml.smart_ideas.smarthome.R;
+import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.ws.model.Odgovor;
 import ml.smart_ideas.smarthome.ws.rest.RestClient;
 import retrofit.Call;
@@ -52,6 +51,10 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        //test
+        ETusername.setText("test1");
+        ETpassword.setText("test1");
+
         return viewInflater;
     }
 
@@ -76,6 +79,8 @@ public class LoginFragment extends Fragment {
                     Log.d("MainActivity", "username = " + stringUsername);
                     if (stringUsername != null) {
                         String message = "";
+
+                        Globals.getInstance().setKorisnik(new Korisnik(stringUsername,"Ime","Prezime"));
 
                         message = "Pozdrav " + stringUsername;
                         Intent intent = new Intent(getContext(), HomeScreenActivity.class);

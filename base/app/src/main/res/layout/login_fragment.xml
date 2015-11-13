@@ -46,6 +46,9 @@
         android:text="@string/btnLogin"
         android:textColor="@color/accent"
         android:backgroundTint="#ffffff"
-        android:background="#ffffff" />
+        android:background="#ffffff"
+        android:elevation="0dp"
+        android:stateListAnimator="@null"
+        android:textSize="16dp" />
 
 </LinearLayout>
