@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import ml.smart_ideas.smarthome.Fragments.LoginFragment;
 import ml.smart_ideas.smarthome.Fragments.RegistrationFragment;
 import ml.smart_ideas.smarthome.core.EventListener;
+import ml.smart_ideas.smarthome.core.Fragmenti.PrikazKucaFragment;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.db.Korisnik;
 

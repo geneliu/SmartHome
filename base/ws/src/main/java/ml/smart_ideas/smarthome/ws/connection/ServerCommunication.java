@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 
 import ml.smart_ideas.smarthome.core.Fragmenti.PrikazKucaFragment;
 import ml.smart_ideas.smarthome.core.Globals;
-import ml.smart_ideas.smarthome.db.Korisnik;
+import ml.smart_ideas.smarthome.ws.model.Korisnik;
 import ml.smart_ideas.smarthome.ws.model.Odgovor;
 import ml.smart_ideas.smarthome.ws.rest.RestClient;
 import retrofit.Call;
@@ -72,5 +72,34 @@ public class ServerCommunication {
 
     //endregion
 
+    public void registerOnServer(String name, String surname, String username, String password){
+
+        Korisnik korisnik = new Korisnik(name, surname, username, password);
+        RestClient.loginInterface service = RestClient.getClient();
+        Call<Odgovor> call = service.register(korisnik);
+        call.enqueue(new Callback<Odgovor>() {
+            @Override
+            public void onResponse(Response<Odgovor> response) {
+
+                Log.d("MainActivity", "Status Code = " + response.code());
+                if (response.isSuccess()) {
+                    // request successful (status code 200, 201)
+                    Odgovor result = response.body();
+                    Log.d("MainActivity", "response = " + new Gson().toJson(result.getUsername()));
+
+
+                } else {
+                    // response received but request not successful (like 400,401,403 etc)
+                    //Handle errors
+
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+    }
 
 }

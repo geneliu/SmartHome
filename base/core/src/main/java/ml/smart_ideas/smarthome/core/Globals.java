@@ -11,9 +11,7 @@ import java.util.List;
 
 import ml.smart_ideas.smarthome.db.Korisnik;
 
-/**
- * Created by mario on 11.11.2015..
- */
+
 public class Globals {
 
     //region Constructor
