@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import ml.smart_ideas.smarthome.core.Fragmenti.PrikazKucaFragment;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.ws.model.Korisnik;
 import ml.smart_ideas.smarthome.ws.model.Odgovor;
@@ -53,7 +54,7 @@ public class ServerCommunication {
                     String stringUsername = result.getUsername();
                     Log.d("MainActivity", "username = " + stringUsername);
 
-                    Globals.getInstance().ShowActivity(stringUsername);
+                    Globals.getInstance().ShowFragment(new PrikazKucaFragment(),true);
 
                 } else {
                     // response received but request not successful (like 400,401,403 etc)
