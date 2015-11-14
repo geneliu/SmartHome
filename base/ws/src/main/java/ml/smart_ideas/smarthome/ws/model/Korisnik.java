@@ -4,8 +4,8 @@ package ml.smart_ideas.smarthome.ws.model;
  * Created by dudo on 11/14/15.
  */
 public class Korisnik {
-    private String name;
-    private String surname;
+    private String ime;
+    private String prezime;
     private String username;
     private String password;
 
@@ -13,26 +13,26 @@ public class Korisnik {
     }
 
     public Korisnik(String name, String surname, String username, String password) {
-        this.name = name;
-        this.surname = surname;
+        this.ime = name;
+        this.prezime = surname;
         this.username = username;
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getIme() {
+        return ime;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIme(String ime) {
+        this.ime = ime;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getPrezime() {
+        return prezime;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setPrezime(String prezime) {
+        this.prezime = prezime;
     }
 
     public String getUsername() {

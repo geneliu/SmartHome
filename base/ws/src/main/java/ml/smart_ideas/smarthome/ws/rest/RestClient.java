@@ -49,7 +49,7 @@ public class RestClient {
     public interface loginInterface {
 
         // @Headers("User-Agent: Retrofit2.0Tutorial-App")
-        @FormUrlEncoded
+
         @POST("/register.php")
         Call<Odgovor> register(@Body Korisnik korisnik);
         @FormUrlEncoded

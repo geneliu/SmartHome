@@ -2,11 +2,8 @@ package ml.smart_ideas.smarthome.Fragments;
 
 
 
-<<<<<<< HEAD
 import android.content.Context;
-=======
 import android.app.Fragment;
->>>>>>> origin/master
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
