@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import ml.smart_ideas.smarthome.Fragments.LoginFragment;
 import ml.smart_ideas.smarthome.Fragments.RegistrationFragment;
 import ml.smart_ideas.smarthome.core.EventListener;
+import ml.smart_ideas.smarthome.core.Fragmenti.PrikazKucaFragment;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.db.Korisnik;
 
@@ -87,9 +88,14 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
         } else {
             message = "Krivi podaci";
         }
+        PrikazKucaFragment prikazKucaFragment = new PrikazKucaFragment();
+
+        Globals.getInstance().ShowFragment(prikazKucaFragment,false);
+        /*
         Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
+        */
 
     }
 
