@@ -27,6 +27,16 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         if (findViewById(R.id.fragment_container) != null) {
 
+        if(Kuca.getSveKuce().isEmpty())
+            AddDummyData();
+        ArrayList<Kuca> kuce= new ArrayList<>();
+        adapter=new homeAdapter(this,kuce);
+        List<Kuca> kucice=Kuca.getSveKuce();
+        adapter.addAll(kucice);
+        ListView listView = (ListView) findViewById(R.id.lista_kuca);
+        listView.setAdapter(adapter);
+
+
             // u slučaju postojanja fragmenta
             if (savedInstanceState != null) {
                 return;
