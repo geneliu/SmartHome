@@ -1,16 +1,20 @@
 package ml.smart_ideas.smarthome;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import butterknife.ButterKnife;
 import ml.smart_ideas.smarthome.Fragments.LoginFragment;
+import ml.smart_ideas.smarthome.core.EventListener;
+import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.db.Korisnik;
 
 
-public class InitialActivity extends AppCompatActivity {
+public class InitialActivity extends AppCompatActivity implements EventListener {
 
-
+    public final static String EXTRA_MESSAGE = "ml.smart_ideas.smarthome";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,8 @@ public class InitialActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, loginFragment).commit();
         }
+
+        Globals.getInstance().addListener(this);
     }
 
     @Override
@@ -63,6 +69,24 @@ public class InitialActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void ShowFragment(String username) {
+        String message = "";
+
+        if (username != null) {
+            Globals.getInstance().setKorisnik(new Korisnik(username, "Ime", "Prezime"));
+
+            message = "Pozdrav " + username;
+
+        } else {
+             message = "Krivi podaci";
+        }
+        Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+
     }
 
 

@@ -1,5 +1,8 @@
 package ml.smart_ideas.smarthome.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ml.smart_ideas.smarthome.db.Korisnik;
 
 /**
@@ -32,6 +35,22 @@ public class Globals {
     }
     public void setKorisnik(Korisnik korisnik){
         _korisnik = korisnik;
+    }
+
+    //endregion
+
+    //region Events
+
+    private List<EventListener> listeners = new ArrayList<EventListener>();
+
+    public void addListener(EventListener toAdd) {
+        listeners.add(toAdd);
+    }
+
+    public void ShowFragment(String username) {
+
+        for (EventListener el : listeners)
+            el.ShowFragment(username);
     }
 
     //endregion
