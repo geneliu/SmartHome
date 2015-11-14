@@ -25,8 +25,9 @@ public class PrikazKucaFragment extends Fragment {
 
         View viewInflater = inflater.inflate(R.layout.prikaz_kuca_fragment, container, false);
 
+        if(Kuca.getSveKuce().isEmpty())
+            AddDummyData();
 
-        AddDummyData();
         ArrayList<Kuca> kuce= new ArrayList<>();
         adapter=new homeAdapter(getActivity(),kuce);
         List<Kuca> kucice=Kuca.getSveKuce();
