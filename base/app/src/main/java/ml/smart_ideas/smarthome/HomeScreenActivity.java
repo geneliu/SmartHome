@@ -14,7 +14,7 @@ import ml.smart_ideas.smarthome.core.Fragmenti.PrikazKucaFragment;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
 
-public class HomeScreenActivity extends AppCompatActivity {
+    public class HomeScreenActivity extends AppCompatActivity {
 
 
 

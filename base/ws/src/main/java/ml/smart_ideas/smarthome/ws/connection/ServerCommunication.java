@@ -53,7 +53,7 @@ public class ServerCommunication {
                     String stringUsername = result.getUsername();
                     Log.d("MainActivity", "username = " + stringUsername);
 
-                    Globals.getInstance().ShowFragment(stringUsername);
+                    Globals.getInstance().ShowActivity(stringUsername);
 
                 } else {
                     // response received but request not successful (like 400,401,403 etc)

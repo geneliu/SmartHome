@@ -1,10 +1,10 @@
 package ml.smart_ideas.smarthome.Fragments;
 
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -32,6 +32,7 @@ import retrofit.Response;
 
 
 public class LoginFragment extends Fragment  {
+
 
 
     public final static String EXTRA_MESSAGE = "ml.smart_ideas.smarthome";
@@ -80,13 +81,7 @@ public class LoginFragment extends Fragment  {
 
         RegistrationFragment registrationFragment = new RegistrationFragment();
 
-        registrationFragment.setArguments(getActivity().getIntent().getExtras());
-
-        getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, registrationFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
-                .commit();
+        Globals.getInstance().ShowFragment(registrationFragment,true);
 
     }
 
