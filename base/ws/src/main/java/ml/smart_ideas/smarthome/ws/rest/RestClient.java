@@ -8,10 +8,12 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
+import ml.smart_ideas.smarthome.ws.model.Korisnik;
 import ml.smart_ideas.smarthome.ws.model.Odgovor;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
+import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.POST;
@@ -49,13 +51,7 @@ public class RestClient {
         // @Headers("User-Agent: Retrofit2.0Tutorial-App")
         @FormUrlEncoded
         @POST("/register.php")
-        Call<Odgovor> register(
-                //tu treba implementirati da se šalju podaci preko json formata jer je više fieldova.
-                @Field("ime") String ime,
-                @Field("prezime") String prezime,
-                @Field("username") String username,
-                @Field("lozinka") String lozinka
-        );
+        Call<Odgovor> register(@Body Korisnik korisnik);
         @FormUrlEncoded
         @POST("/login.php")
         Call<Odgovor> postWithFormParams(
