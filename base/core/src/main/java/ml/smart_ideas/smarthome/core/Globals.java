@@ -1,5 +1,11 @@
 package ml.smart_ideas.smarthome.core;
 
+
+
+
+
+import android.app.Fragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,10 +53,15 @@ public class Globals {
         listeners.add(toAdd);
     }
 
-    public void ShowFragment(String username) {
+    public void ShowActivity(String username) {
 
         for (EventListener el : listeners)
-            el.ShowFragment(username);
+            el.ShowActivity(username);
+    }
+    public void ShowFragment(Fragment fragment,boolean addToBackStack) {
+
+        for (EventListener el : listeners)
+            el.ShowFragment(fragment,addToBackStack);
     }
 
     //endregion

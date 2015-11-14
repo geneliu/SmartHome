@@ -16,7 +16,7 @@ import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
 
-public class HomeScreenActivity extends AppCompatActivity {
+    public class HomeScreenActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "ml.smart_ideas.smarthome";
     homeAdapter adapter;
