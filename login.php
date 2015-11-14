@@ -13,13 +13,14 @@ if(isset($_POST['username']) && isset($_POST['lozinka']))
     if($user!=false)
     {
         
-        $reposnse["error"]= FALSE;
-        $response["username"]= $user;
+        $response["error"]= "false";
+        $response["username"]= $username;
         echo json_encode($response);
     }
     else
     {
-        $response["error"] = "Login credentials are wrong. Please try again!";
+        $response["error"] = "true";
+		$response["username"]= $username;
         echo json_encode($response);
     }
 }
