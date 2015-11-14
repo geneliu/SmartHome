@@ -1,35 +1,23 @@
 package ml.smart_ideas.smarthome.Fragments;
 
 
-
-<<<<<<< HEAD
-import android.content.Context;
-=======
 import android.app.Fragment;
->>>>>>> origin/master
-import android.content.Intent;
+
+
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
 
-import ml.smart_ideas.smarthome.HomeScreenActivity;
 import ml.smart_ideas.smarthome.R;
-import ml.smart_ideas.smarthome.core.Globals;
-import ml.smart_ideas.smarthome.db.Korisnik;
+
 import ml.smart_ideas.smarthome.ws.connection.ServerCommunication;
-import ml.smart_ideas.smarthome.ws.model.Odgovor;
-import ml.smart_ideas.smarthome.ws.rest.RestClient;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
+
 
 
 /**
