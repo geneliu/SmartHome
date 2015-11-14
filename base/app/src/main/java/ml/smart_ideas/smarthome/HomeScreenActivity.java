@@ -28,7 +28,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        AddDummyData();
+        if(Kuca.getSveKuce().isEmpty())
+            AddDummyData();
         ArrayList<Kuca> kuce= new ArrayList<>();
         adapter=new homeAdapter(this,kuce);
         List<Kuca> kucice=Kuca.getSveKuce();
