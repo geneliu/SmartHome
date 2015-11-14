@@ -1,46 +1,33 @@
 package ml.smart_ideas.smarthome.Fragments;
 
-
-
-import android.content.Context;
 import android.app.Fragment;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.google.gson.Gson;
-
-import ml.smart_ideas.smarthome.HomeScreenActivity;
 import ml.smart_ideas.smarthome.R;
+
+import ml.smart_ideas.smarthome.core.MessageEventListener;
 import ml.smart_ideas.smarthome.core.Globals;
-import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.ws.connection.ServerCommunication;
-import ml.smart_ideas.smarthome.ws.model.Odgovor;
-import ml.smart_ideas.smarthome.ws.rest.RestClient;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
 
 
-/**
- * Created by mario on 10.11.2015..
- */
-public class RegistrationFragment extends Fragment {
+public class RegistrationFragment extends Fragment implements MessageEventListener {
 
-    public final static String EXTRA_MESSAGE = "ml.smart_ideas.smarthome";
 
     EditText ETname;
     EditText ETsurname;
     EditText ETusername;
     EditText ETpassword;
     EditText ETrepeatPassword;
+    TextView TVMessage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,16 +41,28 @@ public class RegistrationFragment extends Fragment {
         ETusername = (EditText) viewInflater.findViewById(R.id.username);
         ETpassword = (EditText) viewInflater.findViewById(R.id.password);
         ETrepeatPassword = (EditText) viewInflater.findViewById(R.id.repeatPassword);
+        TVMessage = (TextView) viewInflater.findViewById(R.id.TVMessage);
         Button BtnRegister = (Button) viewInflater.findViewById(R.id.btnRegister);
+
 
         ETpassword.setTransformationMethod(new PasswordTransformationMethod());
         ETrepeatPassword.setTransformationMethod(new PasswordTransformationMethod());
+        TVMessage.setText("");
 
         BtnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 register();
             }
         });
+
+        Globals.getInstance().addErrorListener(this);
+
+        //test
+        ETname.setText("test");
+        ETsurname.setText("test");
+        ETusername.setText("test1");
+        ETpassword.setText("test1");
+        ETrepeatPassword.setText("test1");
 
         return viewInflater;
 
@@ -78,6 +77,12 @@ public class RegistrationFragment extends Fragment {
 
         ServerCommunication.getInstance().registerOnServer(name, surname, user, pw);
     }
+
+    @Override
+    public void ShowMessage(String message){
+        TVMessage.setText(message);
+    }
+
 
 
 }

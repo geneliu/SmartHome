@@ -3,16 +3,16 @@ package ml.smart_ideas.smarthome.ws.model;
 /**
  * Created by dudo on 11/14/15.
  */
-public class Korisnik {
+public class NoviKorisnik {
     private String ime;
     private String prezime;
     private String username;
     private String password;
 
-    public Korisnik() {
+    public NoviKorisnik() {
     }
 
-    public Korisnik(String name, String surname, String username, String password) {
+    public NoviKorisnik(String name, String surname, String username, String password) {
         this.ime = name;
         this.prezime = surname;
         this.username = username;

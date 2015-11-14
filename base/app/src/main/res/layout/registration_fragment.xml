@@ -18,7 +18,7 @@
         android:id="@+id/surname"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:hint="@string/surname"
         android:background="#ffffff"
         android:paddingLeft="30dp" />
@@ -27,7 +27,7 @@
         android:id="@+id/username"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:hint="@string/username"
         android:background="#ffffff"
         android:paddingLeft="30dp" />
@@ -36,7 +36,7 @@
         android:id="@+id/password"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:hint="@string/password"
         android:background="#ffffff"
         android:paddingLeft="30dp"
@@ -46,7 +46,7 @@
         android:id="@+id/repeatPassword"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:hint="@string/repeatPassword"
         android:background="#ffffff"
         android:paddingLeft="30dp"
@@ -64,6 +64,16 @@
         android:elevation="0dp"
         android:stateListAnimator="@null"
         android:textSize="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Message"
+        android:id="@+id/TVMessage"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/accent"
+        android:layout_marginTop="20dp" />
 
 
 </LinearLayout>

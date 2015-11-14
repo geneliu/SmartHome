@@ -8,7 +8,7 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
-import ml.smart_ideas.smarthome.ws.model.Korisnik;
+import ml.smart_ideas.smarthome.ws.model.NoviKorisnik;
 import ml.smart_ideas.smarthome.ws.model.Odgovor;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
@@ -51,7 +51,7 @@ public class RestClient {
         // @Headers("User-Agent: Retrofit2.0Tutorial-App")
 
         @POST("/register.php")
-        Call<Odgovor> register(@Body Korisnik korisnik);
+        Call<Odgovor> register(@Body NoviKorisnik korisnik);
         @FormUrlEncoded
         @POST("/login.php")
         Call<Odgovor> postWithFormParams(

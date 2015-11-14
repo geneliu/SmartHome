@@ -1,13 +1,12 @@
 package ml.smart_ideas.smarthome.ws.connection;
 
-import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
 
 import ml.smart_ideas.smarthome.core.Fragmenti.PrikazKucaFragment;
 import ml.smart_ideas.smarthome.core.Globals;
-import ml.smart_ideas.smarthome.ws.model.Korisnik;
+import ml.smart_ideas.smarthome.ws.model.NoviKorisnik;
 import ml.smart_ideas.smarthome.ws.model.Odgovor;
 import ml.smart_ideas.smarthome.ws.rest.RestClient;
 import retrofit.Call;
@@ -37,7 +36,7 @@ public class ServerCommunication {
     //region Methods
 
 
-    public void loginToServer(String username, String password){
+    public void loginToServer(String username, String password) {
 
         RestClient.loginInterface service = RestClient.getClient();
         Call<Odgovor> call = service.postWithFormParams(username, password);
@@ -54,7 +53,7 @@ public class ServerCommunication {
                     String stringUsername = result.getUsername();
                     Log.d("MainActivity", "username = " + stringUsername);
 
-                    Globals.getInstance().ShowFragment(new PrikazKucaFragment(),true);
+                    Globals.getInstance().ShowFragment(new PrikazKucaFragment(), true);
 
                 } else {
                     // response received but request not successful (like 400,401,403 etc)
@@ -72,11 +71,11 @@ public class ServerCommunication {
 
     //endregion
 
-    public void registerOnServer(String name, String surname, String username, String password){
+    public void registerOnServer(String name, String surname, final String username, String password) {
 
-        Korisnik korisnik = new Korisnik(name, surname, username, password);
+        NoviKorisnik noviKorisnik = new NoviKorisnik(name, surname, username, password);
         RestClient.loginInterface service = RestClient.getClient();
-        Call<Odgovor> call = service.register(korisnik);
+        Call<Odgovor> call = service.register(noviKorisnik);
         call.enqueue(new Callback<Odgovor>() {
             @Override
             public void onResponse(Response<Odgovor> response) {
@@ -85,7 +84,17 @@ public class ServerCommunication {
                 if (response.isSuccess()) {
                     // request successful (status code 200, 201)
                     Odgovor result = response.body();
-                    Log.d("MainActivity", "response = " + new Gson().toJson(result.getUsername()));
+                    String error = result.getError();
+                    Log.d("MainActivity", "response = error:" + new Gson().toJson(error));
+
+                    Globals.getInstance().ShowMessage("");
+                    if (error.compareTo("exist") == 0) {
+                        Globals.getInstance().ShowMessage("Korisnik " + username + " već postoji.");
+                    } else if (error.compareTo("false") == 0) {
+                        Globals.getInstance().ShowMessage("Korisnik " + username + " uspješno registriran.");
+                    }else{
+                        Globals.getInstance().ShowMessage("Dogodila se greška kod registracije..");
+                    }
 
 
                 } else {

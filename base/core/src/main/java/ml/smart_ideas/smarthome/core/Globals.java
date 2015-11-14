@@ -45,6 +45,8 @@ public class Globals {
 
     //region Events
 
+
+    //region Fragments Changing
     private List<EventListener> listeners = new ArrayList<EventListener>();
 
     public void addListener(EventListener toAdd) {
@@ -57,6 +59,26 @@ public class Globals {
         for (EventListener el : listeners)
             el.ShowFragment(fragment,addToBackStack);
     }
+    //endregion
+
+    //region ErrorMessages
+
+    private List<MessageEventListener> messageListeners = new ArrayList<MessageEventListener>();
+
+    public void addErrorListener(MessageEventListener toAdd) {
+        messageListeners.add(toAdd);
+    }
+    public void removeErrorListeners(){messageListeners.clear();}
+
+
+    public void ShowMessage(String message) {
+
+        for (MessageEventListener ml : messageListeners)
+            ml.ShowMessage(message);
+    }
+
+    //endregion
+
 
     //endregion
 
