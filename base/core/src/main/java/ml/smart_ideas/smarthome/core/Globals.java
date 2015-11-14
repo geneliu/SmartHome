@@ -1,9 +1,6 @@
 package ml.smart_ideas.smarthome.core;
 
 
-
-
-
 import android.app.Fragment;
 
 import java.util.ArrayList;
@@ -15,7 +12,8 @@ import ml.smart_ideas.smarthome.db.Korisnik;
 public class Globals {
 
     //region Constructor
-    private Globals() { }
+    private Globals() {
+    }
 
     private static Globals _instance;
 
@@ -34,10 +32,11 @@ public class Globals {
 
     //region Public Properties
 
-    public Korisnik getKorisnik(){
+    public Korisnik getKorisnik() {
         return _korisnik;
     }
-    public void setKorisnik(Korisnik korisnik){
+
+    public void setKorisnik(Korisnik korisnik) {
         _korisnik = korisnik;
     }
 
@@ -54,22 +53,21 @@ public class Globals {
     }
 
 
-    public void ShowFragment(Fragment fragment,boolean addToBackStack) {
+    public void ShowFragment(Fragment fragment, boolean addToBackStack) {
 
         for (EventListener el : listeners)
-            el.ShowFragment(fragment,addToBackStack);
+            el.ShowFragment(fragment, addToBackStack);
     }
     //endregion
 
-    //region ErrorMessages
+    //region Messages
 
     private List<MessageEventListener> messageListeners = new ArrayList<MessageEventListener>();
 
-    public void addErrorListener(MessageEventListener toAdd) {
+    public void addMessageListener(MessageEventListener toAdd) {
+        messageListeners.clear();
         messageListeners.add(toAdd);
     }
-    public void removeErrorListeners(){messageListeners.clear();}
-
 
     public void ShowMessage(String message) {
 

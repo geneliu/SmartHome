@@ -25,7 +25,7 @@ public class PrikazKucaFragment extends Fragment {
 
         View viewInflater = inflater.inflate(R.layout.prikaz_kuca_fragment, container, false);
 
-        if(Kuca.getSveKuce().isEmpty())
+        if(Kuca.getSveKuce().size() < 3)
             AddDummyData();
 
         ArrayList<Kuca> kuce= new ArrayList<>();
@@ -50,14 +50,19 @@ public class PrikazKucaFragment extends Fragment {
     {
         Korisnik korisnik=new Korisnik("joooo","dooo","gooo");
         Kuca dummyKuca= new Kuca();
+        Kuca dummyKuca1 = new Kuca();
         Kuca dummyKuca2= new Kuca();
         dummyKuca.setNaziv("Tuđanova šupa");
         dummyKuca.setAdresa("dasdas");
         dummyKuca.setKorisnik(korisnik);
+        dummyKuca1.setNaziv("Sušecova štala");
+        dummyKuca1.setAdresa("tutu");
+        dummyKuca1.setKorisnik(korisnik);
         dummyKuca2.setNaziv("Kišićeva rupa");
         dummyKuca2.setAdresa("hoho");
         dummyKuca2.setKorisnik(korisnik);
         dummyKuca.save();
+        dummyKuca1.save();
         dummyKuca2.save();
 
     }

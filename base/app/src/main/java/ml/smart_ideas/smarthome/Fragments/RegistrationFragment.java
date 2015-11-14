@@ -55,7 +55,7 @@ public class RegistrationFragment extends Fragment implements MessageEventListen
             }
         });
 
-        Globals.getInstance().addErrorListener(this);
+        Globals.getInstance().addMessageListener(this);
 
         //test
         ETname.setText("test");
@@ -80,7 +80,8 @@ public class RegistrationFragment extends Fragment implements MessageEventListen
 
     @Override
     public void ShowMessage(String message){
-        TVMessage.setText(message);
+        if(TVMessage != null)
+            TVMessage.setText(message);
     }
 
 

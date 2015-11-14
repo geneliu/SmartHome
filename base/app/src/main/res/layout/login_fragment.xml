@@ -55,6 +55,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Message"
+        android:id="@+id/TVMessage"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/accent"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginTop="30dp"
         android:id="@+id/txtRegister"
@@ -62,5 +72,7 @@
         android:layout_gravity="center_horizontal"
         android:textSize="12dp"
         android:textColor="@color/accent" />
+
+
 
 </LinearLayout>

@@ -13,18 +13,17 @@ import android.widget.TextView;
 
 import ml.smart_ideas.smarthome.R;
 import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.core.MessageEventListener;
 import ml.smart_ideas.smarthome.ws.connection.ServerCommunication;
 
 
-public class LoginFragment extends Fragment  {
-
-
-
-    public final static String EXTRA_MESSAGE = "ml.smart_ideas.smarthome";
+public class LoginFragment extends Fragment  implements MessageEventListener{
 
     EditText ETusername;
     EditText ETpassword;
     TextView TVregister;
+
+    TextView TVMessage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,11 +36,14 @@ public class LoginFragment extends Fragment  {
         TVregister = (TextView) viewInflater.findViewById(R.id.txtRegister);
         Button BtnLogin = (Button) viewInflater.findViewById(R.id.btnLogin);
 
+        TVMessage = (TextView) viewInflater.findViewById(R.id.TVMessage);
+        TVMessage.setText("");
+
 
         ETpassword.setTransformationMethod(new PasswordTransformationMethod());
 
 
-        // ButterKnife nije radio za ovaj OnClickListener
+
         BtnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 login();
@@ -53,6 +55,8 @@ public class LoginFragment extends Fragment  {
                 register();
             }
         });
+
+        Globals.getInstance().addMessageListener(this);
 
         //test
         ETusername.setText("test1");
@@ -75,6 +79,12 @@ public class LoginFragment extends Fragment  {
         String username = ETusername.getText().toString();
         String password = ETpassword.getText().toString();
 
-        ServerCommunication.getInstance().loginToServer(username,password);
+        ServerCommunication.getInstance().loginToServer(username, password);
+    }
+
+    @Override
+    public void ShowMessage(String message){
+        //if(TVMessage != null)
+            TVMessage.setText(message);
     }
 }

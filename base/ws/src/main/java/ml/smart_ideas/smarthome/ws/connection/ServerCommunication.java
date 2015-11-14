@@ -1,5 +1,6 @@
 package ml.smart_ideas.smarthome.ws.connection;
 
+import android.app.Application;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -51,9 +52,17 @@ public class ServerCommunication {
                     Log.d("MainActivity", "response = " + new Gson().toJson(result));
 
                     String stringUsername = result.getUsername();
+                    String error = result.getError();
                     Log.d("MainActivity", "username = " + stringUsername);
 
-                    Globals.getInstance().ShowFragment(new PrikazKucaFragment(), true);
+                    Globals.getInstance().ShowMessage("");
+                    if (error.compareTo("false") == 0) {
+                        Globals.getInstance().ShowFragment(new PrikazKucaFragment(), true);
+                    }else{
+                        Globals.getInstance().ShowMessage("Neispravno korisničko ime i/ili lozinka");
+                    }
+
+
 
                 } else {
                     // response received but request not successful (like 400,401,403 etc)
@@ -93,7 +102,7 @@ public class ServerCommunication {
                     } else if (error.compareTo("false") == 0) {
                         Globals.getInstance().ShowMessage("Korisnik " + username + " uspješno registriran.");
                     }else{
-                        Globals.getInstance().ShowMessage("Dogodila se greška kod registracije..");
+                        Globals.getInstance().ShowMessage("Dogodila se greška kod registracije.");
                     }
 
 
