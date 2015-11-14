@@ -1,4 +1,4 @@
-package ml.smart_ideas.smarthome.Adapteri;
+package ml.smart_ideas.smarthome.core.Adapteri;
 
 import android.content.Context;
 import android.media.Image;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import ml.smart_ideas.smarthome.R;
+import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.db.Kuca;
 
 /**

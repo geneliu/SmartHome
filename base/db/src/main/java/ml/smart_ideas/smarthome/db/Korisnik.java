@@ -4,12 +4,9 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
-/**
- * Created by mario on 11.11.2015..
- */
 
 @Table(name="Korisnik")
-public class Korisnik {
+public class Korisnik extends Model {
 
     //region Constructor
 
@@ -39,6 +36,13 @@ public class Korisnik {
 
     //endregion
 
+
+    //region queryes
+
+
+
+
+    //endregion
     //region Public Properties
 
     public String getUsername(){

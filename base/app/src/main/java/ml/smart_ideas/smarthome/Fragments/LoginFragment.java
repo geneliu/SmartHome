@@ -30,10 +30,9 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 
-/**
- * Created by mario on 10.11.2015..
- */
-public class LoginFragment extends Fragment {
+
+public class LoginFragment extends Fragment  {
+
 
 
     public final static String EXTRA_MESSAGE = "ml.smart_ideas.smarthome";
