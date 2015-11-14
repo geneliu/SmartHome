@@ -77,14 +77,18 @@ public class LoginFragment extends Fragment  {
     }
 
     public void register() {
-        getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
+        //getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
 
         RegistrationFragment registrationFragment = new RegistrationFragment();
 
         registrationFragment.setArguments(getActivity().getIntent().getExtras());
 
         getFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, registrationFragment).commit();
+                .replace(R.id.fragment_container, registrationFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit();
+
     }
 
 

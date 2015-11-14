@@ -51,6 +51,10 @@ public class RestClient {
         @POST("/register.php")
         Call<Odgovor> register(
                 //tu treba implementirati da se šalju podaci preko json formata jer je više fieldova.
+                @Field("ime") String ime,
+                @Field("prezime") String prezime,
+                @Field("username") String username,
+                @Field("lozinka") String lozinka
         );
         @FormUrlEncoded
         @POST("/login.php")

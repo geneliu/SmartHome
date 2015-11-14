@@ -94,10 +94,15 @@
     <orderEntry type="library" exported="" name="support-annotations-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="activeandroid-3.1.0-SNAPSHOT" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="okhttp-2.5.0" level="project" />
 >>>>>>> 994d4a969872dfdd924baa21abec19ee7b1ac05f
     <orderEntry type="library" exported="" name="butterknife-7.0.1" level="project" />
     <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
+=======
+    <orderEntry type="library" exported="" name="butterknife-7.0.1" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-2.5.0" level="project" />
+>>>>>>> 47bc37f7fe12485a4786a855eee26cc3436fcb48
     <orderEntry type="library" exported="" name="okio-1.6.0" level="project" />
     <orderEntry type="library" exported="" name="converter-gson-2.0.0-beta1" level="project" />
     <orderEntry type="library" exported="" name="retrofit-2.0.0-beta1" level="project" />
