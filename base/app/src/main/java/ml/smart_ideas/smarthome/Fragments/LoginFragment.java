@@ -29,9 +29,7 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 
-/**
- * Created by mario on 10.11.2015..
- */
+
 public class LoginFragment extends Fragment  {
 
 

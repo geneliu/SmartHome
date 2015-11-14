@@ -1,18 +1,16 @@
 package ml.smart_ideas.smarthome;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ml.smart_ideas.smarthome.Adapteri.homeAdapter;
-import ml.smart_ideas.smarthome.core.Globals;
+import butterknife.ButterKnife;
+import ml.smart_ideas.smarthome.Fragments.LoginFragment;
+import ml.smart_ideas.smarthome.core.Adapteri.homeAdapter;
+import ml.smart_ideas.smarthome.core.Fragmenti.PrikazKucaFragment;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
 
@@ -23,43 +21,25 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        ButterKnife.bind(this);
 
-        AddDummyData();
-        ArrayList<Kuca> kuce= new ArrayList<>();
-        adapter=new homeAdapter(this,kuce);
-        List<Kuca> kucice=Kuca.getSveKuce();
-        adapter.addAll(kucice);
-        ListView listView = (ListView) findViewById(R.id.lista_kuca);
-        listView.setAdapter(adapter);
+        if (findViewById(R.id.fragment_container) != null) {
 
+            // u slučaju postojanja fragmenta
+            if (savedInstanceState != null) {
+                return;
+            }
 
-        /*
-        Intent intent = getIntent();
-        Korisnik korisnik = Globals.getInstance().getKorisnik();
-        String message = "Pozdrav " + korisnik.getUsername() + ", " + korisnik.getIme() + " " + korisnik.getPrezime();  //intent.getStringExtra(EXTRA_MESSAGE);
-        TextView textView = (TextView) findViewById(R.id.postLoginText);
-        textView.setText(message);
-        */
+            LoginFragment loginFragment = new LoginFragment();
 
+            loginFragment.setArguments(getIntent().getExtras());
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container,PrikazKucaFragment).commit();
+        }
     }
 
-    private void AddDummyData()
-    {
-        Korisnik korisnik=new Korisnik("joooo","dooo","gooo");
-        Kuca dummyKuca= new Kuca();
-        Kuca dummyKuca2= new Kuca();
-        dummyKuca.setNaziv("Tuđanova šupa");
-        dummyKuca.setAdresa("dasdas");
-        dummyKuca.setKorisnik(korisnik);
-        dummyKuca2.setNaziv("Kišićeva rupa");
-        dummyKuca2.setAdresa("hoho");
-        dummyKuca2.setKorisnik(korisnik);
-        dummyKuca.save();
-        dummyKuca2.save();
 
-    }
 }
