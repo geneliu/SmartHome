@@ -75,23 +75,6 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
         }
     }
 
-    @Override
-    public void ShowActivity(String username) {
-        String message = "";
-
-        if (username != null) {
-            Globals.getInstance().setKorisnik(new Korisnik(username, "Ime", "Prezime"));
-
-            message = "Pozdrav " + username;
-
-        } else {
-            message = "Krivi podaci";
-        }
-        Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-
-    }
 
     @Override
     public void ShowFragment(Fragment fragment, boolean addToBackStack) {

@@ -53,11 +53,7 @@ public class Globals {
         listeners.add(toAdd);
     }
 
-    public void ShowActivity(String username) {
 
-        for (EventListener el : listeners)
-            el.ShowActivity(username);
-    }
     public void ShowFragment(Fragment fragment,boolean addToBackStack) {
 
         for (EventListener el : listeners)
