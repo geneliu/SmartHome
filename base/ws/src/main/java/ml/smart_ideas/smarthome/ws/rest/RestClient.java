@@ -19,10 +19,10 @@ import retrofit.http.FormUrlEncoded;
 import retrofit.http.POST;
 
 public class RestClient {
-    private static loginInterface WSinterface;
+    private static LoginInterface WSinterface;
     //  private static String baseUrl = "http://192.168.1.2" ;
     private static String baseUrl = "http://smart-ideas.ml" ;
-    public static loginInterface getClient() {
+    public static LoginInterface getClient() {
       //  Log.d("MainActivity", "Status Code = " + "dasdsd");
         if (WSinterface == null) {
 
@@ -41,12 +41,12 @@ public class RestClient {
                     .client(okClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            WSinterface = client.create(loginInterface.class);
+            WSinterface = client.create(LoginInterface.class);
         }
         return WSinterface;
     }
 
-    public interface loginInterface {
+    public interface LoginInterface {
 
         // @Headers("User-Agent: Retrofit2.0Tutorial-App")
 
@@ -60,7 +60,7 @@ public class RestClient {
         );
         @FormUrlEncoded
         @POST("/user_info.php")
-        Call<NoviKorisnik> getUserInfo(
+        Call<NoviKorisnik> login(
                 @Field("username") String username,
                 @Field("lozinka") String lozinka
         );

@@ -45,6 +45,7 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
 
 
         Globals.getInstance().ShowTitle("Prijava");
+        Globals.getInstance().setAppStateEnum(AppStateEnum.Ready);
 
         BtnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -54,7 +55,7 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
 
         TVregister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                register();
+                goToRegistration();
             }
         });
 
@@ -69,7 +70,7 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
         return viewInflater;
     }
 
-    public void register() {
+    public void goToRegistration() {
         //getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
 
         RegistrationFragment registrationFragment = new RegistrationFragment();
