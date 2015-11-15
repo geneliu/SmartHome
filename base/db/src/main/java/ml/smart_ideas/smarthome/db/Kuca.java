@@ -8,7 +8,7 @@ import com.activeandroid.query.Select;
 import java.util.List;
 
 
-@Table(name="Kuce")
+@Table(name = "Kuce")
 public class Kuca extends Model {
     @Column(name = "naziv")
     private String naziv;
@@ -16,28 +16,22 @@ public class Kuca extends Model {
     @Column(name = "adresa")
     private String adresa;
 
-    @Column(name = "korisnik")
+    @Column(name = "Korisnik")
     private Korisnik korisnik;
 
-    public Kuca()
-    {
+    public Kuca() {
         super();
     }
-    public Kuca(String Naziv,String Adresa,Korisnik Korisnik)
-    {
+
+    public Kuca(String Naziv, String Adresa, Korisnik Korisnik) {
         super();
-        this.naziv=Naziv;
-        this.adresa=Adresa;
-        this.korisnik=Korisnik;
+        this.naziv = Naziv;
+        this.adresa = Adresa;
+        this.korisnik = Korisnik;
+        save();
     }
 
     //Upiti
-    public static List<Kuca> getSveKuce()
-    {
-        return new Select()
-                .from(Kuca.class)
-                .execute();
-    }
 
 
     //Getters and setters
@@ -48,6 +42,7 @@ public class Kuca extends Model {
 
     public void setKorisnik(Korisnik korisnik) {
         this.korisnik = korisnik;
+        save();
     }
 
     public String getNaziv() {
@@ -56,6 +51,7 @@ public class Kuca extends Model {
 
     public void setNaziv(String naziv) {
         this.naziv = naziv;
+        save();
     }
 
     public String getAdresa() {
@@ -64,5 +60,17 @@ public class Kuca extends Model {
 
     public void setAdresa(String adresa) {
         this.adresa = adresa;
+        save();
+    }
+
+    public void updateKuca(Kuca updatedKuca) {
+        this.naziv = updatedKuca.getNaziv();
+        this.adresa = updatedKuca.getAdresa();
+        this.korisnik = updatedKuca.getKorisnik(); //????
+        this.save();
+    }
+
+    public List<Prostorija> getProstorije() {
+        return getMany(Prostorija.class, "Kuca");
     }
 }
