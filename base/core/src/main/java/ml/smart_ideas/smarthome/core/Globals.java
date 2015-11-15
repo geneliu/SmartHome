@@ -61,6 +61,7 @@ public class Globals {
 
         for (EventListener el : listeners)
             el.ShowFragment(fragment, addToBackStack);
+
     }
     //endregion
 

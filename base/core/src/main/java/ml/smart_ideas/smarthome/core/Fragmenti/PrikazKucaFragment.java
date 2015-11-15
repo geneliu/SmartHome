@@ -2,6 +2,7 @@ package ml.smart_ideas.smarthome.core.Fragmenti;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ public class PrikazKucaFragment extends Fragment {
     homeAdapter adapter;
 
     ListView listView;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class PrikazKucaFragment extends Fragment {
 
         //if(this.isVisible())
             InitializeFragment();
+
 
 
         /*
@@ -76,5 +77,6 @@ public class PrikazKucaFragment extends Fragment {
         adapter.addAll(kucice);
 
         listView.setAdapter(adapter);
+
     }
 }
