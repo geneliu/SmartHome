@@ -37,6 +37,18 @@ class DB_Funckije{
         return "false";
         
     }
+	
+	public function podaciKorisnika($username,$password){
+		$provjera = $this->provjeriKorisnika($username,$password);
+		
+		if($provjera != false){
+			$q = "Select * from users where username ='".$username."'; ";
+			$podaci = $this->baza->selectDB($q);
+			return $podaci;
+		}
+		return false;
+		
+	}
     
     
 }
