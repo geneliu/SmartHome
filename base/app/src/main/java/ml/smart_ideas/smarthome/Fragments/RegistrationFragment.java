@@ -49,6 +49,8 @@ public class RegistrationFragment extends Fragment implements MessageEventListen
         ETrepeatPassword.setTransformationMethod(new PasswordTransformationMethod());
         TVMessage.setText("");
 
+        Globals.getInstance().ShowTitle("Registracija");
+
         BtnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 register();

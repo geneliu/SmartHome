@@ -6,6 +6,8 @@ import android.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import ml.smart_ideas.smarthome.core.Enums.AppStateEnum;
+import ml.smart_ideas.smarthome.core.Enums.NavigationEnum;
 import ml.smart_ideas.smarthome.db.Korisnik;
 
 
@@ -27,6 +29,8 @@ public class Globals {
     //region Private Fields
 
     private Korisnik _korisnik;
+    private NavigationEnum navigationEnum;
+    private AppStateEnum appStateEnum;
 
     //endregion
 
@@ -44,18 +48,31 @@ public class Globals {
         _korisnik = new Korisnik(username,password,ime,prezime);
     }
 
+    public NavigationEnum getNavigationEnum(){
+        return  navigationEnum;
+    }
+    public void setNavigationEnum(NavigationEnum navigationEnum){
+        this.navigationEnum = navigationEnum;
+
+    }
+    public AppStateEnum getAppStateEnum(){
+        return  appStateEnum;
+    }
+    public void setAppStateEnum(AppStateEnum appStateEnum){
+        this.appStateEnum = appStateEnum;
+
+    }
+
     //endregion
 
     //region Events
-
-
-    //region Fragments Changing
     private List<EventListener> listeners = new ArrayList<EventListener>();
 
     public void addListener(EventListener toAdd) {
         listeners.add(toAdd);
     }
 
+    //region Fragments Changing
 
     public void ShowFragment(Fragment fragment, boolean addToBackStack) {
 
@@ -63,6 +80,17 @@ public class Globals {
             el.ShowFragment(fragment, addToBackStack);
 
     }
+    //endregion
+
+    //region Toolbar Title
+
+    public void ShowTitle(String title) {
+
+        for (EventListener el : listeners)
+            el.ShowTitle(title);
+
+    }
+
     //endregion
 
     //region Messages

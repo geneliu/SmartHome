@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ml.smart_ideas.smarthome.core.Adapteri.homeAdapter;
+import ml.smart_ideas.smarthome.core.Enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.db.Korisnik;
@@ -33,7 +34,8 @@ public class PrikazKucaFragment extends Fragment {
         //if(this.isVisible())
             InitializeFragment();
 
-
+        Globals.getInstance().ShowTitle("Popis kuća");
+        Globals.getInstance().setAppStateEnum(AppStateEnum.Ready);
 
         /*
         Intent intent = getIntent();

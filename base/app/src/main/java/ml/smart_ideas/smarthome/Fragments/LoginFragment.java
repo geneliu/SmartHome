@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import ml.smart_ideas.smarthome.R;
+import ml.smart_ideas.smarthome.core.Enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.MessageEventListener;
 import ml.smart_ideas.smarthome.ws.connection.ServerCommunication;
@@ -43,6 +44,7 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
         ETpassword.setTransformationMethod(new PasswordTransformationMethod());
 
 
+        Globals.getInstance().ShowTitle("Prijava");
 
         BtnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -57,6 +59,8 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
         });
 
         Globals.getInstance().addMessageListener(this);
+
+
 
         //test
         ETusername.setText("test1");
@@ -79,7 +83,13 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
         String username = ETusername.getText().toString();
         String password = ETpassword.getText().toString();
 
-        ServerCommunication.getInstance().loginToServer(username, password);
+        if(Globals.getInstance().getAppStateEnum() == AppStateEnum.LoggingIn){
+            Globals.getInstance().ShowMessage("Molimo pričekajte, prijava je već u tijeku...");
+        }else {
+            Globals.getInstance().setAppStateEnum(AppStateEnum.LoggingIn);
+
+            ServerCommunication.getInstance().loginToServer(username, password);
+        }
     }
 
     @Override

@@ -8,4 +8,5 @@ import android.app.Fragment;
  */
 public interface EventListener {
     void ShowFragment(Fragment fragment,boolean addToBackStack);
+    void ShowTitle(String title);
 }
