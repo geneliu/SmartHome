@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ml.smart_ideas.smarthome.core.Adapteri.homeAdapter;
+import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
@@ -19,21 +20,18 @@ import ml.smart_ideas.smarthome.db.Kuca;
 public class PrikazKucaFragment extends Fragment {
     homeAdapter adapter;
 
+    ListView listView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View viewInflater = inflater.inflate(R.layout.prikaz_kuca_fragment, container, false);
 
-        if(Kuca.getSveKuce().size() < 3)
-            AddDummyData();
+        listView = (ListView) viewInflater.findViewById(R.id.lista_kuca);
 
-        ArrayList<Kuca> kuce= new ArrayList<>();
-        adapter=new homeAdapter(getActivity(),kuce);
-        List<Kuca> kucice=Kuca.getSveKuce();
-        adapter.addAll(kucice);
-        ListView listView = (ListView) viewInflater.findViewById(R.id.lista_kuca);
-        listView.setAdapter(adapter);
+        //if(this.isVisible())
+            InitializeFragment();
 
 
         /*
@@ -48,7 +46,7 @@ public class PrikazKucaFragment extends Fragment {
 
     private void AddDummyData()
     {
-        Korisnik korisnik=new Korisnik("joooo","dooo","gooo");
+        Korisnik korisnik=Globals.getInstance().getKorisnik();  //new Korisnik("joooo","dooo","gooo","shooo");
         Kuca dummyKuca= new Kuca();
         Kuca dummyKuca1 = new Kuca();
         Kuca dummyKuca2= new Kuca();
@@ -65,5 +63,18 @@ public class PrikazKucaFragment extends Fragment {
         dummyKuca1.save();
         dummyKuca2.save();
 
+    }
+
+    public void InitializeFragment(){
+        Korisnik korisnik = Globals.getInstance().getKorisnik();
+        if(korisnik.getKuce().size() < 3)
+        AddDummyData();
+
+        ArrayList<Kuca> kuce= new ArrayList<>();
+        adapter=new homeAdapter(getActivity(),kuce);
+        List<Kuca> kucice=korisnik.getKuce();
+        adapter.addAll(kucice);
+
+        listView.setAdapter(adapter);
     }
 }

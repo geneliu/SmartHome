@@ -40,6 +40,10 @@ public class Globals {
         _korisnik = korisnik;
     }
 
+    public void setKorisnik(String username,String password,String ime,String prezime) {
+        _korisnik = new Korisnik(username,password,ime,prezime);
+    }
+
     //endregion
 
     //region Events

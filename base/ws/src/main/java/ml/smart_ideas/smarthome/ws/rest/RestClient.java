@@ -58,5 +58,11 @@ public class RestClient {
                 @Field("username") String username,
                 @Field("lozinka") String lozinka
         );
+        @FormUrlEncoded
+        @POST("/user_info.php")
+        Call<NoviKorisnik> getUserInfo(
+                @Field("username") String username,
+                @Field("lozinka") String lozinka
+        );
     }
 }

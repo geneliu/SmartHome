@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 
 import ml.smart_ideas.smarthome.core.Fragmenti.PrikazKucaFragment;
 import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.ws.model.NoviKorisnik;
 import ml.smart_ideas.smarthome.ws.model.Odgovor;
 import ml.smart_ideas.smarthome.ws.rest.RestClient;
@@ -37,8 +38,8 @@ public class ServerCommunication {
     //region Methods
 
 
-    public void loginToServer(String username, String password) {
-
+    public void loginToServer(final String username, String password) {
+        final String stringPassword = password;
         RestClient.loginInterface service = RestClient.getClient();
         Call<Odgovor> call = service.postWithFormParams(username, password);
         call.enqueue(new Callback<Odgovor>() {
@@ -57,11 +58,67 @@ public class ServerCommunication {
 
                     Globals.getInstance().ShowMessage("");
                     if (error.compareTo("false") == 0) {
-                        Globals.getInstance().ShowFragment(new PrikazKucaFragment(), true);
-                    }else{
+                        Korisnik korisnik = Korisnik.checkExistingKorisnik(username);
+                        if (korisnik == null)
+                            getUserData(stringUsername, stringPassword);
+                        else {
+                            Globals.getInstance().setKorisnik(korisnik);
+
+                            PrikazKucaFragment prikazKucaFragment = new PrikazKucaFragment();
+                            //prikazKucaFragment.InitializeFragment();
+                            Globals.getInstance().ShowFragment(prikazKucaFragment, true);
+                        }
+                    } else {
                         Globals.getInstance().ShowMessage("Neispravno korisničko ime i/ili lozinka");
                     }
 
+
+                } else {
+                    // response received but request not successful (like 400,401,403 etc)
+                    //Handle errors
+
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+    }
+
+    public void getUserData(final String username, String password) {
+
+        RestClient.loginInterface service = RestClient.getClient();
+        Call<NoviKorisnik> call = service.getUserInfo(username, password);
+        call.enqueue(new Callback<NoviKorisnik>() {
+            @Override
+            public void onResponse(Response<NoviKorisnik> response) {
+
+                Log.d("MainActivity", "Status Code = " + response.code());
+                if (response.isSuccess()) {
+                    // request successful (status code 200, 201)
+                    NoviKorisnik result = response.body();
+                    Log.d("MainActivity", "response = " + new Gson().toJson(result));
+
+                    String stringUsername = result.getUsername();
+                    String error = result.getError();
+                    Log.d("MainActivity", "username = " + stringUsername);
+
+                    Globals.getInstance().ShowMessage("");
+                    if (error.compareTo("false") == 0) {
+
+                        Globals.getInstance().setKorisnik(stringUsername,
+                                result.getPassword(),
+                                result.getIme(),
+                                result.getPrezime());
+
+                        PrikazKucaFragment prikazKucaFragment = new PrikazKucaFragment();
+                        prikazKucaFragment.InitializeFragment();
+                        Globals.getInstance().ShowFragment(prikazKucaFragment, true);
+                    } else {
+                        //Globals.getInstance().ShowMessage("Neispravno korisničko ime i/ili lozinka");
+                    }
 
 
                 } else {
@@ -101,7 +158,7 @@ public class ServerCommunication {
                         Globals.getInstance().ShowMessage("Korisnik " + username + " već postoji.");
                     } else if (error.compareTo("false") == 0) {
                         Globals.getInstance().ShowMessage("Korisnik " + username + " uspješno registriran.");
-                    }else{
+                    } else {
                         Globals.getInstance().ShowMessage("Dogodila se greška kod registracije.");
                     }
 
