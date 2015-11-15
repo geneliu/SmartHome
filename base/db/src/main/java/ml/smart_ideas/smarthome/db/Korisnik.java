@@ -3,6 +3,7 @@ package ml.smart_ideas.smarthome.db;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 
 import java.util.List;
@@ -110,6 +111,18 @@ public class Korisnik extends Model {
         this.prezime = updatedKorisnik.getPrezime();
 
         this.save();
+    }
+
+    public void addKuca(String Naziv, String Adresa) {
+        Kuca kuca = new Kuca(Naziv,Adresa,this);
+        save();
+    }
+
+    public void deleteSveKuce(){
+        new Delete()
+                .from(Kuca.class)
+                .where(" = ? ", this.getId())
+                .execute();
     }
 
 

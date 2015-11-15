@@ -16,7 +16,7 @@ public class Kuca extends Model {
     @Column(name = "adresa")
     private String adresa;
 
-    @Column(name = "Korisnik")
+    @Column(name = "Korisnik",onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
     private Korisnik korisnik;
 
     public Kuca() {
@@ -66,7 +66,7 @@ public class Kuca extends Model {
     public void updateKuca(Kuca updatedKuca) {
         this.naziv = updatedKuca.getNaziv();
         this.adresa = updatedKuca.getAdresa();
-        this.korisnik = updatedKuca.getKorisnik(); //????
+        this.korisnik = updatedKuca.getKorisnik();
         this.save();
     }
 

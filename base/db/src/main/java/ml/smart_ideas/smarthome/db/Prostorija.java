@@ -12,6 +12,15 @@ public class Prostorija extends Model {
 
     //region Constructors
 
+    public Prostorija(){
+        super();
+    }
+    public Prostorija(String naziv, Kuca kuca){
+        this.naziv = naziv;
+        this.kuca = kuca;
+        save();
+    }
+
     //endregion
 
     //region Private Fields
@@ -19,7 +28,7 @@ public class Prostorija extends Model {
     @Column(name = "naziv")
     private String naziv;
 
-    @Column(name = "Kuca")
+    @Column(name = "Kuca",onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
     private Kuca kuca;
 
     //endregion
