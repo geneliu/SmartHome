@@ -1,6 +1,5 @@
 package ml.smart_ideas.smarthome.ws.connection;
 
-import android.app.Application;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -37,7 +36,7 @@ public class ServerCommunication {
 
     //region Methods
 
-
+/*
     public void loginToServer(final String username, String password) {
         final String stringPassword = password;
         RestClient.loginInterface service = RestClient.getClient();
@@ -86,11 +85,11 @@ public class ServerCommunication {
             }
         });
     }
+*/
+    public void loginToServer(final String username, String password) {
 
-    public void getUserData(final String username, String password) {
-
-        RestClient.loginInterface service = RestClient.getClient();
-        Call<NoviKorisnik> call = service.getUserInfo(username, password);
+        RestClient.LoginInterface service = RestClient.getClient();
+        Call<NoviKorisnik> call = service.login(username, password);
         call.enqueue(new Callback<NoviKorisnik>() {
             @Override
             public void onResponse(Response<NoviKorisnik> response) {
@@ -107,14 +106,16 @@ public class ServerCommunication {
 
                     Globals.getInstance().ShowMessage("");
                     if (error.compareTo("false") == 0) {
-
-                        Globals.getInstance().setKorisnik(stringUsername,
-                                result.getPassword(),
-                                result.getIme(),
-                                result.getPrezime());
-
+                        Korisnik korisnik = Korisnik.checkExistingKorisnik(username);
+                        if (korisnik == null)
+                            Globals.getInstance().setKorisnik(stringUsername,
+                                    result.getPassword(),
+                                    result.getIme(),
+                                    result.getPrezime());
+                        else {
+                            Globals.getInstance().setKorisnik(korisnik);
+                        }
                         PrikazKucaFragment prikazKucaFragment = new PrikazKucaFragment();
-                        prikazKucaFragment.InitializeFragment();
                         Globals.getInstance().ShowFragment(prikazKucaFragment, true);
                     } else {
                         //Globals.getInstance().ShowMessage("Neispravno korisničko ime i/ili lozinka");
@@ -140,7 +141,7 @@ public class ServerCommunication {
     public void registerOnServer(String name, String surname, final String username, String password) {
 
         NoviKorisnik noviKorisnik = new NoviKorisnik(name, surname, username, password);
-        RestClient.loginInterface service = RestClient.getClient();
+        RestClient.LoginInterface service = RestClient.getClient();
         Call<Odgovor> call = service.register(noviKorisnik);
         call.enqueue(new Callback<Odgovor>() {
             @Override

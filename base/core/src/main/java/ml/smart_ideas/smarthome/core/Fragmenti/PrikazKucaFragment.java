@@ -2,7 +2,6 @@ package ml.smart_ideas.smarthome.core.Fragmenti;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import ml.smart_ideas.smarthome.core.Adapteri.homeAdapter;
+import ml.smart_ideas.smarthome.core.Adapteri.HouseAdapter;
 import ml.smart_ideas.smarthome.core.Enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
@@ -20,7 +19,7 @@ import ml.smart_ideas.smarthome.db.Kuca;
 
 
 public class PrikazKucaFragment extends Fragment {
-    homeAdapter adapter;
+    HouseAdapter adapter;
 
     ListView listView;
     @Override
@@ -50,21 +49,9 @@ public class PrikazKucaFragment extends Fragment {
     private void AddDummyData()
     {
         Korisnik korisnik=Globals.getInstance().getKorisnik();  //new Korisnik("joooo","dooo","gooo","shooo");
-        Kuca dummyKuca= new Kuca();
-        Kuca dummyKuca1 = new Kuca();
-        Kuca dummyKuca2= new Kuca();
-        dummyKuca.setNaziv("Tuđanova šupa");
-        dummyKuca.setAdresa("dasdas");
-        dummyKuca.setKorisnik(korisnik);
-        dummyKuca1.setNaziv("Sušecova štala");
-        dummyKuca1.setAdresa("tutu");
-        dummyKuca1.setKorisnik(korisnik);
-        dummyKuca2.setNaziv("Kišićeva rupa");
-        dummyKuca2.setAdresa("hoho");
-        dummyKuca2.setKorisnik(korisnik);
-        dummyKuca.save();
-        dummyKuca1.save();
-        dummyKuca2.save();
+        korisnik.addKuca("Tuđanova šupa","ddasd");
+        korisnik.addKuca("Sušecova štala","ddasd");
+        korisnik.addKuca("Kišićeva rupa","ddasd");
 
     }
 
@@ -74,7 +61,7 @@ public class PrikazKucaFragment extends Fragment {
         AddDummyData();
 
         ArrayList<Kuca> kuce= new ArrayList<>();
-        adapter=new homeAdapter(getActivity(),kuce);
+        adapter=new HouseAdapter(getActivity(),kuce);
         List<Kuca> kucice=korisnik.getKuce();
         adapter.addAll(kucice);
 

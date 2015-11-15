@@ -17,13 +17,13 @@ import ml.smart_ideas.smarthome.db.Kuca;
  * Created by Admin on 13.11.2015..
  */
 /*
-public class homeAdapter extends BaseAdapter {
+public class HouseAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<Kuca> kuce;
     private static LayoutInflater inflater = null;
 
-    public homeAdapter(Context context,ArrayList<Kuca> kuce)
+    public HouseAdapter(Context context,ArrayList<Kuca> kuce)
     {
         this.context=context;
         this.kuce=kuce;
@@ -60,8 +60,8 @@ public class homeAdapter extends BaseAdapter {
 }
 */
 
-public class homeAdapter extends ArrayAdapter<Kuca> {
-    public homeAdapter(Context context, ArrayList<Kuca> kuce) {
+public class HouseAdapter extends ArrayAdapter<Kuca> {
+    public HouseAdapter(Context context, ArrayList<Kuca> kuce) {
         super(context, 0, kuce);
     }
 
