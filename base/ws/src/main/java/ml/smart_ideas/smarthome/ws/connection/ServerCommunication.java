@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import ml.smart_ideas.smarthome.core.Enums.AppStateEnum;
+import ml.smart_ideas.smarthome.core.Enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.Fragmenti.PrikazKucaFragment;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.db.Korisnik;
@@ -38,50 +40,56 @@ public class ServerCommunication {
 
     public void loginToServer(final String username, String password) {
 
+        Log.d("ServerCommunication", "Login connection starting...");
+        Globals.getInstance().ShowMessage("");
         RestClient.LoginInterface service = RestClient.getClient();
         Call<NoviKorisnik> call = service.login(username, password);
         call.enqueue(new Callback<NoviKorisnik>() {
             @Override
             public void onResponse(Response<NoviKorisnik> response) {
 
-                Log.d("MainActivity", "Status Code = " + response.code());
+                Log.d("ServerCommunication", "Status Code = " + response.code());
                 if (response.isSuccess()) {
                     // request successful (status code 200, 201)
                     NoviKorisnik result = response.body();
-                    Log.d("MainActivity", "response = " + new Gson().toJson(result));
+                    Log.d("ServerCommunication", "response = " + new Gson().toJson(result));
 
                     String stringUsername = result.getUsername();
                     String error = result.getError();
-                    Log.d("MainActivity", "username = " + stringUsername);
 
                     Globals.getInstance().ShowMessage("");
                     if (error.compareTo("false") == 0) {
                         Korisnik korisnik = Korisnik.checkExistingKorisnik(username);
-                        if (korisnik == null)
+                        if (korisnik == null){
                             Globals.getInstance().setKorisnik(stringUsername,
                                     result.getPassword(),
                                     result.getIme(),
                                     result.getPrezime());
+                            Log.d("ServerCommunication", "Created new local user.");
+                        }
                         else {
                             Globals.getInstance().setKorisnik(korisnik);
                         }
-                        PrikazKucaFragment prikazKucaFragment = new PrikazKucaFragment();
-                        Globals.getInstance().ShowFragment(prikazKucaFragment, true);
+                        Log.d("ServerCommunication", "User "+korisnik.getUsername()+" successfully signed in.");
+                        Globals.getInstance().ShowFragment(FragmentEnum.PrikazKucaFragment, true);
                     } else {
-
+                        Globals.getInstance().ShowMessage("Neispravno korisničko ime i/ili lozinka.");
                     }
 
 
                 } else {
                     // response received but request not successful (like 400,401,403 etc)
                     //Handle errors
-
+                    Log.d("ServerCommunication", "Response is not successful");
+                    Globals.getInstance().setAppStateEnum(AppStateEnum.NotSignedIn);
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-
+                Log.d("ServerCommunication", "No response from login server");
+                Globals.getInstance().ShowMessage("Poslužitelj za prijavu ne odgovara.");
+                Globals.getInstance().setAppStateEnum(AppStateEnum.NotSignedIn);
             }
         });
     }
@@ -90,6 +98,8 @@ public class ServerCommunication {
 
     public void registerOnServer(String name, String surname, final String username, String password) {
 
+        Log.d("ServerCommunication","Registration connection starting...");
+        Globals.getInstance().ShowMessage("");
         NoviKorisnik noviKorisnik = new NoviKorisnik(name, surname, username, password);
         RestClient.LoginInterface service = RestClient.getClient();
         Call<Odgovor> call = service.register(noviKorisnik);
@@ -97,33 +107,36 @@ public class ServerCommunication {
             @Override
             public void onResponse(Response<Odgovor> response) {
 
-                Log.d("MainActivity", "Status Code = " + response.code());
+                Log.d("ServerCommunication", "Status Code = " + response.code());
                 if (response.isSuccess()) {
                     // request successful (status code 200, 201)
                     Odgovor result = response.body();
                     String error = result.getError();
-                    Log.d("MainActivity", "response = error:" + new Gson().toJson(error));
+                    Log.d("ServerCommunication", "response = error:" + new Gson().toJson(error));
 
                     Globals.getInstance().ShowMessage("");
                     if (error.compareTo("exist") == 0) {
                         Globals.getInstance().ShowMessage("Korisnik " + username + " već postoji.");
                     } else if (error.compareTo("false") == 0) {
-                        Globals.getInstance().ShowMessage("Korisnik " + username + " uspjesno registriran.");
+                        Globals.getInstance().ShowMessage("Korisnik " + username + " uspješno registriran.");
                     } else {
-                        Globals.getInstance().ShowMessage("Dogodila se greska kod registracije.");
+                        Globals.getInstance().ShowMessage("Dogodila se greška kod registracije.");
                     }
 
 
                 } else {
                     // response received but request not successful (like 400,401,403 etc)
                     //Handle errors
-
+                    Log.d("ServerCommunication", "Response is not successful");
+                    Globals.getInstance().setAppStateEnum(AppStateEnum.NotSignedIn);
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-
+                Log.d("ServerCommunication", "No response from login server");
+                Globals.getInstance().ShowMessage("Poslužitelj za registraciju ne odgovara.");
+                Globals.getInstance().setAppStateEnum(AppStateEnum.NotSignedIn);
             }
         });
     }
