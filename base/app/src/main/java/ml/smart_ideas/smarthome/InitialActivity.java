@@ -1,6 +1,7 @@
 package ml.smart_ideas.smarthome;
 
 
+import android.app.Application;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -16,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import butterknife.ButterKnife;
 import ml.smart_ideas.smarthome.Fragments.LoginFragment;
 import ml.smart_ideas.smarthome.Fragments.RegistrationFragment;
+import ml.smart_ideas.smarthome.core.Enums.AppStateEnum;
+import ml.smart_ideas.smarthome.core.Enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.Enums.NavigationEnum;
 import ml.smart_ideas.smarthome.core.EventListener;
 import ml.smart_ideas.smarthome.core.Fragmenti.PrikazKucaFragment;
@@ -29,6 +32,7 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
     private DrawerLayout mdrawer;
     private Toolbar toolbar;
     private ActionBarDrawerToggle mDrawerToggle;
+    private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +59,12 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
             mdrawer.setDrawerListener(mDrawerToggle);
 
 
-            LoginFragment loginFragment = new LoginFragment();
-            Globals.getInstance().ShowFragment(loginFragment,true);
+            Globals.getInstance().ShowFragment(FragmentEnum.LoginFragment,true);
         }
 
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -94,7 +98,11 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
 
 
     @Override
-    public void ShowFragment(Fragment fragment, boolean addToBackStack) {
+    public void ShowFragment(FragmentEnum fragmentEnum, boolean addToBackStack) {
+        AppStateEnum appStateEnum = Globals.getInstance().getAppStateEnum();
+        Fragment fragment = getFragmentFromEnum(fragmentEnum);
+        if(fragment.getClass() == PrikazKucaFragment.class && appStateEnum == AppStateEnum.SignedIn)
+            return;
         if (fragment != null) {
 
             fragment.setArguments(getIntent().getExtras());
@@ -146,6 +154,17 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
             return currentFragment;}
         return null;
     }
+
+
+    public Fragment getFragmentFromEnum(FragmentEnum fragmentEnum){
+        switch (fragmentEnum){
+            case LoginFragment: return new LoginFragment();
+            case RegistrationFragment: return new RegistrationFragment();
+            case PrikazKucaFragment: return  new PrikazKucaFragment();
+            default: return new LoginFragment();
+        }
+    }
+
 
 
     private ActionBarDrawerToggle setupDrawerToggle() {

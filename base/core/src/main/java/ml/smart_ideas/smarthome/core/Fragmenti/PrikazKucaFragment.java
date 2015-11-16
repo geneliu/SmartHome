@@ -34,7 +34,7 @@ public class PrikazKucaFragment extends Fragment {
             InitializeFragment();
 
         Globals.getInstance().ShowTitle("Popis kuća");
-        Globals.getInstance().setAppStateEnum(AppStateEnum.Ready);
+        Globals.getInstance().setAppStateEnum(AppStateEnum.SignedIn);
 
         /*
         Intent intent = getIntent();

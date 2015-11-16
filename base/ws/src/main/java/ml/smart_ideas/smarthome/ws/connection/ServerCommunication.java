@@ -36,56 +36,6 @@ public class ServerCommunication {
 
     //region Methods
 
-/*
-    public void loginToServer(final String username, String password) {
-        final String stringPassword = password;
-        RestClient.loginInterface service = RestClient.getClient();
-        Call<Odgovor> call = service.postWithFormParams(username, password);
-        call.enqueue(new Callback<Odgovor>() {
-            @Override
-            public void onResponse(Response<Odgovor> response) {
-
-                Log.d("MainActivity", "Status Code = " + response.code());
-                if (response.isSuccess()) {
-                    // request successful (status code 200, 201)
-                    Odgovor result = response.body();
-                    Log.d("MainActivity", "response = " + new Gson().toJson(result));
-
-                    String stringUsername = result.getUsername();
-                    String error = result.getError();
-                    Log.d("MainActivity", "username = " + stringUsername);
-
-                    Globals.getInstance().ShowMessage("");
-                    if (error.compareTo("false") == 0) {
-                        Korisnik korisnik = Korisnik.checkExistingKorisnik(username);
-                        if (korisnik == null)
-                            getUserData(stringUsername, stringPassword);
-                        else {
-                            Globals.getInstance().setKorisnik(korisnik);
-
-                            PrikazKucaFragment prikazKucaFragment = new PrikazKucaFragment();
-                            //prikazKucaFragment.InitializeFragment();
-                            Globals.getInstance().ShowFragment(prikazKucaFragment, true);
-                        }
-                    } else {
-                        Globals.getInstance().ShowMessage("Neispravno korisničko ime i/ili lozinka");
-                    }
-
-
-                } else {
-                    // response received but request not successful (like 400,401,403 etc)
-                    //Handle errors
-
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        });
-    }
-*/
     public void loginToServer(final String username, String password) {
 
         RestClient.LoginInterface service = RestClient.getClient();
@@ -118,7 +68,7 @@ public class ServerCommunication {
                         PrikazKucaFragment prikazKucaFragment = new PrikazKucaFragment();
                         Globals.getInstance().ShowFragment(prikazKucaFragment, true);
                     } else {
-                        //Globals.getInstance().ShowMessage("Neispravno korisničko ime i/ili lozinka");
+
                     }
 
 
@@ -158,9 +108,9 @@ public class ServerCommunication {
                     if (error.compareTo("exist") == 0) {
                         Globals.getInstance().ShowMessage("Korisnik " + username + " već postoji.");
                     } else if (error.compareTo("false") == 0) {
-                        Globals.getInstance().ShowMessage("Korisnik " + username + " uspješno registriran.");
+                        Globals.getInstance().ShowMessage("Korisnik " + username + " uspjesno registriran.");
                     } else {
-                        Globals.getInstance().ShowMessage("Dogodila se greška kod registracije.");
+                        Globals.getInstance().ShowMessage("Dogodila se greska kod registracije.");
                     }
 
 

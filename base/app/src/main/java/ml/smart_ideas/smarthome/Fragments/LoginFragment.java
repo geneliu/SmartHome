@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import ml.smart_ideas.smarthome.R;
 import ml.smart_ideas.smarthome.core.Enums.AppStateEnum;
+import ml.smart_ideas.smarthome.core.Enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.MessageEventListener;
 import ml.smart_ideas.smarthome.ws.connection.ServerCommunication;
@@ -45,7 +46,7 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
 
 
         Globals.getInstance().ShowTitle("Prijava");
-        Globals.getInstance().setAppStateEnum(AppStateEnum.Ready);
+        Globals.getInstance().setAppStateEnum(AppStateEnum.NotSignedIn);
 
         BtnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -73,9 +74,8 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
     public void goToRegistration() {
         //getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
 
-        RegistrationFragment registrationFragment = new RegistrationFragment();
 
-        Globals.getInstance().ShowFragment(registrationFragment,true);
+        Globals.getInstance().ShowFragment(FragmentEnum.RegistrationFragment,true);
 
     }
 
@@ -86,6 +86,7 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
 
         if(Globals.getInstance().getAppStateEnum() == AppStateEnum.LoggingIn){
             Globals.getInstance().ShowMessage("Molimo pričekajte, prijava je već u tijeku...");
+            Globals.getInstance().setAppStateEnum(AppStateEnum.NotSignedIn);
         }else {
             Globals.getInstance().setAppStateEnum(AppStateEnum.LoggingIn);
 

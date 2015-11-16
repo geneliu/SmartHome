@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ml.smart_ideas.smarthome.core.Enums.AppStateEnum;
+import ml.smart_ideas.smarthome.core.Enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.Enums.NavigationEnum;
 import ml.smart_ideas.smarthome.db.Korisnik;
 
@@ -65,6 +66,7 @@ public class Globals {
 
     //endregion
 
+
     //region Events
     private List<EventListener> listeners = new ArrayList<EventListener>();
 
@@ -74,10 +76,10 @@ public class Globals {
 
     //region Fragments Changing
 
-    public void ShowFragment(Fragment fragment, boolean addToBackStack) {
+    public void ShowFragment(FragmentEnum fragmentEnum, boolean addToBackStack) {
 
         for (EventListener el : listeners)
-            el.ShowFragment(fragment, addToBackStack);
+            el.ShowFragment(fragmentEnum, addToBackStack);
 
     }
     //endregion
