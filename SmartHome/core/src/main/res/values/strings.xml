@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Core</string>
+    <string name="houses">Sample house</string>
+    <string name="houses_fragment_title">Popis kuća</string>
+
+    <string name="room_name">Name</string>
+    <string name="room_description">Description</string>
+</resources>
