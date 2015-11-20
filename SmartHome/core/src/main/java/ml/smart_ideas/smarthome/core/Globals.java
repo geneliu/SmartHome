@@ -1,6 +1,7 @@
 package ml.smart_ideas.smarthome.core;
 
 
+import android.app.FragmentManager;
 import android.content.Context;
 
 import java.util.ArrayList;
@@ -77,11 +78,17 @@ public class Globals {
 
     //region Events
     private List<EventListener> listeners = new ArrayList<EventListener>();
+    private EventListener activityListener;
 
     public void addListener(EventListener toAdd) {
         listeners.clear();
         listeners.add(toAdd);
     }
+    public void addActivityListener(EventListener toAdd) {
+        activityListener=toAdd;
+    }
+
+
 
     //region Fragments Changing
 
@@ -92,7 +99,19 @@ public class Globals {
                 el.ShowFragment(fragmentEnum, addToBackStack);
 
     }
+
+    public void ShowActivity(String activity) {
+
+
+        if(activityListener !=null)
+        activityListener.ShowActivity(activity);
+
+    }
+
+
     //endregion
+
+
 
     //region Toolbar Title
 
@@ -101,6 +120,7 @@ public class Globals {
         for (EventListener el : listeners)
             if(el != null)
                 el.ShowTitle(title);
+
 
     }
 

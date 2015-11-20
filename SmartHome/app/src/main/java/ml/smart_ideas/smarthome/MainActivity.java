@@ -1,30 +1,31 @@
 package ml.smart_ideas.smarthome;
 
-
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v7.widget.Toolbar;
 
 import butterknife.ButterKnife;
-import ml.smart_ideas.smarthome.fragments.LoginFragment;
-import ml.smart_ideas.smarthome.fragments.RegistrationFragment;
+import ml.smart_ideas.smarthome.core.EventListener;
+import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
-import ml.smart_ideas.smarthome.core.EventListener;
 import ml.smart_ideas.smarthome.core.fragments.HousesFragment;
-import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.fragments.LoginFragment;
+import ml.smart_ideas.smarthome.fragments.RegistrationFragment;
 
-
-public class InitialActivity extends AppCompatActivity implements EventListener {
-
+/**
+ * Created by Admin on 20.11.2015..
+ */
+public class MainActivity extends AppCompatActivity implements EventListener {
     public final static String EXTRA_MESSAGE = "ml.smart_ideas.smarthome";
     private DrawerLayout mdrawer;
     private Toolbar toolbar;
@@ -45,8 +46,6 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
         mDrawerToggle = setupDrawerToggle();
         mdrawer.setDrawerListener(mDrawerToggle);
 
-
-
         Globals.getInstance().addListener(this);
         Globals.getInstance().addActivityListener(this);
         Globals.getInstance().setContext(getApplicationContext());
@@ -57,7 +56,7 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
             if (savedInstanceState != null) {
                 return;
             }
-            Globals.getInstance().ShowFragment(FragmentEnum.LoginFragment,true);
+            Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment,true);
         }
     }
 
@@ -83,23 +82,27 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
     }
 
     @Override
+    public void ShowActivity(String activity)
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 1 ) {
-          ToogleNavigationDrawer(getBackFragment());
+
+
+        if (getFragmentManager().getBackStackEntryCount() > 1) {
+            ToogleNavigationDrawer(getBackFragment());
+
             getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public void ShowActivity(String activity)
-    {
-     Intent intent = new Intent(this, MainActivity.class);
-       startActivity(intent);
-        finish();
 
     }
+
+
     @Override
     public void ShowFragment(FragmentEnum fragmentEnum, boolean addToBackStack) {
         AppStateEnum appStateEnum = Globals.getInstance().getAppStateEnum();
@@ -125,31 +128,20 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
             }
             ToogleNavigationDrawer(fragment);
         }
+
     }
     @Override
     public void ShowTitle(String title){
         getSupportActionBar().setTitle(title);
     }
 
-    private void ToogleNavigationDrawer(Fragment fragment){ToogleNavigationDrawer(fragment,false);}
-    private void ToogleNavigationDrawer(Fragment fragment, boolean forceRefresh){
+    private void ToogleNavigationDrawer(Fragment fragment){
 
-        if(fragment.getClass() == LoginFragment.class || fragment.getClass() == RegistrationFragment.class){
-            if(Globals.getInstance().getNavigationEnum() != NavigationEnum.HideNavDrawer || forceRefresh) {
-                mdrawer.closeDrawers();
-                mdrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-                mDrawerToggle.setDrawerIndicatorEnabled(false);
-                Globals.getInstance().setNavigationEnum(NavigationEnum.HideNavDrawer);
-            }
-        }
-        else {
-            if(Globals.getInstance().getNavigationEnum() != NavigationEnum.ShowNavDrawer || forceRefresh) {
                 mDrawerToggle.setDrawerIndicatorEnabled(true);
                 mDrawerToggle.syncState();
                 mdrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 Globals.getInstance().setNavigationEnum(NavigationEnum.ShowNavDrawer);
-            }
-        }
+
     }
     private Fragment getBackFragment(){
         if (getFragmentManager().getBackStackEntryCount() > 1) {
@@ -185,12 +177,11 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
     @Override
     protected void onPostResume(){
         super.onPostResume();
-        ToogleNavigationDrawer(getFragmentManager().findFragmentById(R.id.fragment_container),true);
+        ToogleNavigationDrawer(getFragmentManager().findFragmentById(R.id.fragment_container));
     }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
     }
-
 }

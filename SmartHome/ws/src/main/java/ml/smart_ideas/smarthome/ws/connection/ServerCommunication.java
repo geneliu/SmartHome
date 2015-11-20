@@ -1,6 +1,7 @@
 package ml.smart_ideas.smarthome.ws.connection;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -88,8 +89,9 @@ public class ServerCommunication {
                         else {
                             Globals.getInstance().setKorisnik(korisnik);
                         }
-                        Log.d("ServerCommunication", "User "+korisnik.getUsername()+" successfully signed in.");
-                        Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);
+                        Log.d("ServerCommunication", "User " + korisnik.getUsername() + " successfully signed in.");
+                      //  Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);
+                        Globals.getInstance().ShowActivity("MainActivity");
                     } else {
                         Globals.getInstance().ShowMessage(getString(R.string.server_login_failed));
                     }
