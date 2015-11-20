@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72dp">
+
+    <ImageView
+        android:id="@+id/slikaKuce"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_home_black_24dp"
+        />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/slikaKuce"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/nazivKuce"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text"
+            android:paddingRight="16dp"
+            tools:text="@string/houses" />
+
+    </LinearLayout>
+
+</RelativeLayout><!-- From: file:/E:/Faks/AIR%20projekt/base/core/src/main/res/layout/houses.xml --><!-- From: file:/E:/Faks/AIR%20projekt/base/ws/build/intermediates/exploded-aar/base/core/unspecified/res/layout/houses.xml -->

@@ -1,0 +1,132 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:2:1-24:12
+	package
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:3:5-39
+		INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:5:22-64
+application
+ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:7:5-22:19
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\design\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:11:5-22:19
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [base:ws:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\ws\unspecified\AndroidManifest.xml:11:5-15:19
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [base:core:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\core\unspecified\AndroidManifest.xml:11:5-15:19
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:11:5-22:19
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:11:5-22:19
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [base:core:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\core\unspecified\AndroidManifest.xml:11:5-15:19
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:11:5-22:19
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:22:5-20
+	android:label
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:10:9-41
+	android:supportsRtl
+		ADDED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:15:9-35
+	android:allowBackup
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:8:9-35
+	android:icon
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:9:9-43
+	android:theme
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:11:9-40
+	android:name
+		ADDED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:12:9-57
+activity#ml.smart_ideas.smarthome.InitialActivity
+ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:12:9-20:20
+	android:label
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:14:13-45
+	android:name
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:13:13-44
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:15:13-19:29
+action#android.intent.action.MAIN
+ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:16:17-69
+	android:name
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:16:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:18:17-77
+	android:name
+		ADDED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml:18:27-74
+uses-sdk
+INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\design\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [base:ws:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\ws\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [base:core:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\core\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [base:core:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\core\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\AndroidManifest.xml:20:5-43
+	android:targetSdkVersion
+		INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml
+		INJECTED from E:\Faks\AIR projekt\base\app\src\main\AndroidManifest.xml
+meta-data#AA_DB_NAME
+ADDED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:16:9-18:44
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:16:9-18:44
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:16:9-18:44
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:16:9-18:44
+	android:value
+		ADDED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:18:13-41
+	android:name
+		ADDED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:17:13-38
+meta-data#AA_DB_VERSION
+ADDED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:19:9-21:33
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:19:9-21:33
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:19:9-21:33
+MERGED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:19:9-21:33
+	android:value
+		ADDED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:21:13-30
+	android:name
+		ADDED from [base:db:unspecified] E:\Faks\AIR projekt\base\app\build\intermediates\exploded-aar\base\db\unspecified\AndroidManifest.xml:20:13-41
