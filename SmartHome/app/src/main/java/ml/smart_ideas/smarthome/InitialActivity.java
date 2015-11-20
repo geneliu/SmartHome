@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 
 import butterknife.ButterKnife;
+import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.fragments.LoginFragment;
 import ml.smart_ideas.smarthome.fragments.RegistrationFragment;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
@@ -93,11 +94,16 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
     }
 
     @Override
-    public void ShowActivity(String activity)
+    public void ShowActivity(ActivityEnum activityEnum)
     {
-     Intent intent = new Intent(this, MainActivity.class);
-       startActivity(intent);
-        finish();
+
+        if(Globals.getInstance().getAppStateEnum().name()!="SignedIn") {
+            Intent intent = new Intent();
+            intent.setClassName(this, "ml.smart_ideas.smarthome." + String.valueOf(activityEnum));
+            startActivity(intent);
+            finish();
+        }
+
 
     }
     @Override

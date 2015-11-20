@@ -7,6 +7,7 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
+import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
@@ -100,11 +101,11 @@ public class Globals {
 
     }
 
-    public void ShowActivity(String activity) {
+    public void ShowActivity(ActivityEnum activityEnum) {
 
 
         if(activityListener !=null)
-        activityListener.ShowActivity(activity);
+        activityListener.ShowActivity(activityEnum);
 
     }
 

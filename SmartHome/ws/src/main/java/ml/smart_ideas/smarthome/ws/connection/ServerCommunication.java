@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.Globals;
@@ -91,7 +92,7 @@ public class ServerCommunication {
                         }
                         Log.d("ServerCommunication", "User " + korisnik.getUsername() + " successfully signed in.");
                       //  Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);
-                        Globals.getInstance().ShowActivity("MainActivity");
+                        Globals.getInstance().ShowActivity(ActivityEnum.MainActivity);
                     } else {
                         Globals.getInstance().ShowMessage(getString(R.string.server_login_failed));
                     }

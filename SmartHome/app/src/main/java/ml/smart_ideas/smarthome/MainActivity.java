@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import butterknife.ButterKnife;
 import ml.smart_ideas.smarthome.core.EventListener;
 import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
@@ -82,10 +83,19 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     }
 
     @Override
-    public void ShowActivity(String activity)
+    public void ShowActivity(ActivityEnum activityEnum)
     {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        /*
+
+        try {
+            String className = String.valueOf(R.string.app_class)+activityEnum;
+            Intent openNewIntent = new Intent( this, Class.forName( className ) );
+            startActivity(  openNewIntent );
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        finish();
+*/
     }
 
     @Override

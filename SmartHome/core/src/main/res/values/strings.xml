@@ -5,4 +5,5 @@
 
     <string name="room_name">Name</string>
     <string name="room_description">Description</string>
+    <string name="app_class">ml.smart_ideas.smarthome.</string>
 </resources>
