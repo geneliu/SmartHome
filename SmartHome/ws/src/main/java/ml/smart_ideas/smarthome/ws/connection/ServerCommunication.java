@@ -90,7 +90,7 @@ public class ServerCommunication {
                         else {
                             Globals.getInstance().setKorisnik(korisnik);
                         }
-                        Log.d("ServerCommunication", "User " + korisnik.getUsername() + " successfully signed in.");
+                        Log.d("ServerCommunication", "User " + stringUsername + " successfully signed in.");
                       //  Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);
                         Globals.getInstance().ShowActivity(ActivityEnum.MainActivity);
                     } else {
