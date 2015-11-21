@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
 
         Globals.getInstance().addListener(this);
-        Globals.getInstance().addActivityListener(this);
         Globals.getInstance().setContext(getApplicationContext());
 
         if (findViewById(R.id.fragment_container) != null) {
@@ -142,6 +141,10 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     @Override
     public void ShowTitle(String title){
         getSupportActionBar().setTitle(title);
+    }
+    @Override
+    public void PressBack(){
+        onBackPressed();
     }
 
     private void ToogleNavigationDrawer(Fragment fragment){

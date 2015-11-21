@@ -12,6 +12,8 @@ import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
 import ml.smart_ideas.smarthome.db.Korisnik;
+import ml.smart_ideas.smarthome.db.Kuca;
+import ml.smart_ideas.smarthome.db.Prostorija;
 
 
 public class Globals {
@@ -35,6 +37,9 @@ public class Globals {
     private NavigationEnum navigationEnum;
     private AppStateEnum appStateEnum;
     private Context context;
+
+    private Kuca currentHouse;
+    private Prostorija currentRoom;
 
     //endregion
 
@@ -74,39 +79,48 @@ public class Globals {
         this.context = context;
     }
 
+    public Kuca getCurrentHouse(){
+        return currentHouse;
+    }
+    public void setCurrentHouse(Kuca house){
+        currentHouse = house;
+    }
+
+    public Prostorija getCurrentRoom(){
+        return currentRoom;
+    }
+    public void setCurrentRoom(Prostorija room){
+        currentRoom = room;
+    }
     //endregion
 
 
     //region Events
-    private List<EventListener> listeners = new ArrayList<EventListener>();
-    private EventListener activityListener;
+    private EventListener listener;
 
-    public void addListener(EventListener toAdd) {
-        listeners.clear();
-        listeners.add(toAdd);
+    public void addListener(EventListener eventListener) {
+        listener = eventListener;
     }
-    public void addActivityListener(EventListener toAdd) {
-        activityListener=toAdd;
-    }
-
-
 
     //region Fragments Changing
 
+    public void ShowFragment(FragmentEnum fragmentEnum){ ShowFragment(fragmentEnum,true);}
     public void ShowFragment(FragmentEnum fragmentEnum, boolean addToBackStack) {
 
-        for (EventListener el : listeners)
-            if(el != null)
-                el.ShowFragment(fragmentEnum, addToBackStack);
-
+        if(listener != null)
+            listener.ShowFragment(fragmentEnum, addToBackStack);
     }
 
     public void ShowActivity(ActivityEnum activityEnum) {
 
+        if(listener !=null)
+            listener.ShowActivity(activityEnum);
+    }
 
-        if(activityListener !=null)
-        activityListener.ShowActivity(activityEnum);
+    public void PressBack() {
 
+        if(listener !=null)
+            listener.PressBack();
     }
 
 
@@ -118,29 +132,24 @@ public class Globals {
 
     public void ShowTitle(String title) {
 
-        for (EventListener el : listeners)
-            if(el != null)
-                el.ShowTitle(title);
-
-
+        if(listener != null)
+            listener.ShowTitle(title);
     }
 
     //endregion
 
     //region Messages
 
-    private List<MessageEventListener> messageListeners = new ArrayList<MessageEventListener>();
+    private MessageEventListener messageListener;
 
-    public void addMessageListener(MessageEventListener toAdd) {
-        messageListeners.clear();
-        messageListeners.add(toAdd);
+    public void addMessageListener(MessageEventListener messageEventListener) {
+        messageListener = messageEventListener;
     }
 
     public void ShowMessage(String message) {
 
-        for (MessageEventListener ml : messageListeners)
-            if(ml != null)
-                ml.ShowMessage(message);
+        if(messageListener != null)
+            messageListener.ShowMessage(message);
     }
 
     //endregion

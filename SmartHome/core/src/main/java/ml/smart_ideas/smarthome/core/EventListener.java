@@ -9,7 +9,7 @@ import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
  */
 public interface EventListener {
     void ShowActivity(ActivityEnum activityEnum);
-
+    void PressBack();
     void ShowFragment(FragmentEnum fragmentEnum,boolean addToBackStack);
     void ShowTitle(String title);
 }

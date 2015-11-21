@@ -7,4 +7,9 @@ public enum FragmentEnum {
     LoginFragment,
     RegistrationFragment,
     HousesFragment,
+    NewHouseFragment,
+    RoomsFragment,
+    NewRoomFragment,
+    ElementsFragment,
+    NewElementFragment,
 }
