@@ -12,26 +12,27 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_marginTop="130dp"
-        android:ems="10"
         android:hint="@string/username"
         android:layout_marginRight="0dp"
         android:layout_marginLeft="0dp"
         android:background="#ffffff"
         android:nextFocusDown="@+id/password"
-        android:paddingLeft="30dp"/>
+        android:nextFocusRight="@+id/password"
+        android:paddingLeft="30dp"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_marginTop="2dp"
-        android:ems="10"
         android:hint="@string/password"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:background="#ffffff"
         android:inputType="textPassword"
-        android:paddingLeft="30dp"/>
+        android:paddingLeft="30dp"
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -45,7 +46,9 @@
         android:backgroundTint="#ffffff"
         android:minHeight="50dp"
         android:height="50dp"
-        android:backgroundTintMode="src_over" />
+        android:backgroundTintMode="src_over"
+        android:layout_marginLeft="-5dp"
+        android:layout_marginRight="-5dp" />
 
     <TextView
         android:layout_width="wrap_content"

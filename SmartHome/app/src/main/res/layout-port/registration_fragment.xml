@@ -13,7 +13,8 @@
         android:hint="@string/name"
         android:background="#ffffff"
         android:paddingLeft="30dp"
-        android:nextFocusDown="@+id/surname" />
+        android:nextFocusDown="@+id/surname"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/surname"
@@ -23,7 +24,8 @@
         android:hint="@string/surname"
         android:background="#ffffff"
         android:paddingLeft="30dp"
-        android:nextFocusDown="@+id/username" />
+        android:nextFocusDown="@+id/username"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/username"
@@ -33,7 +35,8 @@
         android:hint="@string/username"
         android:background="#ffffff"
         android:paddingLeft="30dp"
-        android:nextFocusDown="@+id/password" />
+        android:nextFocusDown="@+id/password"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/password"
@@ -43,7 +46,6 @@
         android:hint="@string/password"
         android:background="#ffffff"
         android:paddingLeft="30dp"
-        android:password="false"
         android:inputType="textPassword"
         android:nextFocusDown="@+id/repeatPassword" />
 
@@ -55,21 +57,23 @@
         android:hint="@string/repeatPassword"
         android:background="#ffffff"
         android:paddingLeft="30dp"
-        android:password="false"
-        android:inputType="textPassword|textVisiblePassword" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="60dp"
+        android:minHeight="50dp"
+        android:height="50dp"
+        android:layout_marginTop="10dp"
         android:text="@string/btn_register"
         android:textColor="@color/accent"
-        android:backgroundTint="#ffffff"
-        android:background="#ffffff"
-        android:elevation="0dp"
         android:stateListAnimator="@null"
-        android:textSize="16dp" />
+        android:backgroundTint="#ffffff"
+        android:elevation="0dp"
+        android:textSize="16dp"
+        android:layout_marginLeft="-5dp"
+        android:layout_marginRight="-5dp" />
 
     <TextView
         android:layout_width="wrap_content"
