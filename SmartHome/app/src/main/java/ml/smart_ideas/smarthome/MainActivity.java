@@ -22,12 +22,12 @@ import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
 import ml.smart_ideas.smarthome.core.fragments.HousesFragment;
 import ml.smart_ideas.smarthome.fragments.LoginFragment;
 import ml.smart_ideas.smarthome.fragments.RegistrationFragment;
+import ml.smart_ideas.smarthome.helpers.Creator;
 
 /**
  * Created by Admin on 20.11.2015..
  */
 public class MainActivity extends AppCompatActivity implements EventListener {
-    public final static String EXTRA_MESSAGE = "ml.smart_ideas.smarthome";
     private DrawerLayout mdrawer;
     private Toolbar toolbar;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_initial);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         toolbar= (Toolbar) findViewById(R.id.toolbar);
@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
         mDrawerToggle = setupDrawerToggle();
         mdrawer.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerToggle.syncState();
+        mdrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        Globals.getInstance().setNavigationEnum(NavigationEnum.ShowNavDrawer);
+
 
         Globals.getInstance().addListener(this);
         Globals.getInstance().addActivityListener(this);
@@ -85,29 +90,23 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     @Override
     public void ShowActivity(ActivityEnum activityEnum)
     {
-        /*
-
-        try {
-            String className = String.valueOf(R.string.app_class)+activityEnum;
-            Intent openNewIntent = new Intent( this, Class.forName( className ) );
-            startActivity(  openNewIntent );
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        if(Globals.getInstance().getAppStateEnum() != AppStateEnum.NotSignedIn) {
+            Class activityClass = Creator.getActivityFromEnum(activityEnum);
+            Intent intent = new Intent(this,activityClass);
+            startActivity(intent);
+            finish();
         }
-        finish();
-*/
     }
 
     @Override
     public void onBackPressed() {
-
-
         if (getFragmentManager().getBackStackEntryCount() > 1) {
-            ToogleNavigationDrawer(getBackFragment());
+            //ToogleNavigationDrawer(getBackFragment());
 
             getFragmentManager().popBackStack();
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            ShowActivity(ActivityEnum.InitialActivity);
         }
 
     }
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     @Override
     public void ShowFragment(FragmentEnum fragmentEnum, boolean addToBackStack) {
         AppStateEnum appStateEnum = Globals.getInstance().getAppStateEnum();
-        Fragment fragment = getFragmentFromEnum(fragmentEnum);
+        Fragment fragment = Creator.getFragmentFromEnum(fragmentEnum);
         if(fragment.getClass() == HousesFragment.class && appStateEnum == AppStateEnum.SignedIn)
             return;
         if (fragment != null) {
@@ -146,32 +145,21 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     }
 
     private void ToogleNavigationDrawer(Fragment fragment){
-
+/*
                 mDrawerToggle.setDrawerIndicatorEnabled(true);
                 mDrawerToggle.syncState();
                 mdrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 Globals.getInstance().setNavigationEnum(NavigationEnum.ShowNavDrawer);
-
+*/
     }
-    private Fragment getBackFragment(){
+    private Fragment getBackFragment() {
         if (getFragmentManager().getBackStackEntryCount() > 1) {
             String fragmentTag = getFragmentManager().getBackStackEntryAt(getFragmentManager().getBackStackEntryCount() - 2).getName();
             Fragment currentFragment = getFragmentManager().findFragmentByTag(fragmentTag);
-            return currentFragment;}
+            return currentFragment;
+        }
         return null;
     }
-
-
-    public Fragment getFragmentFromEnum(FragmentEnum fragmentEnum){
-        switch (fragmentEnum){
-            case LoginFragment: return new LoginFragment();
-            case RegistrationFragment: return new RegistrationFragment();
-            case HousesFragment: return  new HousesFragment();
-            default: return new LoginFragment();
-        }
-    }
-
-
 
     private ActionBarDrawerToggle setupDrawerToggle() {
 
@@ -187,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     @Override
     protected void onPostResume(){
         super.onPostResume();
-        ToogleNavigationDrawer(getFragmentManager().findFragmentById(R.id.fragment_container));
+        //ToogleNavigationDrawer(getFragmentManager().findFragmentById(R.id.fragment_container));
     }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

@@ -22,14 +22,12 @@ import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
 import ml.smart_ideas.smarthome.core.EventListener;
 import ml.smart_ideas.smarthome.core.fragments.HousesFragment;
 import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.helpers.Creator;
 
 
 public class InitialActivity extends AppCompatActivity implements EventListener {
 
-    public final static String EXTRA_MESSAGE = "ml.smart_ideas.smarthome";
-    private DrawerLayout mdrawer;
     private Toolbar toolbar;
-    private ActionBarDrawerToggle mDrawerToggle;
     private Fragment currentFragment;
 
     @Override
@@ -40,11 +38,7 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
 
         toolbar= (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mdrawer= (DrawerLayout) findViewById(R.id.drawer_layout);
-
-
-        mDrawerToggle = setupDrawerToggle();
-        mdrawer.setDrawerListener(mDrawerToggle);
+        Globals.getInstance().setNavigationEnum(NavigationEnum.HideNavDrawer);
 
 
 
@@ -86,7 +80,7 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 1 ) {
-          ToogleNavigationDrawer(getBackFragment());
+          //ToogleNavigationDrawer(getBackFragment());
             getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
@@ -97,9 +91,9 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
     public void ShowActivity(ActivityEnum activityEnum)
     {
 
-        if(Globals.getInstance().getAppStateEnum().name()!="SignedIn") {
-            Intent intent = new Intent();
-            intent.setClassName(this, "ml.smart_ideas.smarthome." + String.valueOf(activityEnum));
+        if(Globals.getInstance().getAppStateEnum() != AppStateEnum.NotSignedIn) {
+            Class activityClass = Creator.getActivityFromEnum(activityEnum);
+            Intent intent = new Intent(this,activityClass);
             startActivity(intent);
             finish();
         }
@@ -109,7 +103,7 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
     @Override
     public void ShowFragment(FragmentEnum fragmentEnum, boolean addToBackStack) {
         AppStateEnum appStateEnum = Globals.getInstance().getAppStateEnum();
-        Fragment fragment = getFragmentFromEnum(fragmentEnum);
+        Fragment fragment = Creator.getFragmentFromEnum(fragmentEnum);
         if(fragment.getClass() == HousesFragment.class && appStateEnum == AppStateEnum.SignedIn)
             return;
         if (fragment != null) {
@@ -139,7 +133,7 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
 
     private void ToogleNavigationDrawer(Fragment fragment){ToogleNavigationDrawer(fragment,false);}
     private void ToogleNavigationDrawer(Fragment fragment, boolean forceRefresh){
-
+/*
         if(fragment.getClass() == LoginFragment.class || fragment.getClass() == RegistrationFragment.class){
             if(Globals.getInstance().getNavigationEnum() != NavigationEnum.HideNavDrawer || forceRefresh) {
                 mdrawer.closeDrawers();
@@ -156,6 +150,7 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
                 Globals.getInstance().setNavigationEnum(NavigationEnum.ShowNavDrawer);
             }
         }
+        */
     }
     private Fragment getBackFragment(){
         if (getFragmentManager().getBackStackEntryCount() > 1) {
@@ -165,23 +160,12 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
         return null;
     }
 
-
-    public Fragment getFragmentFromEnum(FragmentEnum fragmentEnum){
-        switch (fragmentEnum){
-            case LoginFragment: return new LoginFragment();
-            case RegistrationFragment: return new RegistrationFragment();
-            case HousesFragment: return  new HousesFragment();
-            default: return new LoginFragment();
-        }
-    }
-
-
-
+    /*
     private ActionBarDrawerToggle setupDrawerToggle() {
 
         return new ActionBarDrawerToggle(this, mdrawer, toolbar, R.string.drawer_open,  R.string.drawer_close);
 
-    }
+    }*/
     @Override
     protected void onResume(){
         super.onResume();
@@ -191,7 +175,7 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
     @Override
     protected void onPostResume(){
         super.onPostResume();
-        ToogleNavigationDrawer(getFragmentManager().findFragmentById(R.id.fragment_container),true);
+        //ToogleNavigationDrawer(getFragmentManager().findFragmentById(R.id.fragment_container),true);
     }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
