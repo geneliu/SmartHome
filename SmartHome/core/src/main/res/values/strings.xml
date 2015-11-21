@@ -6,4 +6,14 @@
     <string name="room_name">Name</string>
     <string name="room_description">Description</string>
     <string name="app_class">ml.smart_ideas.smarthome.</string>
+    <string name="new_house_name">Naziv kuće</string>
+    <string name="new_house_address">Adresa kuće</string>
+    <string name="create_new_house">Kreiraj</string>
+    <string name="message">Message</string>
+    <string name="error_new_house_no_name_address">Kuća ne može biti bez imena i adrese</string>
+    <string name="error_new_house_no_name">Kuća ne može biti bez imena</string>
+    <string name="error_new_house_no_address">Kuća ne može biti bez adrese</string>
+    <string name="sample_adresa_kuce">Adresa kuće, 42000 Varaždin, Hrvatska</string>
+    <string name="sample_naziv_kuce">Naziv kuće u listi</string>
+    <string name="rooms_fragment_title"> - Prikaz prostorija</string>
 </resources>

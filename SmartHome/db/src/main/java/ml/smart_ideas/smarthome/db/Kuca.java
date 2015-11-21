@@ -70,6 +70,11 @@ public class Kuca extends Model {
         this.save();
     }
 
+    public void addRoom(String Name) {
+        Prostorija room = new Prostorija(Name,this);
+        save();
+    }
+
     public List<Prostorija> getProstorije() {
         return getMany(Prostorija.class, "Kuca");
     }

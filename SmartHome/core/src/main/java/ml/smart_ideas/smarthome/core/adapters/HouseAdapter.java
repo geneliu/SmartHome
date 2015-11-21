@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
+import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.db.Kuca;
 
 /**
@@ -68,19 +70,37 @@ public class HouseAdapter extends ArrayAdapter<Kuca> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        Kuca kucica = getItem(position);
+        final Kuca kuca = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.houses, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.house_item, parent, false);
         }
-        // Lookup view for data population
-        TextView text = (TextView) convertView.findViewById(R.id.nazivKuce);
+
+        TextView naziv = (TextView) convertView.findViewById(R.id.nazivKuce);
+        TextView adresa = (TextView) convertView.findViewById(R.id.adresaKuce);
+
         ImageView image = (ImageView) convertView.findViewById(R.id.slikaKuce);
+
         image.setImageResource(R.drawable.ic_home_black_24dp);
-        // Populate the data into the template view using the data object
-        text.setText(kucica.getNaziv());
-        // Return the completed view to render on screen
+
+
+        naziv.setText(kuca.getNaziv());
+        adresa.setText(kuca.getAdresa());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHouse(kuca);
+            }
+        });
+
         return convertView;
     }
+
+    private void openHouse(Kuca kuca) {
+        Globals.getInstance().setCurrentHouse(kuca);
+        Globals.getInstance().ShowFragment(FragmentEnum.RoomsFragment);
+    }
+
 }
 

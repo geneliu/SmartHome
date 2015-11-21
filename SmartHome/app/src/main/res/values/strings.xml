@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmartHome</string>
+    <string name="app_name">Smart Home</string>
     <string name="app_view_name">Smart Home prijava</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

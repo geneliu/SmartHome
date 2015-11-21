@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+
+    <EditText
+        android:id="@+id/new_house_name"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="130dp"
+        android:hint="@string/new_house_name"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:background="#ffffff"
+        android:nextFocusDown="@+id/password"
+        android:nextFocusRight="@+id/password"
+        android:paddingLeft="30dp"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/new_house_address"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        android:hint="@string/new_house_address"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="#ffffff"
+        android:paddingLeft="30dp"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/btn_create_new_house"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/create_new_house"
+        android:textColor="@color/accent"
+        android:textSize="16sp"
+        android:stateListAnimator="@null"
+        android:backgroundTint="#ffffff"
+        android:minHeight="50dp"
+        android:height="50dp"
+        android:backgroundTintMode="src_over"
+        android:layout_marginLeft="-5dp"
+        android:layout_marginRight="-5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/message"
+        android:id="@+id/TVMessage"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/accent"
+        android:layout_marginTop="20dp" />
+
+
+</LinearLayout>
