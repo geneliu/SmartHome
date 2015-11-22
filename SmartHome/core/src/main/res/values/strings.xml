@@ -16,4 +16,5 @@
     <string name="sample_adresa_kuce">Adresa kuće, 42000 Varaždin, Hrvatska</string>
     <string name="sample_naziv_kuce">Naziv kuće u listi</string>
     <string name="rooms_fragment_title"> - Prikaz prostorija</string>
+    <string name="house_icon_description">Slika kuće</string>
 </resources>

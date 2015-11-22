@@ -102,7 +102,7 @@ public class Globals {
         listener = eventListener;
     }
 
-    //region Fragments Changing
+
 
     public void ShowFragment(FragmentEnum fragmentEnum){ ShowFragment(fragmentEnum,true);}
     public void ShowFragment(FragmentEnum fragmentEnum, boolean addToBackStack) {
@@ -121,6 +121,11 @@ public class Globals {
 
         if(listener !=null)
             listener.PressBack();
+    }
+
+    public void ClearBackStack(){
+        if(listener !=null)
+            listener.ClearBackStack();
     }
 
 
@@ -155,7 +160,7 @@ public class Globals {
     //endregion
 
 
-    //endregion
+
 
 
 }

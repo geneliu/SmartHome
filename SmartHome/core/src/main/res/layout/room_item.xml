@@ -1,38 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="5dp"
-    android:layout_marginStart="0dp"
-    android:gravity="center_vertical"
-    android:padding="10dp"
-    android:textSize="15sp"
-    android:textStyle="bold" >
+    android:layout_height="72dp">
 
     <ImageView
         android:id="@+id/room_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="ImageView"
-        android:src="@android:drawable/alert_light_frame" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_weekend_black_24dp" />
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/room_icon">
 
         <TextView
             android:id="@+id/room_name"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="0dp"
-            android:textIsSelectable="false"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="@string/room_name" />
+            android:textColor="@color/dark_gray"
+            android:paddingRight="16dp"
+            android:text="@string/room_name"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

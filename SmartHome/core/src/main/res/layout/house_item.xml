@@ -9,7 +9,7 @@
         android:layout_height="40dp"
         android:layout_margin="16dp"
         android:src="@drawable/ic_home_black_24dp"
-        />
+        android:contentDescription="@string/house_icon_description" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -26,14 +26,17 @@
             android:id="@+id/nazivKuce"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/dark_gray"
             android:paddingRight="16dp"
-            android:text="@string/sample_naziv_kuce" />
+            android:text="@string/sample_naziv_kuce"
+            android:textIsSelectable="false"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/adresaKuce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/secondary_text"
             android:text="@string/sample_adresa_kuce"
             android:layout_marginTop="5dp" />
 

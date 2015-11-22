@@ -12,4 +12,5 @@ public interface EventListener {
     void PressBack();
     void ShowFragment(FragmentEnum fragmentEnum,boolean addToBackStack);
     void ShowTitle(String title);
+    void ClearBackStack();
 }

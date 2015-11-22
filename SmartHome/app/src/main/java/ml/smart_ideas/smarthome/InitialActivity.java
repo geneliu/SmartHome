@@ -133,6 +133,12 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
     public void PressBack(){
         onBackPressed();
     }
+    @Override
+    public void ClearBackStack(){
+        for (int i = 1;i<getFragmentManager().getBackStackEntryCount();i++) {
+            getFragmentManager().popBackStack();
+        }
+    }
 
     private void ToogleNavigationDrawer(Fragment fragment){ToogleNavigationDrawer(fragment,false);}
     private void ToogleNavigationDrawer(Fragment fragment, boolean forceRefresh){

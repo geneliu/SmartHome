@@ -41,20 +41,10 @@ public class RoomAdapter extends ArrayAdapter<Prostorija> {
 
         naziv.setText(room.getNaziv());
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRoom(room);
-            }
-        });
 
         return convertView;
     }
 
-    private void openRoom(Prostorija room) {
-        Globals.getInstance().setCurrentRoom(room);
-        //Globals.getInstance().ShowFragment(FragmentEnum.RoomsFragment);
-    }
 
 }
 

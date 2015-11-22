@@ -13,4 +13,6 @@
     <color name="accent_dark">#F50057</color>
     <color name="accent_light">#FF80AB</color>
 
+    <color name="dark_gray">#444444</color>
+
 </resources>

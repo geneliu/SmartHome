@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -66,12 +67,18 @@ public class HousesFragment extends Fragment {
         if(korisnik.getKuce().size() < 1)
             AddDummyData();
 
-        ArrayList<Kuca> kuce= new ArrayList<>();
-        adapter=new HouseAdapter(getActivity(),kuce);
-        List<Kuca> kucice=korisnik.getKuce();
-        adapter.addAll(kucice);
+        adapter=new HouseAdapter(getActivity(), new ArrayList<Kuca>());
+        final List<Kuca> houses=korisnik.getKuce();
+        adapter.addAll(houses);
 
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new ListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View view, int position, long id) {
+                Globals.getInstance().setCurrentHouse(houses.get(position));
+                Globals.getInstance().ShowFragment(FragmentEnum.RoomsFragment);
+            }
+        });
 
     }
 
