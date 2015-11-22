@@ -3,6 +3,7 @@ package ml.smart_ideas.smarthome.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,7 +63,10 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
 
         Globals.getInstance().addMessageListener(this);
 
-
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion < android.os.Build.VERSION_CODES.LOLLIPOP){
+            BtnLogin.setBackgroundColor(ContextCompat.getColor(Globals.getInstance().getContext(),R.color.white));
+        }
 
         //test
         ETusername.setText("test1");

@@ -3,6 +3,7 @@ package ml.smart_ideas.smarthome.fragments;
 import android.app.Fragment;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.method.PasswordTransformationMethod;
 
 import android.view.LayoutInflater;
@@ -58,6 +59,11 @@ public class RegistrationFragment extends Fragment implements MessageEventListen
         });
 
         Globals.getInstance().addMessageListener(this);
+
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion < android.os.Build.VERSION_CODES.LOLLIPOP){
+            BtnRegister.setBackgroundColor(ContextCompat.getColor(Globals.getInstance().getContext(), R.color.white));
+        }
 
         //test
         ETname.setText("test");

@@ -36,7 +36,7 @@ public class RoomAdapter extends ArrayAdapter<Prostorija> {
 
         ImageView image = (ImageView) convertView.findViewById(R.id.room_icon);
 
-        image.setImageResource(R.drawable.ic_home_black_24dp);
+        image.setImageResource(R.drawable.ic_weekend_black_24dp);
 
 
         naziv.setText(room.getNaziv());
