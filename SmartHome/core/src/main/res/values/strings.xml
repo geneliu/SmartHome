@@ -17,4 +17,5 @@
     <string name="sample_naziv_kuce">Naziv kuće u listi</string>
     <string name="rooms_fragment_title"> - Prikaz prostorija</string>
     <string name="house_icon_description">Slika kuće</string>
+    <string name="new_room_name">Naziv prostorije</string>
 </resources>

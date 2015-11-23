@@ -87,6 +87,6 @@ public class RoomsFragment extends Fragment {
 
     private void addRoom() {
         //not yet
-        //Globals.getInstance().ShowFragment(FragmentEnum.NewRoomFragment);
+        Globals.getInstance().ShowFragment(FragmentEnum.NewRoomFragment);
     }
 }
