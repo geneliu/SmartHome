@@ -11,6 +11,7 @@ import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
+import ml.smart_ideas.smarthome.core.enums.StanjeFragmentaEnum;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
 import ml.smart_ideas.smarthome.db.Prostorija;
@@ -37,6 +38,10 @@ public class Globals {
     private NavigationEnum navigationEnum;
     private AppStateEnum appStateEnum;
     private Context context;
+
+
+    private StanjeFragmentaEnum stanjeFragmenta;
+
 
     private Kuca currentHouse;
     private Prostorija currentRoom;
@@ -92,6 +97,15 @@ public class Globals {
     public void setCurrentRoom(Prostorija room){
         currentRoom = room;
     }
+
+    public StanjeFragmentaEnum getStanjeFragmenta() {
+        return stanjeFragmenta;
+    }
+
+    public void setStanjeFragmenta(StanjeFragmentaEnum stanjeFragmenta) {
+        this.stanjeFragmenta = stanjeFragmenta;
+    }
+
     //endregion
 
 

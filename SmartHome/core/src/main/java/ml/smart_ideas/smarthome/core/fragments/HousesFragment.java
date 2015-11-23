@@ -1,11 +1,13 @@
 package ml.smart_ideas.smarthome.core.fragments;
 
 import android.app.Fragment;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -26,8 +28,9 @@ public class HousesFragment extends Fragment {
     HouseAdapter adapter;
 
     ListView listView;
-
+    ImageView imageView;
     FloatingActionButton floatingActionButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +39,9 @@ public class HousesFragment extends Fragment {
 
         listView = (ListView) viewInflater.findViewById(R.id.lista_kuca);
         floatingActionButton = (FloatingActionButton)viewInflater.findViewById(R.id.fab_add_house);
+
+         imageView= (ImageView) viewInflater.findViewById(R.id.img_uredi_kucu);
+
 
         //if(this.isVisible())
             InitializeFragment();
@@ -71,11 +77,15 @@ public class HousesFragment extends Fragment {
         final List<Kuca> houses=korisnik.getKuce();
         adapter.addAll(houses);
 
+
+
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 Globals.getInstance().setCurrentHouse(houses.get(position));
+
+
                 Globals.getInstance().ShowFragment(FragmentEnum.RoomsFragment);
             }
         });

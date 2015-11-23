@@ -18,4 +18,5 @@
     <string name="rooms_fragment_title"> - Prikaz prostorija</string>
     <string name="house_icon_description">Slika kuće</string>
     <string name="new_room_name">Naziv prostorije</string>
+    <string name="update_house_button">Spremi</string>
 </resources>

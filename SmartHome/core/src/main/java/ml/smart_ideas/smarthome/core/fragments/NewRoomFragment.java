@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
+import ml.smart_ideas.smarthome.core.enums.StanjeFragmentaEnum;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
 
@@ -22,16 +24,25 @@ public class NewRoomFragment extends Fragment {
     TextView TVmessage;
     Button btnKreiraj;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+     //   int jb=Globals.getInstance().getPosition();
+     //   String temp= String.valueOf(jb);
+
+
+
         View viewInflater = inflater.inflate(R.layout.new_room_fragment, container, false);
+
 
         ETnaziv = (EditText)viewInflater.findViewById(R.id.new_room_name);
 
+
         TVmessage = (TextView)viewInflater.findViewById(R.id.TVMessageRoom);
         TVmessage.setText("");
+
 
         btnKreiraj = (Button)viewInflater.findViewById(R.id.btn_create_new_room);
 
@@ -47,6 +58,7 @@ public class NewRoomFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 createNewRoom();
+
             }
         });
 
@@ -68,5 +80,8 @@ public class NewRoomFragment extends Fragment {
             Globals.getInstance().PressBack();
 
         }
+
+
     }
+
 }

@@ -17,13 +17,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:layout_toRightOf="@+id/slikaKuce"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true">
 
         <TextView
             android:id="@+id/nazivKuce"
+            android:layout_marginRight="40dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/dark_gray"
@@ -38,8 +37,18 @@
             android:layout_height="wrap_content"
             android:textColor="@color/secondary_text"
             android:text="@string/sample_adresa_kuce"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="40dp"/>
+
 
     </LinearLayout>
+    <ImageView
+        android:id="@+id/img_uredi_kucu"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="25dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_create_black_24dp"
+        android:contentDescription="@string/house_icon_description" />
 
 </RelativeLayout>
