@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,7 +28,6 @@ public class HouseAdapter extends ArrayAdapter<Kuca> {
     public HouseAdapter(Context context, ArrayList<Kuca> kuce) {
         super(context, 0, kuce);
     }
-    public int Position;
 
 
 
@@ -49,7 +49,7 @@ public class HouseAdapter extends ArrayAdapter<Kuca> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.house_item, parent, false);
         }
 
-        Position=position;
+
         RowViewHolder holder= new RowViewHolder();
         holder.naziv = (TextView) convertView.findViewById(R.id.nazivKuce);
         holder.adresa = (TextView) convertView.findViewById(R.id.adresaKuce);

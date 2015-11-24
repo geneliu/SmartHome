@@ -10,19 +10,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.enums.StanjeFragmentaEnum;
-import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
+import ml.smart_ideas.smarthome.db.Prostorija;
 
 public class NewRoomFragment extends Fragment {
 
     EditText ETnaziv;
     TextView TVmessage;
     Button btnKreiraj;
+    Prostorija room;
 
 
     @Override
@@ -38,13 +38,22 @@ public class NewRoomFragment extends Fragment {
 
 
         ETnaziv = (EditText)viewInflater.findViewById(R.id.new_room_name);
+        btnKreiraj = (Button)viewInflater.findViewById(R.id.btn_create_new_room);
+
+
+        if(Globals.getInstance().getStanjeFragmenta()== StanjeFragmentaEnum.uredi)
+        {
+            room=Globals.getInstance().getCurrentRoom();
+            ETnaziv.setText(room.getNaziv());
+            btnKreiraj.setText(R.string.update_button);
+        }
 
 
         TVmessage = (TextView)viewInflater.findViewById(R.id.TVMessageRoom);
         TVmessage.setText("");
 
 
-        btnKreiraj = (Button)viewInflater.findViewById(R.id.btn_create_new_room);
+
 
         Globals.getInstance().ShowTitle(Globals.getInstance().getContext().getString(R.string.houses_fragment_title));
 
@@ -57,7 +66,9 @@ public class NewRoomFragment extends Fragment {
         btnKreiraj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createNewRoom();
+                if(Globals.getInstance().getStanjeFragmenta()== StanjeFragmentaEnum.uredi)
+                    updateRoom();
+                else createNewRoom();
 
             }
         });
@@ -83,5 +94,24 @@ public class NewRoomFragment extends Fragment {
 
 
     }
+    private void updateRoom()
+    {
+        String nazivSobe= ETnaziv.getText().toString();
+        if(nazivSobe.equals(""))
+        {
+            TVmessage.setText("Soba ne može biti bez imena");
+        }
+        else
+        {
+            room.setNaziv(nazivSobe);
+            room.updateProstorija(room);
+            Globals.getInstance().setStanjeFragmenta(StanjeFragmentaEnum.off);
+            Globals.getInstance().PressBack();
+
+        }
+
+
+    }
+
 
 }

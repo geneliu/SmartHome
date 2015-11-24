@@ -42,7 +42,7 @@ public class NewHouseFragment extends Fragment{
             house=Globals.getInstance().getCurrentHouse();
             ETnaziv.setText(house.getNaziv());
             ETadresa.setText(house.getAdresa());
-            btnKreiraj.setText(R.string.update_house_button);
+            btnKreiraj.setText(R.string.update_button);
         }
 
 
@@ -62,7 +62,7 @@ public class NewHouseFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 if(Globals.getInstance().getStanjeFragmenta()== StanjeFragmentaEnum.uredi)
-                    updateRoom();
+                    updateHouse();
                 else createNewHouse();
             }
         });
@@ -90,7 +90,7 @@ public class NewHouseFragment extends Fragment{
         }
 
     }
-    private void updateRoom()
+    private void updateHouse()
     {
         String nazivKuce = ETnaziv.getText().toString();
         String adresaKuce = ETadresa.getText().toString();

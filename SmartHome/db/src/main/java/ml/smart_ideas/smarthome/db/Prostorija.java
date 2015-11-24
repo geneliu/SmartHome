@@ -35,6 +35,13 @@ public class Prostorija extends Model {
 
     //region Public Properties
 
+    public void updateProstorija(Prostorija updatedProstorija)
+    {
+        this.naziv= updatedProstorija.getNaziv();
+        this.kuca= updatedProstorija.getKuca();
+        this.save();
+    }
+
     public String getNaziv() {
         return naziv;
     }
