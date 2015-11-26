@@ -13,4 +13,5 @@ public interface EventListener {
     void ShowFragment(FragmentEnum fragmentEnum,boolean addToBackStack);
     void ShowTitle(String title);
     void ClearBackStack();
+    void RefreshNavigation();
 }

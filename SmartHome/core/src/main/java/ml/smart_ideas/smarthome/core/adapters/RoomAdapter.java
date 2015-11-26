@@ -14,8 +14,7 @@ import java.util.List;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
-import ml.smart_ideas.smarthome.core.enums.StanjeFragmentaEnum;
-import ml.smart_ideas.smarthome.db.Korisnik;
+import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
 import ml.smart_ideas.smarthome.db.Kuca;
 import ml.smart_ideas.smarthome.db.Prostorija;
 
@@ -35,19 +34,19 @@ public class RoomAdapter extends ArrayAdapter<Prostorija> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.room_item, parent, false);
         }
 
-        TextView naziv = (TextView) convertView.findViewById(R.id.room_name);
+        TextView roomName = (TextView) convertView.findViewById(R.id.room_name);
 
         ImageView image = (ImageView) convertView.findViewById(R.id.room_icon);
-        ImageView Uredi= (ImageView) convertView.findViewById(R.id.img_uredi_sobu);
+        ImageView imgEdit = (ImageView) convertView.findViewById(R.id.img_edit_room);
 
 
         image.setImageResource(R.drawable.ic_weekend_black_24dp);
-        Uredi.setImageResource(R.drawable.ic_create_black_24dp);
+        imgEdit.setImageResource(R.drawable.ic_create_black_24dp);
 
-        Uredi.setOnClickListener(UrediClickListener);
-        Uredi.setTag(position);
+        imgEdit.setOnClickListener(UrediClickListener);
+        imgEdit.setTag(position);
 
-        naziv.setText(room.getNaziv());
+        roomName.setText(room.getNaziv());
 
 
         return convertView;
@@ -56,11 +55,11 @@ public class RoomAdapter extends ArrayAdapter<Prostorija> {
         @Override
         public void onClick(View v) {
             Kuca house = Globals.getInstance().getCurrentHouse();
-            final List<Prostorija> prostorije= house.getProstorije();
+            List<Prostorija> prostorije= house.getProstorije();
 
 
             String s=v.getTag().toString();
-            Globals.getInstance().setStanjeFragmenta(StanjeFragmentaEnum.uredi);
+            Globals.getInstance().setFragmentState(FragmentStateEnum.Edit);
             Globals.getInstance().setCurrentRoom(prostorije.get(Integer.parseInt(s)));
             Globals.getInstance().ShowFragment(FragmentEnum.NewRoomFragment);
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
-import ml.smart_ideas.smarthome.core.enums.StanjeFragmentaEnum;
+import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
 
@@ -26,6 +26,8 @@ public class NewHouseFragment extends Fragment{
 
     Button btnKreiraj;
 
+    String nazivKuce;
+    String adresaKuce;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,12 +39,15 @@ public class NewHouseFragment extends Fragment{
         ETadresa = (EditText)viewInflater.findViewById(R.id.new_house_address);
         btnKreiraj = (Button)viewInflater.findViewById(R.id.btn_create_new_house);
 
-        if(Globals.getInstance().getStanjeFragmenta()== StanjeFragmentaEnum.uredi)
+        if(Globals.getInstance().getFragmentState()== FragmentStateEnum.Edit)
         {
             house=Globals.getInstance().getCurrentHouse();
             ETnaziv.setText(house.getNaziv());
             ETadresa.setText(house.getAdresa());
             btnKreiraj.setText(R.string.update_button);
+        }
+        else {
+            btnKreiraj.setText(R.string.new_room_button);
         }
 
 
@@ -61,39 +66,37 @@ public class NewHouseFragment extends Fragment{
         btnKreiraj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Globals.getInstance().getStanjeFragmenta()== StanjeFragmentaEnum.uredi)
+                if(Globals.getInstance().getFragmentState()== FragmentStateEnum.Edit)
                     updateHouse();
                 else createNewHouse();
             }
         });
 
-
         return viewInflater;
     }
 
-    private void createNewHouse() {
-        String nazivKuce = ETnaziv.getText().toString();
-        String adresaKuce = ETadresa.getText().toString();
-
-        if(nazivKuce.equals("") && adresaKuce.equals("")){
-            TVmessage.setText(R.string.error_new_house_no_name_address);
-        }
-        else if(nazivKuce.equals("")){
-            TVmessage.setText(R.string.error_new_house_no_name);
-        }
-        else if(adresaKuce.equals("")){
-            TVmessage.setText(R.string.error_new_house_no_address);
-        }else {
+    private void createNewHouse()
+    {
+        if(checkHouseAttributes()){
             Korisnik korisnik = Globals.getInstance().getKorisnik();
             korisnik.addKuca(nazivKuce,adresaKuce);
+            Globals.getInstance().RefreshNavigation();
             Globals.getInstance().PressBack();
         }
-
     }
     private void updateHouse()
     {
-        String nazivKuce = ETnaziv.getText().toString();
-        String adresaKuce = ETadresa.getText().toString();
+        if(checkHouseAttributes()){
+            house.setNaziv(nazivKuce);
+            house.setAdresa(adresaKuce);
+            Globals.getInstance().RefreshNavigation();
+            Globals.getInstance().PressBack();
+        }
+    }
+
+    private Boolean checkHouseAttributes(){
+        nazivKuce = ETnaziv.getText().toString();
+        adresaKuce = ETadresa.getText().toString();
 
         if(nazivKuce.equals("") && adresaKuce.equals("")){
             TVmessage.setText(R.string.error_new_house_no_name_address);
@@ -104,11 +107,8 @@ public class NewHouseFragment extends Fragment{
         else if(adresaKuce.equals("")){
             TVmessage.setText(R.string.error_new_house_no_address);
         }else {
-            house.setNaziv(nazivKuce);
-            house.setAdresa(adresaKuce);
-            house.updateKuca(house);
-            Globals.getInstance().setStanjeFragmenta(StanjeFragmentaEnum.off);
-            Globals.getInstance().PressBack();
+            return true;
         }
+        return false;
     }
 }

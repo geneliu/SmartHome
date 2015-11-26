@@ -1,17 +1,13 @@
 package ml.smart_ideas.smarthome.core;
 
 
-import android.app.FragmentManager;
 import android.content.Context;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
-import ml.smart_ideas.smarthome.core.enums.StanjeFragmentaEnum;
+import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
 import ml.smart_ideas.smarthome.db.Prostorija;
@@ -40,7 +36,7 @@ public class Globals {
     private Context context;
 
 
-    private StanjeFragmentaEnum stanjeFragmenta;
+    private FragmentStateEnum fragmentState;
 
 
     private Kuca currentHouse;
@@ -58,52 +54,58 @@ public class Globals {
         _korisnik = korisnik;
     }
 
-    public void setKorisnik(String username,String password,String ime,String prezime) {
-        _korisnik = new Korisnik(username,password,ime,prezime);
+    public void setKorisnik(String username, String password, String ime, String prezime) {
+        _korisnik = new Korisnik(username, password, ime, prezime);
     }
 
-    public NavigationEnum getNavigationEnum(){
-        return  navigationEnum;
+    public NavigationEnum getNavigationEnum() {
+        return navigationEnum;
     }
-    public void setNavigationEnum(NavigationEnum navigationEnum){
+
+    public void setNavigationEnum(NavigationEnum navigationEnum) {
         this.navigationEnum = navigationEnum;
 
     }
-    public AppStateEnum getAppStateEnum(){
-        return  appStateEnum;
+
+    public AppStateEnum getAppStateEnum() {
+        return appStateEnum;
     }
-    public void setAppStateEnum(AppStateEnum appStateEnum){
+
+    public void setAppStateEnum(AppStateEnum appStateEnum) {
         this.appStateEnum = appStateEnum;
 
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return context;
     }
-    public void setContext(Context context){
+
+    public void setContext(Context context) {
         this.context = context;
     }
 
-    public Kuca getCurrentHouse(){
+    public Kuca getCurrentHouse() {
         return currentHouse;
     }
-    public void setCurrentHouse(Kuca house){
+
+    public void setCurrentHouse(Kuca house) {
         currentHouse = house;
     }
 
-    public Prostorija getCurrentRoom(){
+    public Prostorija getCurrentRoom() {
         return currentRoom;
     }
-    public void setCurrentRoom(Prostorija room){
+
+    public void setCurrentRoom(Prostorija room) {
         currentRoom = room;
     }
 
-    public StanjeFragmentaEnum getStanjeFragmenta() {
-        return stanjeFragmenta;
+    public FragmentStateEnum getFragmentState() {
+        return fragmentState;
     }
 
-    public void setStanjeFragmenta(StanjeFragmentaEnum stanjeFragmenta) {
-        this.stanjeFragmenta = stanjeFragmenta;
+    public void setFragmentState(FragmentStateEnum fragmentState) {
+        this.fragmentState = fragmentState;
     }
 
     //endregion
@@ -117,41 +119,47 @@ public class Globals {
     }
 
 
+    public void ShowFragment(FragmentEnum fragmentEnum) {
+        ShowFragment(fragmentEnum, true);
+    }
 
-    public void ShowFragment(FragmentEnum fragmentEnum){ ShowFragment(fragmentEnum,true);}
     public void ShowFragment(FragmentEnum fragmentEnum, boolean addToBackStack) {
 
-        if(listener != null)
+        if (listener != null)
             listener.ShowFragment(fragmentEnum, addToBackStack);
     }
 
     public void ShowActivity(ActivityEnum activityEnum) {
 
-        if(listener !=null)
+        if (listener != null)
             listener.ShowActivity(activityEnum);
     }
 
     public void PressBack() {
 
-        if(listener !=null)
+        if (listener != null)
             listener.PressBack();
     }
 
-    public void ClearBackStack(){
-        if(listener !=null)
+    public void ClearBackStack() {
+        if (listener != null)
             listener.ClearBackStack();
+    }
+
+    public void RefreshNavigation() {
+        if (listener != null)
+            listener.RefreshNavigation();
     }
 
 
     //endregion
 
 
-
     //region Toolbar Title
 
     public void ShowTitle(String title) {
 
-        if(listener != null)
+        if (listener != null)
             listener.ShowTitle(title);
     }
 
@@ -167,14 +175,11 @@ public class Globals {
 
     public void ShowMessage(String message) {
 
-        if(messageListener != null)
+        if (messageListener != null)
             messageListener.ShowMessage(message);
     }
 
     //endregion
-
-
-
 
 
 }

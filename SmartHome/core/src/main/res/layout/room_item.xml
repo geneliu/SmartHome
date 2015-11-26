@@ -19,7 +19,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/room_icon">
+        android:layout_toRightOf="@+id/room_icon"
+        android:layout_marginRight="72dp">
 
         <TextView
             android:id="@+id/room_name"
@@ -29,18 +30,18 @@
             android:paddingRight="16dp"
             android:layout_marginRight="35dp"
             android:text="@string/room_name"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textSize="16sp" />
 
     </LinearLayout>
     <ImageView
-        android:id="@+id/img_uredi_sobu"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="5dp"
-        android:layout_alignParentRight="true"
+        android:id="@+id/img_edit_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="21dp"
         android:src="@drawable/ic_create_black_24dp"
-        android:contentDescription="@string/house_icon_description"
-        android:scaleType="fitXY"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/house_icon_description"/>
 
 </RelativeLayout>

@@ -1,16 +1,13 @@
 package ml.smart_ideas.smarthome.core.adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,7 +16,7 @@ import java.util.List;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
-import ml.smart_ideas.smarthome.core.enums.StanjeFragmentaEnum;
+import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
 
@@ -27,17 +24,20 @@ import ml.smart_ideas.smarthome.db.Kuca;
 public class HouseAdapter extends ArrayAdapter<Kuca> {
     public HouseAdapter(Context context, ArrayList<Kuca> kuce) {
         super(context, 0, kuce);
+        isForNavigation = false;
+    }
+    public HouseAdapter(Context context, ArrayList<Kuca> kuce, Boolean isForNavigation) {
+        super(context, 0, kuce);
+        this.isForNavigation = isForNavigation;
     }
 
+    private TextView naziv;
+    private TextView adresa;
+    private ImageView image;
+    private ImageView uredi;
+    private LinearLayout houseItemLayout;
 
-
-    public static class RowViewHolder
-    {
-        public TextView naziv;
-        public TextView adresa;
-        public ImageView image;
-        public ImageView Uredi;
-    }
+    private Boolean isForNavigation;
 
 
     @Override
@@ -49,23 +49,31 @@ public class HouseAdapter extends ArrayAdapter<Kuca> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.house_item, parent, false);
         }
 
+        houseItemLayout = (LinearLayout) convertView.findViewById(R.id.house_item_layout);
 
-        RowViewHolder holder= new RowViewHolder();
-        holder.naziv = (TextView) convertView.findViewById(R.id.nazivKuce);
-        holder.adresa = (TextView) convertView.findViewById(R.id.adresaKuce);
+        naziv = (TextView) convertView.findViewById(R.id.nazivKuce);
+        adresa = (TextView) convertView.findViewById(R.id.adresaKuce);
 
-        holder.image = (ImageView) convertView.findViewById(R.id.slikaKuce);
-        holder.Uredi= (ImageView) convertView.findViewById(R.id.img_uredi_kucu);
+        image = (ImageView) convertView.findViewById(R.id.slikaKuce);
+        uredi = (ImageView) convertView.findViewById(R.id.img_uredi_kucu);
 
-        holder.image.setImageResource(R.drawable.ic_home_black_24dp);
-        holder.Uredi.setImageResource(R.drawable.ic_create_black_24dp);
+        image.setImageResource(R.drawable.ic_home_black_24dp);
+
+        if(isForNavigation){
+            uredi.setVisibility(View.INVISIBLE);
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)houseItemLayout.getLayoutParams();
+            params.setMargins(0, 0, 0, 0);
+            houseItemLayout.setLayoutParams(params);
+        }else {
+            uredi.setImageResource(R.drawable.ic_create_black_24dp);
+        }
 
 
-        holder.naziv.setText(kuca.getNaziv());
-        holder.adresa.setText(kuca.getAdresa());
+        naziv.setText(kuca.getNaziv());
+        adresa.setText(kuca.getAdresa());
 
-        holder.Uredi.setOnClickListener(UrediClickListener);
-        holder.Uredi.setTag(position);
+        uredi.setOnClickListener(UrediClickListener);
+        uredi.setTag(position);
 
 
         return convertView;
@@ -80,10 +88,9 @@ public class HouseAdapter extends ArrayAdapter<Kuca> {
 
 
             String s=v.getTag().toString();
-            Globals.getInstance().setStanjeFragmenta(StanjeFragmentaEnum.uredi);
+            Globals.getInstance().setFragmentState(FragmentStateEnum.Edit);
             Globals.getInstance().setCurrentHouse(houses.get(Integer.parseInt(s)));
-          Globals.getInstance().ShowFragment(FragmentEnum.NewHouseFragment);
-
+            Globals.getInstance().ShowFragment(FragmentEnum.NewHouseFragment);
         }
     };
 

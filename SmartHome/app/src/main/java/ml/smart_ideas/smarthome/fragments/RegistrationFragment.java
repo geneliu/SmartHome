@@ -82,8 +82,13 @@ public class RegistrationFragment extends Fragment implements MessageEventListen
         String user = ETusername.getText().toString();
         String pw = ETpassword.getText().toString();
         String rpw = ETrepeatPassword.getText().toString();
-
-        ServerCommunication.getInstance().registerOnServer(name, surname, user, pw);
+        
+        if(pw == rpw) {
+            ServerCommunication.getInstance().registerOnServer(name, surname, user, pw);
+        }
+        else {
+            ShowMessage(Globals.getInstance().getContext().getString(R.string.pass_no_match));
+        }
     }
 
     @Override

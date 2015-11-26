@@ -19,5 +19,6 @@
     <string name="login_fragment_title">Prijava</string>
     <string name="login_in_progress">Molimo pričekajte, prijava je već u tijeku...</string>
     <string name="fragment_message">Message</string>
+    <string name="pass_no_match">Lozinke se ne podudaraju</string>
 
 </resources>

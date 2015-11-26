@@ -3,12 +3,14 @@ package ml.smart_ideas.smarthome.core.fragments;
 import android.app.Fragment;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 
@@ -20,6 +22,7 @@ import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
+import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
 
@@ -76,23 +79,28 @@ public class HousesFragment extends Fragment {
         adapter=new HouseAdapter(getActivity(), new ArrayList<Kuca>());
         final List<Kuca> houses=korisnik.getKuce();
         adapter.addAll(houses);
-
-
-
         listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 Globals.getInstance().setCurrentHouse(houses.get(position));
-
-
                 Globals.getInstance().ShowFragment(FragmentEnum.RoomsFragment);
+            }
+        });
+        listView.setLongClickable(true);
+        listView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(view.getContext(), "Put Menu Now", Toast.LENGTH_SHORT).show();
+                return true;
             }
         });
 
     }
 
     private void addHouse() {
+        Globals.getInstance().setFragmentState(FragmentStateEnum.New);
         Globals.getInstance().ShowFragment(FragmentEnum.NewHouseFragment);
     }
 }

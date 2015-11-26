@@ -52,12 +52,11 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
 
-        adapter = new HouseAdapter(this,new ArrayList<Kuca>());
+        adapter = new HouseAdapter(this, new ArrayList<Kuca>(), true);
         houses = Globals.getInstance().getKorisnik().getKuce();
         adapter.addAll(houses);
 
         mDrawerList.setAdapter(adapter);
-
 
 
         mDrawerToggle = setupDrawerToggle();
@@ -125,8 +124,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     public void onBackPressed() {
         if (mdrawer.isDrawerOpen(GravityCompat.START)) {
             mdrawer.closeDrawers();
-        }
-        else if (getFragmentManager().getBackStackEntryCount() > 1) {
+        } else if (getFragmentManager().getBackStackEntryCount() > 1) {
             //ToogleNavigationDrawer(getBackFragment());
             getFragmentManager().popBackStack();
         } else {
@@ -175,18 +173,26 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     }
 
     @Override
-    public void ClearBackStack(){
-        for (int i = 1;i<getFragmentManager().getBackStackEntryCount();i++) {
+    public void ClearBackStack() {
+        for (int i = 1; i < getFragmentManager().getBackStackEntryCount(); i++) {
             getFragmentManager().popBackStack();
         }
     }
 
+    @Override
+    public void RefreshNavigation() {
+        adapter = new HouseAdapter(this, new ArrayList<Kuca>(), true);
+        houses = Globals.getInstance().getKorisnik().getKuce();
+        adapter.addAll(houses);
+        mDrawerList.setAdapter(adapter);
+    }
+
     private void ToogleNavigationDrawer(Fragment fragment) {
 /*
-                mDrawerToggle.setDrawerIndicatorEnabled(true);
-                mDrawerToggle.syncState();
-                mdrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-                Globals.getInstance().setNavigationEnum(NavigationEnum.ShowNavDrawer);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerToggle.syncState();
+        mdrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        Globals.getInstance().setNavigationEnum(NavigationEnum.ShowNavDrawer);
 */
     }
 

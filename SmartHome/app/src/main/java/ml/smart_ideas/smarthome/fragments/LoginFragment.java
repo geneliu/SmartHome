@@ -76,11 +76,7 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
     }
 
     public void goToRegistration() {
-        //getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.fragment_container)).commit();
-
-
         Globals.getInstance().ShowFragment(FragmentEnum.RegistrationFragment,true);
-
     }
 
 

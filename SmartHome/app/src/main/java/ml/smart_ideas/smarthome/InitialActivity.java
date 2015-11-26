@@ -192,4 +192,7 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
 
     }
 
+    @Override
+    public void RefreshNavigation(){}
+
 }
