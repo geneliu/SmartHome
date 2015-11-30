@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -18,17 +19,19 @@ import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.adapters.RoomAdapter;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
+import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
 import ml.smart_ideas.smarthome.db.Korisnik;
 import ml.smart_ideas.smarthome.db.Kuca;
 import ml.smart_ideas.smarthome.db.Prostorija;
 
 
 public class RoomsFragment extends Fragment {
+
     RoomAdapter adapter;
-
     ListView listView;
-
     FloatingActionButton floatingActionButton;
+    LinearLayout linearLayoutEmpty;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,12 +40,13 @@ public class RoomsFragment extends Fragment {
 
         listView = (ListView) viewInflater.findViewById(R.id.rooms_list);
         floatingActionButton = (FloatingActionButton)viewInflater.findViewById(R.id.fab_add_room);
-
+        linearLayoutEmpty = (LinearLayout)viewInflater.findViewById(R.id.empty_list);
 
         InitializeFragment();
+
         Kuca house = Globals.getInstance().getCurrentHouse();
 
-        Globals.getInstance().ShowTitle( house.getNaziv());
+        Globals.getInstance().ShowTitle(house.getNaziv());
         Globals.getInstance().setAppStateEnum(AppStateEnum.SignedIn);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -55,20 +59,10 @@ public class RoomsFragment extends Fragment {
         return viewInflater;
     }
 
-    private void AddDummyData()
-    {
-        Kuca house = Globals.getInstance().getCurrentHouse();
-        house.addRoom("Kuhinja");
-        house.addRoom("Soba");
-        house.addRoom("Blagovaonica");
-        house.addRoom("Hodnik");
-    }
-
     public void InitializeFragment(){
         Kuca house = Globals.getInstance().getCurrentHouse();
-        if(house.getProstorije().size() < 1)
-            AddDummyData();
-
+        if(house.getProstorije().size() > 0)
+            linearLayoutEmpty.setVisibility(View.INVISIBLE);
 
         adapter=new RoomAdapter(getActivity(),new ArrayList<Prostorija>());
         final List<Prostorija> rooms = house.getProstorije();
@@ -86,7 +80,7 @@ public class RoomsFragment extends Fragment {
     }
 
     private void addRoom() {
-        //not yet
+        Globals.getInstance().setFragmentState(FragmentStateEnum.New);
         Globals.getInstance().ShowFragment(FragmentEnum.NewRoomFragment);
     }
 }

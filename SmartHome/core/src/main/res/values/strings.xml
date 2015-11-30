@@ -21,4 +21,7 @@
     <string name="update_button">Spremi</string>
     <string name="error_new_room_no_name">Prostorija ne može biti bez imena</string>
     <string name="new_room_button">Kreiraj</string>
+    <string name="no_houses_message">Nema ni jedne kuće. Sve nove kuće prikazati će se ovdje.</string>
+    <string name="no_rooms_message">Nema ni jedne prostorije. Sve nove prostorije prikazati će se ovdje.</string>
+    <string name="no_elements_message">Nema ni jednog elementa. Svi novi elementi prikazati će se ovdje.</string>
 </resources>

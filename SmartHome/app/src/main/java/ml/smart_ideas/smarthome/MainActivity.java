@@ -29,6 +29,7 @@ import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
 import ml.smart_ideas.smarthome.core.fragments.HousesFragment;
 import ml.smart_ideas.smarthome.db.Kuca;
 import ml.smart_ideas.smarthome.helpers.Creator;
+import ml.smart_ideas.smarthome.navigation.NavigationAdapter;
 
 
 public class MainActivity extends AppCompatActivity implements EventListener {
@@ -36,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     private ListView mDrawerList;
     private Toolbar toolbar;
     private ActionBarDrawerToggle mDrawerToggle;
-    HouseAdapter adapter;
-    List<Kuca> houses;
+    private NavigationAdapter adapter;
+    private List<Kuca> houses;
     private Fragment currentFragment;
 
     @Override
@@ -52,9 +53,10 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
 
-        adapter = new HouseAdapter(this, new ArrayList<Kuca>(), true);
-        houses = Globals.getInstance().getKorisnik().getKuce();
-        adapter.addAll(houses);
+        //adapter = new HouseAdapter(this, new ArrayList<Kuca>(), true);
+        adapter = new NavigationAdapter(this,mDrawerList);
+        //houses = Globals.getInstance().getKorisnik().getKuce();
+        //adapter.addAll(houses);
 
         mDrawerList.setAdapter(adapter);
 
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
         Globals.getInstance().addListener(this);
         Globals.getInstance().setContext(getApplicationContext());
-
+/*
         mDrawerList.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
                 Globals.getInstance().ShowFragment(FragmentEnum.RoomsFragment);
             }
         });
-
+*/
         if (findViewById(R.id.fragment_container) != null) {
 
             // u slučaju postojanja fragmenta
@@ -181,9 +183,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
     @Override
     public void RefreshNavigation() {
-        adapter = new HouseAdapter(this, new ArrayList<Kuca>(), true);
-        houses = Globals.getInstance().getKorisnik().getKuce();
-        adapter.addAll(houses);
+        adapter = new NavigationAdapter(this,mDrawerList);
         mDrawerList.setAdapter(adapter);
     }
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,21 +34,20 @@ public class HousesFragment extends Fragment {
     ListView listView;
     ImageView imageView;
     FloatingActionButton floatingActionButton;
+    LinearLayout linearLayoutEmpty;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View viewInflater = inflater.inflate(R.layout.houses_fragment, container, false);
 
         listView = (ListView) viewInflater.findViewById(R.id.lista_kuca);
         floatingActionButton = (FloatingActionButton)viewInflater.findViewById(R.id.fab_add_house);
+        linearLayoutEmpty = (LinearLayout)viewInflater.findViewById(R.id.empty_list);
 
-         imageView= (ImageView) viewInflater.findViewById(R.id.img_uredi_kucu);
+        imageView= (ImageView) viewInflater.findViewById(R.id.img_uredi_kucu);
 
-
-        //if(this.isVisible())
-            InitializeFragment();
+        InitializeFragment();
 
         Globals.getInstance().ShowTitle(Globals.getInstance().getContext().getString(R.string.houses_fragment_title));
         Globals.getInstance().setAppStateEnum(AppStateEnum.SignedIn);
@@ -73,8 +73,8 @@ public class HousesFragment extends Fragment {
 
     public void InitializeFragment(){
         Korisnik korisnik = Globals.getInstance().getKorisnik();
-        if(korisnik.getKuce().size() < 1)
-            AddDummyData();
+        if(korisnik.getKuce().size() > 0)
+            linearLayoutEmpty.setVisibility(View.INVISIBLE);
 
         adapter=new HouseAdapter(getActivity(), new ArrayList<Kuca>());
         final List<Kuca> houses=korisnik.getKuce();

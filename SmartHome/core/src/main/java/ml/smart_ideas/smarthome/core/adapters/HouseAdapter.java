@@ -31,12 +31,6 @@ public class HouseAdapter extends ArrayAdapter<Kuca> {
         this.isForNavigation = isForNavigation;
     }
 
-    private TextView naziv;
-    private TextView adresa;
-    private ImageView image;
-    private ImageView uredi;
-    private LinearLayout houseItemLayout;
-
     private Boolean isForNavigation;
 
 
@@ -49,13 +43,13 @@ public class HouseAdapter extends ArrayAdapter<Kuca> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.house_item, parent, false);
         }
 
-        houseItemLayout = (LinearLayout) convertView.findViewById(R.id.house_item_layout);
+        LinearLayout houseItemLayout = (LinearLayout) convertView.findViewById(R.id.house_item_layout);
 
-        naziv = (TextView) convertView.findViewById(R.id.nazivKuce);
-        adresa = (TextView) convertView.findViewById(R.id.adresaKuce);
+        TextView naziv = (TextView) convertView.findViewById(R.id.nazivKuce);
+        TextView adresa = (TextView) convertView.findViewById(R.id.adresaKuce);
 
-        image = (ImageView) convertView.findViewById(R.id.slikaKuce);
-        uredi = (ImageView) convertView.findViewById(R.id.img_uredi_kucu);
+        ImageView image = (ImageView) convertView.findViewById(R.id.slikaKuce);
+        ImageView uredi = (ImageView) convertView.findViewById(R.id.img_uredi_kucu);
 
         image.setImageResource(R.drawable.ic_home_black_24dp);
 

@@ -42,15 +42,15 @@ public class ServerCommunication {
     //region Private Fields
 
 
-
     //endregion
 
     //region Public Properties
 
-    public Context getContext(){
+    public Context getContext() {
         return Globals.getInstance().getContext();
     }
-    public String getString(int stringId){
+
+    public String getString(int stringId) {
         return getContext().getString(stringId);
     }
 
@@ -80,18 +80,17 @@ public class ServerCommunication {
                     Globals.getInstance().ShowMessage("");
                     if (error.compareTo(getString(R.string.server_reply_no_error)) == 0) {
                         Korisnik korisnik = Korisnik.checkExistingKorisnik(username);
-                        if (korisnik == null){
+                        if (korisnik == null) {
                             Globals.getInstance().setKorisnik(stringUsername,
                                     userModelResponse.getPassword(),
                                     userModelResponse.getName(),
                                     userModelResponse.getSurname());
                             Log.d("ServerCommunication", "Created new local user.");
-                        }
-                        else {
+                        } else {
                             Globals.getInstance().setKorisnik(korisnik);
                         }
                         Log.d("ServerCommunication", "User " + stringUsername + " successfully signed in.");
-                      //  Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);
+                        //  Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);
                         Globals.getInstance().ShowActivity(ActivityEnum.MainActivity);
                     } else {
                         Globals.getInstance().ShowMessage(getString(R.string.server_login_failed));
@@ -118,7 +117,7 @@ public class ServerCommunication {
 
     public void registerOnServer(String name, String surname, final String username, String password) {
 
-        Log.d("ServerCommunication","Registration connection starting...");
+        Log.d("ServerCommunication", "Registration connection starting...");
         Globals.getInstance().ShowMessage("");
         UserModel userModel = new UserModel(name, surname, username, password);
         RestClient.RegistrationInterface service = RestClient.getRegistrationnClient();
@@ -136,9 +135,9 @@ public class ServerCommunication {
 
                     Globals.getInstance().ShowMessage("");
                     if (error.compareTo(getString(R.string.server_reply_error_registration_exists)) == 0) {
-                        Globals.getInstance().ShowMessage(getString(R.string.user) +" "+ username + getString(R.string.already_exists));
+                        Globals.getInstance().ShowMessage(getString(R.string.user) + " " + username + " " + getString(R.string.already_exists));
                     } else if (error.compareTo(getString(R.string.server_reply_no_error)) == 0) {
-                        Globals.getInstance().ShowMessage(getString(R.string.user) +" "+ username + getString(R.string.successfully_registered));
+                        Globals.getInstance().ShowMessage(getString(R.string.user) + " " + username + " " + getString(R.string.successfully_registered));
                     } else {
                         Globals.getInstance().ShowMessage(getString(R.string.error_registration_message));
                     }
@@ -160,15 +159,14 @@ public class ServerCommunication {
         });
     }
 
-    private  void setAppStateEnum(AppStateEnum appStateEnum){
+    private void setAppStateEnum(AppStateEnum appStateEnum) {
         Globals globals = Globals.getInstance();
-        if(appStateEnum == AppStateEnum.NotSignedIn){
-            if(globals.getAppStateEnum() == AppStateEnum.LoggingIn
-                    || globals.getAppStateEnum() == AppStateEnum.NotSignedIn)
-            {
+        if (appStateEnum == AppStateEnum.NotSignedIn) {
+            if (globals.getAppStateEnum() == AppStateEnum.LoggingIn
+                    || globals.getAppStateEnum() == AppStateEnum.NotSignedIn) {
                 globals.setAppStateEnum(appStateEnum);
             }
-        }else {
+        } else {
             globals.setAppStateEnum(appStateEnum);
         }
     }

@@ -66,8 +66,8 @@ public class RegistrationFragment extends Fragment implements MessageEventListen
         }
 
         //test
-        ETname.setText("test");
-        ETsurname.setText("test");
+        ETname.setText("Probni");
+        ETsurname.setText("Robot");
         ETusername.setText("test1");
         ETpassword.setText("test1");
         ETrepeatPassword.setText("test1");
@@ -83,7 +83,7 @@ public class RegistrationFragment extends Fragment implements MessageEventListen
         String pw = ETpassword.getText().toString();
         String rpw = ETrepeatPassword.getText().toString();
         
-        if(pw == rpw) {
+        if(pw.equals(rpw)) {
             ServerCommunication.getInstance().registerOnServer(name, surname, user, pw);
         }
         else {

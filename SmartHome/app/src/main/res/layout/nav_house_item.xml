@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72dp">
+
+    <ImageView
+        android:id="@+id/slikaKuce"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_home_black_24dp"
+        android:contentDescription="@string/house_icon_description" />
+
+    <LinearLayout
+        android:id="@+id/house_item_layout"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/slikaKuce"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/nazivKuce"
+            android:layout_marginRight="40dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_gray"
+            android:paddingRight="16dp"
+            android:text="@string/sample_naziv_kuce"
+            android:textIsSelectable="false"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/adresaKuce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/secondary_text"
+            android:text="@string/sample_adresa_kuce"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="40dp"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
