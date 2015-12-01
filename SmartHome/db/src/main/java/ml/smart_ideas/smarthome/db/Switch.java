@@ -4,17 +4,17 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
-@Table(name = "Prekidaci")
-public class Prekidac extends Model{
+@Table(name = "Switches")
+public class Switch extends Model{
 
     //region Constructors
 
-    public Prekidac(){
+    public Switch(){
         super();
     }
-    public Prekidac(boolean stanje,Element element){
+    public Switch(boolean state,Element element){
         super();
-        this.stanje = stanje;
+        this.state = state;
         this.element = element;
         save();
     }
@@ -24,8 +24,8 @@ public class Prekidac extends Model{
 
     //region Private Fields
 
-    @Column(name = "stanje")
-    private boolean stanje;
+    @Column(name = "state")
+    private boolean state;
 
     @Column(name = "Element",onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
     private Element element;
@@ -34,11 +34,11 @@ public class Prekidac extends Model{
 
     //Public Properties
 
-    public boolean getStanje(){
-        return stanje;
+    public boolean getState(){
+        return state;
     }
-    public void setStanje(boolean stanje){
-        this.stanje = stanje;
+    public void setState(boolean state){
+        this.state = state;
         save();
     }
 

@@ -13,8 +13,8 @@ import android.widget.TextView;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
-import ml.smart_ideas.smarthome.db.Korisnik;
-import ml.smart_ideas.smarthome.db.Kuca;
+import ml.smart_ideas.smarthome.db.User;
+import ml.smart_ideas.smarthome.db.House;
 
 
 public class NewHouseFragment extends Fragment{
@@ -22,7 +22,7 @@ public class NewHouseFragment extends Fragment{
     EditText ETnaziv;
     EditText ETadresa;
     TextView TVmessage;
-    Kuca house;
+    House house;
 
     Button btnKreiraj;
 
@@ -42,8 +42,8 @@ public class NewHouseFragment extends Fragment{
         if(Globals.getInstance().getFragmentState()== FragmentStateEnum.Edit)
         {
             house=Globals.getInstance().getCurrentHouse();
-            ETnaziv.setText(house.getNaziv());
-            ETadresa.setText(house.getAdresa());
+            ETnaziv.setText(house.getName());
+            ETadresa.setText(house.getAddress());
             btnKreiraj.setText(R.string.update_button);
         }
         else {
@@ -78,8 +78,8 @@ public class NewHouseFragment extends Fragment{
     private void createNewHouse()
     {
         if(checkHouseAttributes()){
-            Korisnik korisnik = Globals.getInstance().getKorisnik();
-            korisnik.addKuca(nazivKuce,adresaKuce);
+            User user = Globals.getInstance().getUser();
+            user.addHouse(nazivKuce,adresaKuce);
             Globals.getInstance().RefreshNavigation();
             Globals.getInstance().PressBack();
         }
@@ -88,7 +88,7 @@ public class NewHouseFragment extends Fragment{
     {
         if(checkHouseAttributes()){
             house.setNaziv(nazivKuce);
-            house.setAdresa(adresaKuce);
+            house.setAddress(adresaKuce);
             Globals.getInstance().RefreshNavigation();
             Globals.getInstance().PressBack();
         }

@@ -9,16 +9,16 @@ import com.activeandroid.query.Select;
 import java.util.List;
 
 
-@Table(name = "Korisnici")
-public class Korisnik extends Model {
+@Table(name = "Users")
+public class User extends Model {
 
     //region Constructor
 
-    public Korisnik() {
+    public User() {
         super();
     }
 
-    public Korisnik(String username, String password, String ime, String prezime) {
+    public User(String username, String password, String ime, String prezime) {
         super();
         this.username = username;
         this.password = password;
@@ -84,43 +84,43 @@ public class Korisnik extends Model {
         save();
     }
 
-    public List<Kuca> getKuce() {
-        return //new Select().from(Kuca.class)
-                //.where("Korisnik = ?", this.getId())
+    public List<House> getKuce() {
+        return //new Select().from(House.class)
+                //.where("User = ?", this.getId())
                 //.execute();
-        getMany(Kuca.class, "Korisnik");
+                getMany(House.class, "User");
     }
 
     //endregion
 
     //region Methods
 
-    public static Korisnik checkExistingKorisnik(String username) {
+    public static User checkExistingUser(String username) {
         return new Select()
-                .from(Korisnik.class)
+                .from(User.class)
                 .where("username = ?", username)
                 .executeSingle();
     }
 
 
-    public void updateKorisnik(Korisnik updatedKorisnik) {
+    public void updateUser(User updatedUser) {
 
-        this.username = updatedKorisnik.getUsername();
-        this.password = updatedKorisnik.getPassword();
-        this.ime = updatedKorisnik.getIme();
-        this.prezime = updatedKorisnik.getPrezime();
+        this.username = updatedUser.getUsername();
+        this.password = updatedUser.getPassword();
+        this.ime = updatedUser.getIme();
+        this.prezime = updatedUser.getPrezime();
 
         this.save();
     }
 
-    public void addKuca(String Naziv, String Adresa) {
-        Kuca kuca = new Kuca(Naziv,Adresa,this);
+    public void addHouse(String Naziv, String Adresa) {
+        House house = new House(Naziv,Adresa,this);
         save();
     }
 
     public void deleteSveKuce(){
         new Delete()
-                .from(Kuca.class)
+                .from(House.class)
                 .where(" = ? ", this.getId())
                 .execute();
     }

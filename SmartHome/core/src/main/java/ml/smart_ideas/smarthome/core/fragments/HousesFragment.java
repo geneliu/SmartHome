@@ -24,8 +24,8 @@ import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
-import ml.smart_ideas.smarthome.db.Korisnik;
-import ml.smart_ideas.smarthome.db.Kuca;
+import ml.smart_ideas.smarthome.db.User;
+import ml.smart_ideas.smarthome.db.House;
 
 
 public class HousesFragment extends Fragment {
@@ -64,20 +64,20 @@ public class HousesFragment extends Fragment {
 
     private void AddDummyData()
     {
-        Korisnik korisnik=Globals.getInstance().getKorisnik();
-        korisnik.addKuca("Kuća", "nema");
-        korisnik.addKuca("Klet", "nema");
-        korisnik.addKuca("Vikendica", "nema");
+        User user=Globals.getInstance().getUser();
+        user.addHouse("Kuća", "nema");
+        user.addHouse("Klet", "nema");
+        user.addHouse("Vikendica", "nema");
 
     }
 
     public void InitializeFragment(){
-        Korisnik korisnik = Globals.getInstance().getKorisnik();
-        if(korisnik.getKuce().size() > 0)
+        User user = Globals.getInstance().getUser();
+        if(user.getKuce().size() > 0)
             linearLayoutEmpty.setVisibility(View.INVISIBLE);
 
-        adapter=new HouseAdapter(getActivity(), new ArrayList<Kuca>());
-        final List<Kuca> houses=korisnik.getKuce();
+        adapter=new HouseAdapter(getActivity(), new ArrayList<House>());
+        final List<House> houses=user.getKuce();
         adapter.addAll(houses);
         listView.setAdapter(adapter);
 

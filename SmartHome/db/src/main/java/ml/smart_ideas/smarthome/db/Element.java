@@ -16,11 +16,11 @@ public class Element extends Model{
     public Element(){
         super();
     }
-    public Element(String naziv, Prostorija prostorija, Kategorija kategorija){
+    public Element(String naziv, Room room, Category Category){
         super();
         this.naziv = naziv;
-        this.prostorija = prostorija;
-        this.kategorija = kategorija;
+        this.room = room;
+        this.Category = Category;
     }
 
     //endregion
@@ -30,11 +30,11 @@ public class Element extends Model{
     @Column(name = "naziv")
     private String naziv;
 
-    @Column(name = "Prostorija",onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
-    private Prostorija prostorija;
+    @Column(name = "Room",onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
+    private Room room;
 
-    @Column(name = "Kategorija",onDelete = Column.ForeignKeyAction.RESTRICT,onUpdate = Column.ForeignKeyAction.CASCADE)
-    private Kategorija kategorija;
+    @Column(name = "Category",onDelete = Column.ForeignKeyAction.RESTRICT,onUpdate = Column.ForeignKeyAction.CASCADE)
+    private Category Category;
 
     //endregion
 
@@ -48,31 +48,31 @@ public class Element extends Model{
         save();
     }
 
-    public Prostorija getProstorija(){
-        return prostorija;
+    public Room getRoom(){
+        return room;
     }
-    public void setProstorija(Prostorija prostorija){
-        this.prostorija = prostorija;
+    public void setRoom(Room room){
+        this.room = room;
         save();
     }
 
-    public Kategorija getKategorija(){
-        return kategorija;
+    public Category getCategory(){
+        return Category;
     }
-    public void setKategorija(Kategorija kategorija){
-        this.kategorija = kategorija;
+    public void setCategory(Category Category){
+        this.Category = Category;
         save();
     }
 
-    public Prekidac getPrekidac(){
+    public Switch getSwitch(){
         return new Select()
-                .from(Prekidac.class)
+                .from(Switch.class)
                 .where("Element = ? ",this.getId())
                 .executeSingle();
     }
-    public Klizac getKlizac(){
+    public Slider getSlider(){
         return new Select()
-                .from(Klizac.class)
+                .from(Slider.class)
                 .where("Element = ? ",this.getId())
                 .executeSingle();
     }
@@ -82,14 +82,14 @@ public class Element extends Model{
     //region Methods
 
     public ElementEnum checkElement(){
-        Prekidac prekidac = getPrekidac();
-        Klizac klizac = getKlizac();
-        if(prekidac != null && klizac != null)
+        Switch aswitch = getSwitch();
+        Slider slider = getSlider();
+        if(aswitch != null && slider != null)
             return ElementEnum.Both;
-        else if(prekidac != null)
-            return ElementEnum.Prekidac;
-        else  if(klizac != null)
-            return ElementEnum.Klizac;
+        else if(aswitch != null)
+            return ElementEnum.Switch;
+        else  if(slider != null)
+            return ElementEnum.Slider;
         else return ElementEnum.None;
     }
 

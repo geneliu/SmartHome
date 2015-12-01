@@ -17,16 +17,16 @@ import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
-import ml.smart_ideas.smarthome.db.Korisnik;
-import ml.smart_ideas.smarthome.db.Kuca;
+import ml.smart_ideas.smarthome.db.User;
+import ml.smart_ideas.smarthome.db.House;
 
 
-public class HouseAdapter extends ArrayAdapter<Kuca> {
-    public HouseAdapter(Context context, ArrayList<Kuca> kuce) {
+public class HouseAdapter extends ArrayAdapter<House> {
+    public HouseAdapter(Context context, ArrayList<House> kuce) {
         super(context, 0, kuce);
         isForNavigation = false;
     }
-    public HouseAdapter(Context context, ArrayList<Kuca> kuce, Boolean isForNavigation) {
+    public HouseAdapter(Context context, ArrayList<House> kuce, Boolean isForNavigation) {
         super(context, 0, kuce);
         this.isForNavigation = isForNavigation;
     }
@@ -37,7 +37,7 @@ public class HouseAdapter extends ArrayAdapter<Kuca> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        final Kuca kuca = getItem(position);
+        final House kuca = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.house_item, parent, false);
@@ -63,8 +63,8 @@ public class HouseAdapter extends ArrayAdapter<Kuca> {
         }
 
 
-        naziv.setText(kuca.getNaziv());
-        adresa.setText(kuca.getAdresa());
+        naziv.setText(kuca.getName());
+        adresa.setText(kuca.getAddress());
 
         uredi.setOnClickListener(UrediClickListener);
         uredi.setTag(position);
@@ -77,8 +77,8 @@ public class HouseAdapter extends ArrayAdapter<Kuca> {
     private View.OnClickListener UrediClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Korisnik korisnik = Globals.getInstance().getKorisnik();
-            final List<Kuca> houses=korisnik.getKuce();
+            User user = Globals.getInstance().getUser();
+            final List<House> houses=user.getKuce();
 
 
             String s=v.getTag().toString();

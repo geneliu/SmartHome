@@ -20,9 +20,9 @@ import ml.smart_ideas.smarthome.core.adapters.RoomAdapter;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
-import ml.smart_ideas.smarthome.db.Korisnik;
-import ml.smart_ideas.smarthome.db.Kuca;
-import ml.smart_ideas.smarthome.db.Prostorija;
+import ml.smart_ideas.smarthome.db.User;
+import ml.smart_ideas.smarthome.db.House;
+import ml.smart_ideas.smarthome.db.Room;
 
 
 public class RoomsFragment extends Fragment {
@@ -44,9 +44,9 @@ public class RoomsFragment extends Fragment {
 
         InitializeFragment();
 
-        Kuca house = Globals.getInstance().getCurrentHouse();
+        House house = Globals.getInstance().getCurrentHouse();
 
-        Globals.getInstance().ShowTitle(house.getNaziv());
+        Globals.getInstance().ShowTitle(house.getName());
         Globals.getInstance().setAppStateEnum(AppStateEnum.SignedIn);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -60,12 +60,12 @@ public class RoomsFragment extends Fragment {
     }
 
     public void InitializeFragment(){
-        Kuca house = Globals.getInstance().getCurrentHouse();
+        House house = Globals.getInstance().getCurrentHouse();
         if(house.getProstorije().size() > 0)
             linearLayoutEmpty.setVisibility(View.INVISIBLE);
 
-        adapter=new RoomAdapter(getActivity(),new ArrayList<Prostorija>());
-        final List<Prostorija> rooms = house.getProstorije();
+        adapter=new RoomAdapter(getActivity(),new ArrayList<Room>());
+        final List<Room> rooms = house.getProstorije();
         adapter.addAll(rooms);
 
         listView.setAdapter(adapter);

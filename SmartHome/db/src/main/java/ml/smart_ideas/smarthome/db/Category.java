@@ -5,15 +5,15 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 @Table(name = "Kategorije")
-public class Kategorija extends Model {
+public class Category extends Model {
 
     //region Constructors
 
-    public Kategorija() {
+    public Category() {
         super();
     }
 
-    public Kategorija(String naziv) {
+    public Category(String naziv) {
         this.naziv = naziv;
         save();
     }
@@ -27,10 +27,10 @@ public class Kategorija extends Model {
 
 
     //TODO
-    private static Kategorija rasvjeta;
-    private static Kategorija grijanje;
-    private static Kategorija klimatizacija;
-    private static Kategorija prozori;
+    private static Category rasvjeta;
+    private static Category grijanje;
+    private static Category klimatizacija;
+    private static Category prozori;
 
 
     //endregion

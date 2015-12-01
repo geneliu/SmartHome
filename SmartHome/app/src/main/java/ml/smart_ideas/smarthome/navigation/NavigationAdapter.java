@@ -26,8 +26,8 @@ import javax.microedition.khronos.opengles.GL10;
 import ml.smart_ideas.smarthome.R;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
-import ml.smart_ideas.smarthome.db.Korisnik;
-import ml.smart_ideas.smarthome.db.Kuca;
+import ml.smart_ideas.smarthome.db.User;
+import ml.smart_ideas.smarthome.db.House;
 
 public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
     public NavigationAdapter(Context context, ListView navDrawer) {
@@ -56,7 +56,7 @@ public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
 
         } else if (navigationItem.getClass() == NavHouse.class) {
             NavHouse navHouse = (NavHouse) navigationItem;
-            Kuca house = navHouse.getHouse();
+            House house = navHouse.getHouse();
 
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.nav_house_item, parent, false);
 
@@ -65,8 +65,8 @@ public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
             ImageView image = (ImageView) convertView.findViewById(ml.smart_ideas.smarthome.core.R.id.slikaKuce);
             image.setImageResource(ml.smart_ideas.smarthome.core.R.drawable.ic_home_black_24dp);
 
-            naziv.setText(house.getNaziv());
-            adresa.setText(house.getAdresa());
+            naziv.setText(house.getName());
+            adresa.setText(house.getAddress());
 
         } else if (navigationItem.getClass() == NavOptions.class) {
             NavOptions navOptions = (NavOptions) navigationItem;
@@ -103,7 +103,7 @@ public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
 
             } else if (navigationItem.getClass() == NavHouse.class) {
                 NavHouse navHouse = (NavHouse) navigationItem;
-                Kuca house = navHouse.getHouse();
+                House house = navHouse.getHouse();
 
                 Globals.getInstance().setCurrentHouse(house);
                 Globals.getInstance().PressBack();
@@ -131,9 +131,9 @@ public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
 
         navigationItems.add(new NavUser());
 
-        List<Kuca> houses = Globals.getInstance().getKorisnik().getKuce();
+        List<House> houses = Globals.getInstance().getUser().getKuce();
 
-        for (Kuca house : houses) {
+        for (House house : houses) {
             navigationItems.add(new NavHouse(house));
         }
 

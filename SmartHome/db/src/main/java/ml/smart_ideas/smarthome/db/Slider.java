@@ -4,18 +4,18 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
-@Table(name = "Klizaci")
-public class Klizac extends Model {
+@Table(name = "Sliders")
+public class Slider extends Model {
 
     //region Constructors
 
-    public Klizac(){
+    public Slider(){
         super();
     }
-    public Klizac(boolean stanje,short vrijednostKlizaca,Element element){
+    public Slider(boolean state,short sliderValue,Element element){
         super();
-        this.stanje = stanje;
-        this.vrijednostKlizaca = vrijednostKlizaca;
+        this.state = state;
+        this.sliderValue = sliderValue;
         this.element = element;
         save();
     }
@@ -25,11 +25,11 @@ public class Klizac extends Model {
 
     //region Private Fields
 
-    @Column(name = "stanje")
-    private boolean stanje;
+    @Column(name = "state")
+    private boolean state;
 
-    @Column(name = "vrijednost_klizaca")
-    private short vrijednostKlizaca;
+    @Column(name = "slider_value")
+    private short sliderValue;
 
     @Column(name = "Element",onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
     private Element element;
@@ -38,19 +38,19 @@ public class Klizac extends Model {
 
     //Public Properties
 
-    public boolean getStanje(){
-        return stanje;
+    public boolean getState(){
+        return state;
     }
-    public void setStanje(boolean stanje){
-        this.stanje = stanje;
+    public void setState(boolean state){
+        this.state = state;
         save();
     }
 
-    public short getVrijednostKlizaca(){
-        return vrijednostKlizaca;
+    public short getSliderValue(){
+        return sliderValue;
     }
-    public void setVrijednostKlizaca(short vrijednostKlizaca){
-        this.vrijednostKlizaca = vrijednostKlizaca;
+    public void setSliderValue(short sliderValue){
+        this.sliderValue = sliderValue;
         save();
     }
 

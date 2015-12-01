@@ -8,9 +8,9 @@ import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
-import ml.smart_ideas.smarthome.db.Korisnik;
-import ml.smart_ideas.smarthome.db.Kuca;
-import ml.smart_ideas.smarthome.db.Prostorija;
+import ml.smart_ideas.smarthome.db.User;
+import ml.smart_ideas.smarthome.db.House;
+import ml.smart_ideas.smarthome.db.Room;
 
 
 public class Globals {
@@ -30,7 +30,7 @@ public class Globals {
 
     //region Private Fields
 
-    private Korisnik _korisnik;
+    private User _user;
     private NavigationEnum navigationEnum;
     private AppStateEnum appStateEnum;
     private Context context;
@@ -39,23 +39,23 @@ public class Globals {
     private FragmentStateEnum fragmentState;
 
 
-    private Kuca currentHouse;
-    private Prostorija currentRoom;
+    private House currentHouse;
+    private Room currentRoom;
 
     //endregion
 
     //region Public Properties
 
-    public Korisnik getKorisnik() {
-        return _korisnik;
+    public User getUser() {
+        return _user;
     }
 
-    public void setKorisnik(Korisnik korisnik) {
-        _korisnik = korisnik;
+    public void setUser(User user) {
+        _user = user;
     }
 
-    public void setKorisnik(String username, String password, String ime, String prezime) {
-        _korisnik = new Korisnik(username, password, ime, prezime);
+    public void setUser(String username, String password, String ime, String prezime) {
+        _user = new User(username, password, ime, prezime);
     }
 
     public NavigationEnum getNavigationEnum() {
@@ -84,19 +84,19 @@ public class Globals {
         this.context = context;
     }
 
-    public Kuca getCurrentHouse() {
+    public House getCurrentHouse() {
         return currentHouse;
     }
 
-    public void setCurrentHouse(Kuca house) {
+    public void setCurrentHouse(House house) {
         currentHouse = house;
     }
 
-    public Prostorija getCurrentRoom() {
+    public Room getCurrentRoom() {
         return currentRoom;
     }
 
-    public void setCurrentRoom(Prostorija room) {
+    public void setCurrentRoom(Room room) {
         currentRoom = room;
     }
 

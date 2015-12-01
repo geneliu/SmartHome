@@ -15,12 +15,12 @@ import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
-import ml.smart_ideas.smarthome.db.Kuca;
-import ml.smart_ideas.smarthome.db.Prostorija;
+import ml.smart_ideas.smarthome.db.House;
+import ml.smart_ideas.smarthome.db.Room;
 
 
-public class RoomAdapter extends ArrayAdapter<Prostorija> {
-    public RoomAdapter(Context context, ArrayList<Prostorija> rooms) {
+public class RoomAdapter extends ArrayAdapter<Room> {
+    public RoomAdapter(Context context, ArrayList<Room> rooms) {
 
         super(context, 0, rooms);
     }
@@ -28,7 +28,7 @@ public class RoomAdapter extends ArrayAdapter<Prostorija> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        final Prostorija room = getItem(position);
+        final Room room = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.room_item, parent, false);
@@ -46,7 +46,7 @@ public class RoomAdapter extends ArrayAdapter<Prostorija> {
         imgEdit.setOnClickListener(UrediClickListener);
         imgEdit.setTag(position);
 
-        roomName.setText(room.getNaziv());
+        roomName.setText(room.getName());
 
 
         return convertView;
@@ -54,8 +54,8 @@ public class RoomAdapter extends ArrayAdapter<Prostorija> {
     private View.OnClickListener UrediClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Kuca house = Globals.getInstance().getCurrentHouse();
-            List<Prostorija> prostorije= house.getProstorije();
+            House house = Globals.getInstance().getCurrentHouse();
+            List<Room> prostorije= house.getProstorije();
 
 
             String s=v.getTag().toString();

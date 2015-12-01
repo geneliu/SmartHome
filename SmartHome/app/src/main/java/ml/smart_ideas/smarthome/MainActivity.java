@@ -27,7 +27,7 @@ import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
 import ml.smart_ideas.smarthome.core.fragments.HousesFragment;
-import ml.smart_ideas.smarthome.db.Kuca;
+import ml.smart_ideas.smarthome.db.House;
 import ml.smart_ideas.smarthome.helpers.Creator;
 import ml.smart_ideas.smarthome.navigation.NavigationAdapter;
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     private Toolbar toolbar;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationAdapter adapter;
-    private List<Kuca> houses;
+    private List<House> houses;
     private Fragment currentFragment;
 
     @Override
@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
 
-        //adapter = new HouseAdapter(this, new ArrayList<Kuca>(), true);
+        //adapter = new HouseAdapter(this, new ArrayList<House>(), true);
         adapter = new NavigationAdapter(this,mDrawerList);
-        //houses = Globals.getInstance().getKorisnik().getKuce();
+        //houses = Globals.getInstance().getUser().getKuce();
         //adapter.addAll(houses);
 
         mDrawerList.setAdapter(adapter);

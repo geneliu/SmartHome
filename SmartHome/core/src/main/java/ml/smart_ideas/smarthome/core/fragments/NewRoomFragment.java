@@ -14,15 +14,15 @@ import android.widget.TextView;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
-import ml.smart_ideas.smarthome.db.Kuca;
-import ml.smart_ideas.smarthome.db.Prostorija;
+import ml.smart_ideas.smarthome.db.House;
+import ml.smart_ideas.smarthome.db.Room;
 
 public class NewRoomFragment extends Fragment {
 
     EditText ETnaziv;
     TextView TVmessage;
     Button btnKreiraj;
-    Prostorija room;
+    Room room;
 
 
     @Override
@@ -39,7 +39,7 @@ public class NewRoomFragment extends Fragment {
         if(Globals.getInstance().getFragmentState()== FragmentStateEnum.Edit)
         {
             room=Globals.getInstance().getCurrentRoom();
-            ETnaziv.setText(room.getNaziv());
+            ETnaziv.setText(room.getName());
             btnKreiraj.setText(R.string.update_button);
         }
         else
@@ -85,7 +85,7 @@ public class NewRoomFragment extends Fragment {
         }
         else
         {
-            Kuca currentHouse= Globals.getInstance().getCurrentHouse();
+            House currentHouse= Globals.getInstance().getCurrentHouse();
             currentHouse.addRoom(roomName);
             Globals.getInstance().PressBack();
         }
@@ -100,8 +100,8 @@ public class NewRoomFragment extends Fragment {
         }
         else
         {
-            room.setNaziv(roomName);
-            room.updateProstorija(room);
+            room.setName(roomName);
+            room.updateRoom(room);
             //Globals.getInstance().setFragmentState(FragmentStateEnum.Off);
             Globals.getInstance().PressBack();
         }

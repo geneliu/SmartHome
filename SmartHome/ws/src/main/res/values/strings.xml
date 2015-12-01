@@ -6,7 +6,7 @@
     <string name="server_login_no_reply">Poslužitelj za prijavu ne odgovara.</string>
     <string name="server_registration_no_reply">Poslužitelj za registraciju ne odgovara.</string>
 
-    <string name="user">Korisnik</string>
+    <string name="user">User</string>
     <string name="already_exists"> već postoji.</string>
     <string name="successfully_registered"> uspješno registriran.</string>
 

@@ -10,7 +10,7 @@ import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.Globals;
-import ml.smart_ideas.smarthome.db.Korisnik;
+import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.ws.R;
 import ml.smart_ideas.smarthome.ws.model.UserModel;
 import ml.smart_ideas.smarthome.ws.model.ReplyModel;
@@ -79,15 +79,15 @@ public class ServerCommunication {
 
                     Globals.getInstance().ShowMessage("");
                     if (error.compareTo(getString(R.string.server_reply_no_error)) == 0) {
-                        Korisnik korisnik = Korisnik.checkExistingKorisnik(username);
-                        if (korisnik == null) {
-                            Globals.getInstance().setKorisnik(stringUsername,
+                        User user = User.checkExistingUser(username);
+                        if (user == null) {
+                            Globals.getInstance().setUser(stringUsername,
                                     userModelResponse.getPassword(),
                                     userModelResponse.getName(),
                                     userModelResponse.getSurname());
                             Log.d("ServerCommunication", "Created new local user.");
                         } else {
-                            Globals.getInstance().setKorisnik(korisnik);
+                            Globals.getInstance().setUser(user);
                         }
                         Log.d("ServerCommunication", "User " + stringUsername + " successfully signed in.");
                         //  Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);
