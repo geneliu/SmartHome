@@ -16,9 +16,9 @@ public class Element extends Model{
     public Element(){
         super();
     }
-    public Element(String naziv, Room room, Category Category){
+    public Element(String name, Room room, Category Category){
         super();
-        this.naziv = naziv;
+        this.name = name;
         this.room = room;
         this.Category = Category;
     }
@@ -27,8 +27,8 @@ public class Element extends Model{
 
     //region Private Fields
 
-    @Column(name = "naziv")
-    private String naziv;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "Room",onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
     private Room room;
@@ -41,10 +41,10 @@ public class Element extends Model{
     //region Public Properties
 
     public String getNaziv(){
-        return naziv;
+        return name;
     }
-    public void setNaziv(String naziv){
-        this.naziv = naziv;
+    public void setNaziv(String name){
+        this.name = name;
         save();
     }
 

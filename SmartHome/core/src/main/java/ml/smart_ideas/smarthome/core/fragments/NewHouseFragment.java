@@ -19,15 +19,15 @@ import ml.smart_ideas.smarthome.db.House;
 
 public class NewHouseFragment extends Fragment{
 
-    EditText ETnaziv;
-    EditText ETadresa;
+    EditText ETname;
+    EditText ETaddress;
     TextView TVmessage;
     House house;
 
     Button btnKreiraj;
 
-    String nazivKuce;
-    String adresaKuce;
+    String houseName;
+    String houseAddress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,15 +35,15 @@ public class NewHouseFragment extends Fragment{
 
         View viewInflater = inflater.inflate(R.layout.new_house_fragment, container, false);
 
-        ETnaziv = (EditText)viewInflater.findViewById(R.id.new_house_name);
-        ETadresa = (EditText)viewInflater.findViewById(R.id.new_house_address);
+        ETname = (EditText)viewInflater.findViewById(R.id.new_house_name);
+        ETaddress = (EditText)viewInflater.findViewById(R.id.new_house_address);
         btnKreiraj = (Button)viewInflater.findViewById(R.id.btn_create_new_house);
 
         if(Globals.getInstance().getFragmentState()== FragmentStateEnum.Edit)
         {
             house=Globals.getInstance().getCurrentHouse();
-            ETnaziv.setText(house.getName());
-            ETadresa.setText(house.getAddress());
+            ETname.setText(house.getName());
+            ETaddress.setText(house.getAddress());
             btnKreiraj.setText(R.string.update_button);
         }
         else {
@@ -79,7 +79,7 @@ public class NewHouseFragment extends Fragment{
     {
         if(checkHouseAttributes()){
             User user = Globals.getInstance().getUser();
-            user.addHouse(nazivKuce,adresaKuce);
+            user.addHouse(houseName,houseAddress);
             Globals.getInstance().RefreshNavigation();
             Globals.getInstance().PressBack();
         }
@@ -87,24 +87,24 @@ public class NewHouseFragment extends Fragment{
     private void updateHouse()
     {
         if(checkHouseAttributes()){
-            house.setNaziv(nazivKuce);
-            house.setAddress(adresaKuce);
+            house.setNaziv(houseName);
+            house.setAddress(houseAddress);
             Globals.getInstance().RefreshNavigation();
             Globals.getInstance().PressBack();
         }
     }
 
     private Boolean checkHouseAttributes(){
-        nazivKuce = ETnaziv.getText().toString();
-        adresaKuce = ETadresa.getText().toString();
+        houseName = ETname.getText().toString();
+        houseAddress = ETaddress.getText().toString();
 
-        if(nazivKuce.equals("") && adresaKuce.equals("")){
+        if(houseName.equals("") && houseAddress.equals("")){
             TVmessage.setText(R.string.error_new_house_no_name_address);
         }
-        else if(nazivKuce.equals("")){
+        else if(houseName.equals("")){
             TVmessage.setText(R.string.error_new_house_no_name);
         }
-        else if(adresaKuce.equals("")){
+        else if(houseAddress.equals("")){
             TVmessage.setText(R.string.error_new_house_no_address);
         }else {
             return true;

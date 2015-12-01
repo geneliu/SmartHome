@@ -22,12 +22,12 @@ import ml.smart_ideas.smarthome.db.House;
 
 
 public class HouseAdapter extends ArrayAdapter<House> {
-    public HouseAdapter(Context context, ArrayList<House> kuce) {
-        super(context, 0, kuce);
+    public HouseAdapter(Context context, ArrayList<House> houses) {
+        super(context, 0, houses);
         isForNavigation = false;
     }
-    public HouseAdapter(Context context, ArrayList<House> kuce, Boolean isForNavigation) {
-        super(context, 0, kuce);
+    public HouseAdapter(Context context, ArrayList<House> houses, Boolean isForNavigation) {
+        super(context, 0, houses);
         this.isForNavigation = isForNavigation;
     }
 
@@ -37,7 +37,7 @@ public class HouseAdapter extends ArrayAdapter<House> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        final House kuca = getItem(position);
+        final House house = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.house_item, parent, false);
@@ -45,36 +45,36 @@ public class HouseAdapter extends ArrayAdapter<House> {
 
         LinearLayout houseItemLayout = (LinearLayout) convertView.findViewById(R.id.house_item_layout);
 
-        TextView naziv = (TextView) convertView.findViewById(R.id.nazivKuce);
-        TextView adresa = (TextView) convertView.findViewById(R.id.adresaKuce);
+        TextView name = (TextView) convertView.findViewById(R.id.nazivKuce);
+        TextView address = (TextView) convertView.findViewById(R.id.adresaKuce);
 
         ImageView image = (ImageView) convertView.findViewById(R.id.slikaKuce);
-        ImageView uredi = (ImageView) convertView.findViewById(R.id.img_uredi_kucu);
+        ImageView edit = (ImageView) convertView.findViewById(R.id.img_uredi_kucu);
 
         image.setImageResource(R.drawable.ic_home_black_24dp);
 
         if(isForNavigation){
-            uredi.setVisibility(View.INVISIBLE);
+            edit.setVisibility(View.INVISIBLE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)houseItemLayout.getLayoutParams();
             params.setMargins(0, 0, 0, 0);
             houseItemLayout.setLayoutParams(params);
         }else {
-            uredi.setImageResource(R.drawable.ic_create_black_24dp);
+            edit.setImageResource(R.drawable.ic_create_black_24dp);
         }
 
 
-        naziv.setText(kuca.getName());
-        adresa.setText(kuca.getAddress());
+        name.setText(house.getName());
+        address.setText(house.getAddress());
 
-        uredi.setOnClickListener(UrediClickListener);
-        uredi.setTag(position);
+        edit.setOnClickListener(EditClickListener);
+        edit.setTag(position);
 
 
         return convertView;
     }
 
 
-    private View.OnClickListener UrediClickListener = new View.OnClickListener() {
+    private View.OnClickListener EditClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             User user = Globals.getInstance().getUser();

@@ -43,7 +43,7 @@ public class RoomAdapter extends ArrayAdapter<Room> {
         image.setImageResource(R.drawable.ic_weekend_black_24dp);
         imgEdit.setImageResource(R.drawable.ic_create_black_24dp);
 
-        imgEdit.setOnClickListener(UrediClickListener);
+        imgEdit.setOnClickListener(EditClickListener);
         imgEdit.setTag(position);
 
         roomName.setText(room.getName());
@@ -51,7 +51,7 @@ public class RoomAdapter extends ArrayAdapter<Room> {
 
         return convertView;
     }
-    private View.OnClickListener UrediClickListener = new View.OnClickListener() {
+    private View.OnClickListener EditClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             House house = Globals.getInstance().getCurrentHouse();

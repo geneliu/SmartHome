@@ -113,8 +113,8 @@ public class User extends Model {
         this.save();
     }
 
-    public void addHouse(String Naziv, String Adresa) {
-        House house = new House(Naziv,Adresa,this);
+    public void addHouse(String Naziv, String Address) {
+        House house = new House(Naziv,Address,this);
         save();
     }
 

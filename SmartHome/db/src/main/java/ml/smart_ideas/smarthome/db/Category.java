@@ -13,8 +13,8 @@ public class Category extends Model {
         super();
     }
 
-    public Category(String naziv) {
-        this.naziv = naziv;
+    public Category(String name) {
+        this.name = name;
         save();
     }
 
@@ -22,8 +22,8 @@ public class Category extends Model {
 
     //region Private Fields
 
-    @Column(name = "naziv")
-    private String naziv;
+    @Column(name = "name")
+    private String name;
 
 
     //TODO
@@ -38,10 +38,10 @@ public class Category extends Model {
     //region Public Properties
 
     public String getNaziv() {
-        return naziv;
+        return name;
     }
-    public void setNaziv(String naziv){
-        this.naziv = naziv;
+    public void setNaziv(String name){
+        this.name = name;
         save();
     }
 

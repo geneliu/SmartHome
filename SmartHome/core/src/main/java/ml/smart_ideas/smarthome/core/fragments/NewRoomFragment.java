@@ -19,7 +19,7 @@ import ml.smart_ideas.smarthome.db.Room;
 
 public class NewRoomFragment extends Fragment {
 
-    EditText ETnaziv;
+    EditText ETname;
     TextView TVmessage;
     Button btnKreiraj;
     Room room;
@@ -32,14 +32,14 @@ public class NewRoomFragment extends Fragment {
         View viewInflater = inflater.inflate(R.layout.new_room_fragment, container, false);
 
 
-        ETnaziv = (EditText)viewInflater.findViewById(R.id.new_room_name);
+        ETname = (EditText)viewInflater.findViewById(R.id.new_room_name);
         btnKreiraj = (Button)viewInflater.findViewById(R.id.btn_create_new_room);
 
 
         if(Globals.getInstance().getFragmentState()== FragmentStateEnum.Edit)
         {
             room=Globals.getInstance().getCurrentRoom();
-            ETnaziv.setText(room.getName());
+            ETname.setText(room.getName());
             btnKreiraj.setText(R.string.update_button);
         }
         else
@@ -78,7 +78,7 @@ public class NewRoomFragment extends Fragment {
 
     private void createNewRoom()
     {
-        String roomName= ETnaziv.getText().toString();
+        String roomName= ETname.getText().toString();
         if(roomName.equals(""))
         {
             TVmessage.setText(R.string.error_new_room_no_name);
@@ -93,7 +93,7 @@ public class NewRoomFragment extends Fragment {
 
     private void updateRoom()
     {
-        String roomName = ETnaziv.getText().toString();
+        String roomName = ETname.getText().toString();
         if(roomName.equals(""))
         {
             TVmessage.setText(R.string.error_new_room_no_name);

@@ -46,8 +46,8 @@ public class Room extends Model {
         return name;
     }
 
-    public void setName(String naziv) {
-        this.name = naziv;
+    public void setName(String name) {
+        this.name = name;
         save();
     }
 
