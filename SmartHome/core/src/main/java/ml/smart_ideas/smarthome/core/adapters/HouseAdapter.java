@@ -45,11 +45,11 @@ public class HouseAdapter extends ArrayAdapter<House> {
 
         LinearLayout houseItemLayout = (LinearLayout) convertView.findViewById(R.id.house_item_layout);
 
-        TextView name = (TextView) convertView.findViewById(R.id.nazivKuce);
-        TextView address = (TextView) convertView.findViewById(R.id.adresaKuce);
+        TextView name = (TextView) convertView.findViewById(R.id.houseName);
+        TextView address = (TextView) convertView.findViewById(R.id.houseAddress);
 
-        ImageView image = (ImageView) convertView.findViewById(R.id.slikaKuce);
-        ImageView edit = (ImageView) convertView.findViewById(R.id.img_uredi_kucu);
+        ImageView image = (ImageView) convertView.findViewById(R.id.houseImage);
+        ImageView edit = (ImageView) convertView.findViewById(R.id.img_edit_house);
 
         image.setImageResource(R.drawable.ic_home_black_24dp);
 

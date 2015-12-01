@@ -41,11 +41,11 @@ public class HousesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View viewInflater = inflater.inflate(R.layout.houses_fragment, container, false);
 
-        listView = (ListView) viewInflater.findViewById(R.id.lista_kuca);
+        listView = (ListView) viewInflater.findViewById(R.id.list_of_houses);
         floatingActionButton = (FloatingActionButton)viewInflater.findViewById(R.id.fab_add_house);
         linearLayoutEmpty = (LinearLayout)viewInflater.findViewById(R.id.empty_list);
 
-        imageView= (ImageView) viewInflater.findViewById(R.id.img_uredi_kucu);
+        imageView= (ImageView) viewInflater.findViewById(R.id.img_edit_house);
 
         InitializeFragment();
 

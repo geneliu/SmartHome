@@ -4,7 +4,7 @@
     android:layout_height="72dp">
 
     <ImageView
-        android:id="@+id/slikaKuce"
+        android:id="@+id/houseImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="16dp"
@@ -17,28 +17,28 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_toRightOf="@+id/slikaKuce"
+        android:layout_toRightOf="@+id/houseImage"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true">
 
         <TextView
-            android:id="@+id/nazivKuce"
+            android:id="@+id/houseName"
             android:layout_marginRight="40dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/dark_gray"
             android:paddingRight="16dp"
-            android:text="@string/sample_naziv_kuce"
+            android:text="@string/sample_house_name"
             android:textIsSelectable="false"
             android:textStyle="bold"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/adresaKuce"
+            android:id="@+id/houseAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/secondary_text"
-            android:text="@string/sample_adresa_kuce"
+            android:text="@string/sample_house_address"
             android:layout_marginTop="3dp"
             android:layout_marginRight="40dp"/>
 

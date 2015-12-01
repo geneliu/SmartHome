@@ -2,14 +2,14 @@
     <string name="app_name">Web Service</string>
     <string name="server_reply_no_error">false</string>
     <string name="server_reply_error_registration_exists">exist</string>
-    <string name="error_registration_message">Dogodila se greška kod registracije.</string>
-    <string name="server_login_no_reply">Poslužitelj za prijavu ne odgovara.</string>
-    <string name="server_registration_no_reply">Poslužitelj za registraciju ne odgovara.</string>
+    <string name="error_registration_message">An error ocurred during registration.</string>
+    <string name="server_login_no_reply">Login server does not respond.</string>
+    <string name="server_registration_no_reply">Registration server does not respond.</string>
 
     <string name="user">User</string>
-    <string name="already_exists"> već postoji.</string>
-    <string name="successfully_registered"> uspješno registriran.</string>
+    <string name="already_exists"> already exists..</string>
+    <string name="successfully_registered"> sucsesssfully registered.</string>
 
-    <string name="server_login_failed">Neispravno korisničko ime i/ili lozinka.</string>
+    <string name="server_login_failed">Invalid username or password.</string>
 
 </resources>

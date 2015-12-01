@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Core</string>
+    <string name="houses">Primjer kuće</string>
+    <string name="houses_fragment_title">Popis kuća</string>
+
+    <string name="room_name">Ime</string>
+    <string name="room_description">Opis</string>
+    <string name="app_class">ml.smart_ideas.smarthome.</string>
+    <string name="new_house_name">Naziv kuće</string>
+    <string name="new_house_address">Adresa kuće</string>
+    <string name="create_new_house">Kreiraj</string>
+    <string name="message">Poruka</string>
+    <string name="error_new_house_no_name_address">Kuća ne može biti bez imena i adrese</string>
+    <string name="error_new_house_no_name">Kuća ne može biti bez imena</string>
+    <string name="error_new_house_no_address">Kuća ne može biti bez adrese</string>
+    <string name="sample_house_address">Adresa kuće, 42000 Varaždin, Hrvatska</string>
+    <string name="sample_house_name">Naziv kuće u listi</string>
+    <string name="rooms_fragment_title"> - Prikaz prostorija</string>
+    <string name="house_icon_description">Slika kuće</string>
+    <string name="new_room_name">Naziv prostorije</string>
+    <string name="update_button">Spremi</string>
+    <string name="error_new_room_no_name">Prostorija ne može biti bez imena</string>
+    <string name="new_room_button">Kreiraj</string>
+    <string name="no_houses_message">Nema ni jedne kuće. Sve nove kuće prikazati će se ovdje.</string>
+    <string name="no_rooms_message">Nema ni jedne prostorije. Sve nove prostorije prikazati će se ovdje.</string>
+    <string name="no_elements_message">Nema ni jednog elementa. Svi novi elementi prikazati će se ovdje.</string>
+</resources>

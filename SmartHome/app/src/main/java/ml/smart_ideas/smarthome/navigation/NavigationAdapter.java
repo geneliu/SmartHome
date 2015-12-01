@@ -60,13 +60,13 @@ public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
 
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.nav_house_item, parent, false);
 
-            TextView naziv = (TextView) convertView.findViewById(ml.smart_ideas.smarthome.core.R.id.nazivKuce);
-            TextView adresa = (TextView) convertView.findViewById(ml.smart_ideas.smarthome.core.R.id.adresaKuce);
-            ImageView image = (ImageView) convertView.findViewById(ml.smart_ideas.smarthome.core.R.id.slikaKuce);
+            TextView name = (TextView) convertView.findViewById(ml.smart_ideas.smarthome.core.R.id.houseName);
+            TextView address = (TextView) convertView.findViewById(ml.smart_ideas.smarthome.core.R.id.houseAddress);
+            ImageView image = (ImageView) convertView.findViewById(ml.smart_ideas.smarthome.core.R.id.houseImage);
             image.setImageResource(ml.smart_ideas.smarthome.core.R.drawable.ic_home_black_24dp);
 
-            naziv.setText(house.getName());
-            adresa.setText(house.getAddress());
+            name.setText(house.getName());
+            address.setText(house.getAddress());
 
         } else if (navigationItem.getClass() == NavOptions.class) {
             NavOptions navOptions = (NavOptions) navigationItem;

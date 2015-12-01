@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Smart Home</string>
+    <string name="app_view_name">Smart Home prijava</string>
+    <string name="hello_world">Pozdrav svijete!</string>
+    <string name="action_settings">Postavke</string>
+    <string name="name">Ime</string>
+    <string name="surname">Prezime</string>
+    <string name="username">Korisničko ime</string>
+    <string name="password">Lozinka</string>
+    <string name="repeatPassword">Ponovite lozinku</string>
+    <string name="btn_login">Logiraj se</string>
+    <string name="btn_register">Potvrdi</string>
+    <string name="dont_have_account">Nemaš račun? Registriraj se ovdje.</string>
+    <string name="houses">Primjer kuće</string>
+    <string name="drawer_open">Otvori navigaciju</string>
+    <string name="drawer_close">Zatvori navigaciju</string>
+
+    <string name="registration_fragment_title">Registracija</string>
+    <string name="login_fragment_title">Prijava</string>
+    <string name="login_in_progress">Molimo pričekajte, prijava je već u tijeku...</string>
+    <string name="fragment_message">Message</string>
+    <string name="pass_no_match">Lozinke se ne podudaraju</string>
+    <string name="nav_user_name_surname">Ime Prezime</string>
+    <string name="nav_user_image">Nav. korisnička slika</string>
+    <string name="nav_options">Opcije</string>
+    <string name="nav_settings">Postavke</string>
+    <string name="nav_logout">Odjava</string>
+
+</resources>
