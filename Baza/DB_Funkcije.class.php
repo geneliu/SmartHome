@@ -49,6 +49,17 @@ class DB_Funckije{
 		return false;
 		
 	}
+	public function login($username,$password){
+		$q="Select * from users where username='".$username."' and password='".$password."';";
+		$podaci = $this->baza->selectDB($q);
+		if($podaci != null){
+			while($red=$podaci->fetch_array()){			
+				return $red;
+			}
+		}
+		return false;
+		
+	}
     
     
 }

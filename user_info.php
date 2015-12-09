@@ -3,24 +3,20 @@ require_once(dirname(__FILE__) .'/Baza/DB_Funkcije.class.php');
 $db= new DB_Funckije();
 $response = array("error" => FALSE);
 
-if(isset($_POST['username']) && isset($_POST['lozinka']))
+if(isset($_POST['username']) && isset($_POST['password']))
 {
 
     $username=$_POST['username'];
-    $password=$_POST['lozinka'];
+    $password=$_POST['password'];
 
-    $user=$db->podaciKorisnika($username, $password);
+    $user=$db->login($username, $password);
     if($user!=false)
     {
-		while($red=$user->fetch_array())
-		{
-			$response["error"]= "false";
-			$response["username"]= $username;
-			//$response["password"]= $red[2];
-			$response["ime"]=$red[3];
-			$response["prezime"]=$red[4];
-			break;
-     }
+		$response["error"]= "false";
+		$response["username"]= $username;
+		//$response["password"]= $user[2];
+		$response["name"]=$user[3];
+		$response["surname"]=$user[4];    
 		
         echo json_encode($response);
     }
@@ -29,15 +25,16 @@ if(isset($_POST['username']) && isset($_POST['lozinka']))
         $response["error"] = "true";
 		$response["username"]= $username;
 		$response["password"]="";
-		$response["ime"]="";
-		$response["prezime"]="";
+		$response["name"]="";
+		$response["surname"]="";
         echo json_encode($response);
     }
 }
 else
 {
-    $response["error"] = "hallo";
-        echo json_encode($response);
+    //$response["error"] = "hello";
+        echo "<h1>Smart Home</h1>";
+		//json_encode($response);
 }
 
 ?>
