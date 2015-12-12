@@ -1,5 +1,6 @@
 package ml.smart_ideas.smarthome.core.fragments;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.media.Image;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.melnykov.fab.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import ml.smart_ideas.smarthome.LongClickDialog;
 import ml.smart_ideas.smarthome.core.adapters.HouseAdapter;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.Globals;
@@ -92,7 +94,9 @@ public class HousesFragment extends Fragment {
         listView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(view.getContext(), "Put Menu Now", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(view.getContext(), "Put Menu Now", Toast.LENGTH_SHORT).show();
+                DialogFragment newFragment = new LongClickDialog();
+                newFragment.show(getFragmentManager(), "missiles");
                 return true;
             }
         });

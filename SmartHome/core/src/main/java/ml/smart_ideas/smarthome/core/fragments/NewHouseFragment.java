@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
+import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
 import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.db.House;
@@ -81,7 +82,9 @@ public class NewHouseFragment extends Fragment{
             User user = Globals.getInstance().getUser();
             user.addHouse(houseName,houseAddress);
             Globals.getInstance().RefreshNavigation();
-            Globals.getInstance().PressBack();
+            //Globals.getInstance().PressBack();
+            Globals.getInstance().ClearBackStack();
+            Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment);
         }
     }
     private void updateHouse()
@@ -90,7 +93,9 @@ public class NewHouseFragment extends Fragment{
             house.setNaziv(houseName);
             house.setAddress(houseAddress);
             Globals.getInstance().RefreshNavigation();
-            Globals.getInstance().PressBack();
+            //Globals.getInstance().PressBack();
+            Globals.getInstance().ClearBackStack();
+            Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment);
         }
     }
 

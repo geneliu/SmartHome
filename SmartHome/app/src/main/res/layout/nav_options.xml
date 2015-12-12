@@ -4,9 +4,9 @@
 
     <ImageView
         android:id="@+id/options_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="16dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="20dp"
         android:src="@android:drawable/ic_menu_preferences" />
 
     <LinearLayout
@@ -24,7 +24,7 @@
             android:id="@+id/options_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark_gray"
+            android:textColor="@color/gray"
             android:paddingRight="16dp"
             android:layout_marginRight="35dp"
             android:text="@string/nav_options"
