@@ -24,4 +24,8 @@
     <string name="no_houses_message">There are no houses yet. New ones will be showed here.</string>
     <string name="no_rooms_message">There are no rooms yet. New ones will be showed here.</string>
     <string name="no_elements_message">There are no elements yet. New ones will be showed here.</string>
+    <string name="edit">Uredi</string>
+    <string name="delete">Izbriši</string>
+    <string name="dismiss">Odustani</string>
+    <string name="current_house">Odabrana kuća</string>
 </resources>

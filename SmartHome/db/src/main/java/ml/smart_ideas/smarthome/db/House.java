@@ -75,6 +75,18 @@ public class House extends Model {
         save();
     }
 
+    public void deleteHouse()
+    {
+         List<Room> rooms= this.getProstorije();
+        for (Room room : rooms)
+        {
+                room.delete();
+        }
+        // TODO: delete elemente i stanja
+        this.delete();
+
+    }
+
     public List<Room> getProstorije() {
         return getMany(Room.class, "House");
     }

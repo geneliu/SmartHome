@@ -95,7 +95,8 @@ public class HousesFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText(view.getContext(), "Put Menu Now", Toast.LENGTH_SHORT).show();
-                DialogFragment newFragment = new LongClickDialog();
+                Globals.getInstance().setCurrentHouse(houses.get(position));
+                LongClickDialog newFragment = new LongClickDialog();
                 newFragment.show(getFragmentManager(), "missiles");
                 return true;
             }
