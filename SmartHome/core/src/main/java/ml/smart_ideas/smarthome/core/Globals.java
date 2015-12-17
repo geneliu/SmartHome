@@ -3,6 +3,8 @@ package ml.smart_ideas.smarthome.core;
 
 import android.content.Context;
 
+import com.activeandroid.Model;
+
 import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
@@ -150,6 +152,35 @@ public class Globals {
         if (listener != null)
             listener.RefreshNavigation();
     }
+
+    //region Refresh list
+    private RefreshEventListener refreshEventListener;
+
+    public void addRefreshListener(RefreshEventListener eventListener) {
+        refreshEventListener = eventListener;
+    }
+
+    public void Refresh(){
+        if(refreshEventListener != null)
+            refreshEventListener.refresh();
+    }
+
+    //endregion
+
+    //region Dialogs
+
+    private DialogEventListener dialogEventListener;
+
+    public void addDialogListener(DialogEventListener eventListener) {
+        dialogEventListener = eventListener;
+    }
+
+    public void deletePrompt(String message, Model model){
+        if(dialogEventListener != null)
+            dialogEventListener.deletePrompt(message,model);
+    }
+
+    //endregion
 
 
     //endregion

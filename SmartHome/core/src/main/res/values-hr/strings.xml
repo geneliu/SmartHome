@@ -24,4 +24,9 @@
     <string name="no_houses_message">Nema ni jedne kuće. Sve nove kuće prikazati će se ovdje.</string>
     <string name="no_rooms_message">Nema ni jedne prostorije. Sve nove prostorije prikazati će se ovdje.</string>
     <string name="no_elements_message">Nema ni jednog elementa. Svi novi elementi prikazati će se ovdje.</string>
+    <string name="dialog_item_cancel">Odustani</string>
+    <string name="dialog_item_delete">Obriši</string>
+    <string name="dialog_item_edit">Uredi</string>
+    <string name="prompt_delete_house_message">Jeste li sigurni da želite obrisati ovu kuću?</string>
+    <string name="prompt_delete">Obriši</string>
 </resources>

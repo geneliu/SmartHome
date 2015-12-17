@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import ml.smart_ideas.smarthome.R;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
@@ -22,6 +24,7 @@ import ml.smart_ideas.smarthome.ws.connection.ServerCommunication;
 
 public class LoginFragment extends Fragment  implements MessageEventListener{
 
+    @Bind(R.id.username)
     EditText ETusername;
     EditText ETpassword;
     TextView TVregister;
@@ -33,8 +36,8 @@ public class LoginFragment extends Fragment  implements MessageEventListener{
                              Bundle savedInstanceState) {
 
         View viewInflater = inflater.inflate(R.layout.login_fragment, container, false);
+        ButterKnife.bind(this, viewInflater);
 
-        ETusername = (EditText) viewInflater.findViewById(R.id.username);
         ETpassword = (EditText) viewInflater.findViewById(R.id.password);
         TVregister = (TextView) viewInflater.findViewById(R.id.txtRegister);
         Button BtnLogin = (Button) viewInflater.findViewById(R.id.btnLogin);

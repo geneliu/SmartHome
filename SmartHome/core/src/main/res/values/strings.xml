@@ -24,4 +24,9 @@
     <string name="no_houses_message">There are no houses yet. New ones will be showed here.</string>
     <string name="no_rooms_message">There are no rooms yet. New ones will be showed here.</string>
     <string name="no_elements_message">There are no elements yet. New ones will be showed here.</string>
+    <string name="dialog_item_edit">Edit</string>
+    <string name="dialog_item_delete">Delete</string>
+    <string name="dialog_item_cancel">Cancel</string>
+    <string name="prompt_delete">Delete</string>
+    <string name="prompt_delete_house_message">Ara you sure you want to delete this house?</string>
 </resources>

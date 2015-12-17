@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
     @Override
     public void ShowActivity(ActivityEnum activityEnum) {
-        if (Globals.getInstance().getAppStateEnum() != AppStateEnum.NotSignedIn) {
+        if (Globals.getInstance().getAppStateEnum() != AppStateEnum.NotSignedIn && activityEnum != ActivityEnum.MainActivity) {
             Class activityClass = Creator.getActivityFromEnum(activityEnum);
             Intent intent = new Intent(this, activityClass);
             startActivity(intent);

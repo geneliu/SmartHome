@@ -40,10 +40,10 @@ public class Element extends Model{
 
     //region Public Properties
 
-    public String getNaziv(){
+    public String getName(){
         return name;
     }
-    public void setNaziv(String name){
+    public void setName(String name){
         this.name = name;
         save();
     }
