@@ -106,22 +106,21 @@ public class LongClickDialog extends DialogFragment {
 
     private void deleteHouse(House house) {
         Globals.getInstance().deletePrompt(Globals.getInstance().getContext().getString(R.string.prompt_delete_house_message),house);
-        //LongClickDialog yesNoDialog = LongClickDialog.newYesNo(Globals.getInstance().getContext().getString(R.string.prompt_delete_message),house);
     }
 
 
     DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
-            if (which == 0) {//EDIT
+            if (which == 0) {//SETUP EDIT
                 Globals.getInstance().setFragmentState(FragmentStateEnum.Edit);
             } else {
                 Globals.getInstance().setFragmentState(FragmentStateEnum.Off);
             }
             if (objectForList == ObjectForList.House) {
-                if (which == 0) {
+                if (which == 0) { //GO TO EDIT
                     Globals.getInstance().setCurrentHouse(house);
                     Globals.getInstance().ShowFragment(FragmentEnum.NewHouseFragment);
-                } else if (which == 1) {
+                } else if (which == 1) {//PROPMT DELETE
                     deleteHouse(house);
                 }
             }

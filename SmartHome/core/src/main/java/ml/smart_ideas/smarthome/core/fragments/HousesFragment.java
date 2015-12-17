@@ -85,7 +85,6 @@ public class HousesFragment extends Fragment implements RefreshEventListener,Dia
         listView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(view.getContext(), "Put Menu Now", Toast.LENGTH_SHORT).show();
                 LongClickDialog longClickDialog = LongClickDialog.newInstance(houses.get(position));
                 longClickDialog.show(getFragmentManager(), "");
                 return true;
