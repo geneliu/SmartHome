@@ -19,6 +19,8 @@ public class LongClickDialog extends DialogFragment {
 
     public static final String MESSAGE = "message";
     private House house;
+
+
     private Room room;
     private Element element;
 
@@ -32,6 +34,10 @@ public class LongClickDialog extends DialogFragment {
         Bundle args = new Bundle();
         if (object.getClass() == House.class) {
             frag.setHouse((House) object);
+        }
+        if(object.getClass() == Room.class)
+        {
+            frag.setRoom((Room) object);
         }
         args.putString("title", frag.getName());
         frag.setArguments(args);
@@ -79,6 +85,7 @@ public class LongClickDialog extends DialogFragment {
     }
 
 
+    //Getters and setter
     public House getHouse() {
         return house;
     }
@@ -88,6 +95,18 @@ public class LongClickDialog extends DialogFragment {
         isSet = true;
         objectForList = ObjectForList.House;
     }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+        isSet=true;
+        objectForList= ObjectForList.Room;
+    }
+    //EndOfRegion
+
 
     public void setObjectForList(ObjectForList objectForList) {
         this.objectForList = objectForList;
@@ -108,6 +127,11 @@ public class LongClickDialog extends DialogFragment {
         Globals.getInstance().deletePrompt(Globals.getInstance().getContext().getString(R.string.prompt_delete_house_message),house);
     }
 
+    private void deleteRoom(Room room)
+    {
+        Globals.getInstance().deletePrompt(Globals.getInstance().getContext().getString(R.string.prompt_delete_room_message),room);
+    }
+
 
     DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
@@ -122,6 +146,16 @@ public class LongClickDialog extends DialogFragment {
                     Globals.getInstance().ShowFragment(FragmentEnum.NewHouseFragment);
                 } else if (which == 1) {//PROPMT DELETE
                     deleteHouse(house);
+                }
+            }
+            else if(objectForList == ObjectForList.Room)
+            {
+                if(which == 0){
+                    Globals.getInstance().setCurrentRoom(room);
+                    Globals.getInstance().ShowFragment(FragmentEnum.NewRoomFragment);
+                }
+                else if(which ==1) {
+                    deleteRoom(room);
                 }
             }
         }

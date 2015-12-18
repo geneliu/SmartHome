@@ -9,23 +9,26 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.activeandroid.Model;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ml.smart_ideas.smarthome.core.DialogEventListener;
 import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.core.LongClickDialog;
 import ml.smart_ideas.smarthome.core.R;
+import ml.smart_ideas.smarthome.core.RefreshEventListener;
 import ml.smart_ideas.smarthome.core.adapters.RoomAdapter;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
-import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.db.House;
 import ml.smart_ideas.smarthome.db.Room;
 
 
-public class RoomsFragment extends Fragment {
+public class RoomsFragment extends Fragment implements RefreshEventListener,DialogEventListener {
 
     RoomAdapter adapter;
     ListView listView;
@@ -39,8 +42,8 @@ public class RoomsFragment extends Fragment {
         View viewInflater = inflater.inflate(R.layout.rooms_fragment, container, false);
 
         listView = (ListView) viewInflater.findViewById(R.id.rooms_list);
-        floatingActionButton = (FloatingActionButton)viewInflater.findViewById(R.id.fab_add_room);
-        linearLayoutEmpty = (LinearLayout)viewInflater.findViewById(R.id.empty_list);
+        floatingActionButton = (FloatingActionButton) viewInflater.findViewById(R.id.fab_add_room);
+        linearLayoutEmpty = (LinearLayout) viewInflater.findViewById(R.id.empty_list);
 
         InitializeFragment();
 
@@ -56,19 +59,19 @@ public class RoomsFragment extends Fragment {
             }
         });
 
+        Globals.getInstance().addRefreshListener(this);
+        Globals.getInstance().addDialogListener(this);
+
         return viewInflater;
     }
 
-    public void InitializeFragment(){
+    public void InitializeFragment() {
         House house = Globals.getInstance().getCurrentHouse();
-        if(house.getProstorije().size() > 0)
+        if (house.getProstorije().size() > 0)
             linearLayoutEmpty.setVisibility(View.INVISIBLE);
 
-        adapter=new RoomAdapter(getActivity(),new ArrayList<Room>());
         final List<Room> rooms = house.getProstorije();
-        adapter.addAll(rooms);
-
-        listView.setAdapter(adapter);
+        refreshRooms();
         listView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
@@ -77,10 +80,39 @@ public class RoomsFragment extends Fragment {
             }
         });
 
+        listView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                LongClickDialog longClickDialog = LongClickDialog.newInstance(rooms.get(position));
+                longClickDialog.show(getFragmentManager(), "");
+                return true;
+            }
+        });
+
     }
 
     private void addRoom() {
         Globals.getInstance().setFragmentState(FragmentStateEnum.New);
         Globals.getInstance().ShowFragment(FragmentEnum.NewRoomFragment);
+    }
+
+
+    private void refreshRooms() {
+        House house = Globals.getInstance().getCurrentHouse();
+        adapter = new RoomAdapter(getActivity(), new ArrayList<Room>());
+        List<Room> rooms = house.getProstorije();
+        adapter.addAll(rooms);
+        listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void refresh() {
+        refreshRooms();
+    }
+
+    @Override
+    public void deletePrompt(String message, Model model) {
+        LongClickDialog yesNoDialog = LongClickDialog.newYesNo(message, model);
+        yesNoDialog.show(getFragmentManager(), "");
     }
 }
