@@ -49,44 +49,27 @@ public class HouseAdapter extends ArrayAdapter<House> {
         TextView address = (TextView) convertView.findViewById(R.id.houseAddress);
 
         ImageView image = (ImageView) convertView.findViewById(R.id.houseImage);
-        ImageView edit = (ImageView) convertView.findViewById(R.id.img_edit_house);
 
         image.setImageResource(R.drawable.ic_home_black_24dp);
 
         if(isForNavigation){
-            edit.setVisibility(View.INVISIBLE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)houseItemLayout.getLayoutParams();
             params.setMargins(0, 0, 0, 0);
             houseItemLayout.setLayoutParams(params);
-        }else {
-            edit.setImageResource(R.drawable.ic_create_black_24dp);
         }
 
 
         name.setText(house.getName());
         address.setText(house.getAddress());
 
-        edit.setOnClickListener(EditClickListener);
-        edit.setTag(position);
+
 
 
         return convertView;
     }
 
 
-    private View.OnClickListener EditClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            User user = Globals.getInstance().getUser();
-            final List<House> houses=user.getKuce();
 
-
-            String s=v.getTag().toString();
-            Globals.getInstance().setFragmentState(FragmentStateEnum.Edit);
-            Globals.getInstance().setCurrentHouse(houses.get(Integer.parseInt(s)));
-            Globals.getInstance().ShowFragment(FragmentEnum.NewHouseFragment);
-        }
-    };
 
 
 }

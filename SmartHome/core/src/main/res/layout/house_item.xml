@@ -20,7 +20,8 @@
         android:layout_toRightOf="@+id/houseImage"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="72dp">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
         <TextView
             android:id="@+id/houseName"
@@ -45,14 +46,6 @@
 
 
     </LinearLayout>
-    <ImageView
-        android:id="@+id/img_edit_house"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_create_black_24dp"
-        android:contentDescription="@string/house_icon_description"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:padding="21dp" />
+
 
 </RelativeLayout>
