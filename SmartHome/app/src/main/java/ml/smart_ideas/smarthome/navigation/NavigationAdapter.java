@@ -2,6 +2,8 @@ package ml.smart_ideas.smarthome.navigation;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +25,12 @@ import java.util.ListIterator;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import ml.smart_ideas.smarthome.MainActivity;
 import ml.smart_ideas.smarthome.R;
 import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.core.SaveSharedPreferences;
+import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
+import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.db.House;
@@ -118,6 +124,9 @@ public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
                 if (navOptions.getIsSettings()) {
                     Toast.makeText(Globals.getInstance().getContext(), "Settings", Toast.LENGTH_SHORT).show();
                 } else if (navOptions.getIsLogout()) {
+                    SaveSharedPreferences.clearUserName(Globals.getInstance().getContext());
+                    //Globals.getInstance().setAppStateEnum(AppStateEnum.NotSignedIn);
+                    Globals.getInstance().Logout();
                     Toast.makeText(Globals.getInstance().getContext(), "Logout", Toast.LENGTH_SHORT).show();
                 }
             }

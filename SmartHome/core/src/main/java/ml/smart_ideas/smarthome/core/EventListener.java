@@ -14,4 +14,5 @@ public interface EventListener {
     void ShowTitle(String title);
     void ClearBackStack();
     void RefreshNavigation();
+    void Logout();
 }

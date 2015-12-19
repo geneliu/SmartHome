@@ -1,6 +1,7 @@
 package ml.smart_ideas.smarthome;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
@@ -143,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         Fragment fragment = Creator.getFragmentFromEnum(fragmentEnum);
         if (fragment.getClass() == HousesFragment.class && appStateEnum == AppStateEnum.SignedIn)
             return;
+
         if (fragment != null) {
 
             fragment.setArguments(getIntent().getExtras());
@@ -181,10 +183,26 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         }
     }
 
+
+
     @Override
     public void RefreshNavigation() {
         adapter = new NavigationAdapter(this,mDrawerList);
         mDrawerList.setAdapter(adapter);
+    }
+
+    @Override
+    public void Logout() {
+
+        Globals.getInstance().setUser(null);
+    //    ClearBackStack();
+       // clear();
+
+        Globals.getInstance().ShowActivity(ActivityEnum.InitialActivity);
+      //  Globals.getInstance().ShowFragment(FragmentEnum.LoginFragment);
+        finish();
+
+
     }
 
     private void ToogleNavigationDrawer(Fragment fragment) {

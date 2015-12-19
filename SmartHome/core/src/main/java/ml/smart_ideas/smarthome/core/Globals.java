@@ -152,6 +152,11 @@ public class Globals {
         if (listener != null)
             listener.RefreshNavigation();
     }
+    public void Logout() {
+        if (listener != null)
+            listener.Logout();
+    }
+
 
     //region Refresh list
     private RefreshEventListener refreshEventListener;
@@ -179,6 +184,11 @@ public class Globals {
         if(dialogEventListener != null)
             dialogEventListener.deletePrompt(message,model);
     }
+
+    //endregion
+
+    //region logout
+
 
     //endregion
 

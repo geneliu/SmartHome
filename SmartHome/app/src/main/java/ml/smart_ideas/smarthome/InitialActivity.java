@@ -114,6 +114,7 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
         Fragment fragment = Creator.getFragmentFromEnum(fragmentEnum);
         if(fragment.getClass() == HousesFragment.class && appStateEnum == AppStateEnum.SignedIn)
             return;
+
         if (fragment != null) {
 
             fragment.setArguments(getIntent().getExtras());
@@ -203,5 +204,10 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
 
     @Override
     public void RefreshNavigation(){}
+
+    @Override
+    public void Logout() {
+
+    }
 
 }
