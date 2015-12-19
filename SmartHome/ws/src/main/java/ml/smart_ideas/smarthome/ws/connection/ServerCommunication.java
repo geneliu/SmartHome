@@ -2,10 +2,12 @@ package ml.smart_ideas.smarthome.ws.connection;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
 
+import ml.smart_ideas.smarthome.core.SaveSharedPreferences;
 import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
@@ -85,9 +87,11 @@ public class ServerCommunication {
                                     userModelResponse.getPassword(),
                                     userModelResponse.getName(),
                                     userModelResponse.getSurname());
+                            SaveSharedPreferences.setUserName(Globals.getInstance().getContext(), username);
                             Log.d("ServerCommunication", "Created new local user.");
                         } else {
                             Globals.getInstance().setUser(user);
+                            SaveSharedPreferences.setUserName(Globals.getInstance().getContext(),username);
                         }
                         Log.d("ServerCommunication", "User " + stringUsername + " successfully signed in.");
                         //  Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);

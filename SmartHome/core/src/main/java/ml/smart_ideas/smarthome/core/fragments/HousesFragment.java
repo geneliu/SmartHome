@@ -46,7 +46,7 @@ public class HousesFragment extends Fragment implements RefreshEventListener,Dia
         listView = (ListView) viewInflater.findViewById(R.id.list_of_houses);
         floatingActionButton = (FloatingActionButton) viewInflater.findViewById(R.id.fab_add_house);
         linearLayoutEmpty = (LinearLayout) viewInflater.findViewById(R.id.empty_list);
-        
+
 
         InitializeFragment();
 

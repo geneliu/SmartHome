@@ -37,34 +37,14 @@ public class RoomAdapter extends ArrayAdapter<Room> {
         TextView roomName = (TextView) convertView.findViewById(R.id.room_name);
 
         ImageView image = (ImageView) convertView.findViewById(R.id.room_icon);
-        ImageView imgEdit = (ImageView) convertView.findViewById(R.id.img_edit_room);
+
 
 
         image.setImageResource(R.drawable.ic_weekend_black_24dp);
-        imgEdit.setImageResource(R.drawable.ic_create_black_24dp);
-
-        imgEdit.setOnClickListener(EditClickListener);
-        imgEdit.setTag(position);
-
         roomName.setText(room.getName());
-
 
         return convertView;
     }
-    private View.OnClickListener EditClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            House house = Globals.getInstance().getCurrentHouse();
-            List<Room> prostorije= house.getProstorije();
-
-
-            String s=v.getTag().toString();
-            Globals.getInstance().setFragmentState(FragmentStateEnum.Edit);
-            Globals.getInstance().setCurrentRoom(prostorije.get(Integer.parseInt(s)));
-            Globals.getInstance().ShowFragment(FragmentEnum.NewRoomFragment);
-
-        }
-    };
 
 }
 

@@ -4,8 +4,6 @@ package ml.smart_ideas.smarthome;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,15 +11,15 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 
 import butterknife.ButterKnife;
+import ml.smart_ideas.smarthome.core.SaveSharedPreferences;
 import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
-import ml.smart_ideas.smarthome.fragments.LoginFragment;
-import ml.smart_ideas.smarthome.fragments.RegistrationFragment;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
 import ml.smart_ideas.smarthome.core.EventListener;
 import ml.smart_ideas.smarthome.core.fragments.HousesFragment;
 import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.helpers.Creator;
 
 
@@ -51,7 +49,18 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
             if (savedInstanceState != null) {
                 return;
             }
-            Globals.getInstance().ShowFragment(FragmentEnum.LoginFragment,true);
+            if(SaveSharedPreferences.getUserName(Globals.getInstance().getContext()).length() == 0)
+            {
+                Globals.getInstance().ShowFragment(FragmentEnum.LoginFragment,true);
+            }
+            else
+            {
+
+                User user = User.checkExistingUser(SaveSharedPreferences.getUserName(Globals.getInstance().getContext()));
+                Globals.getInstance().setUser(user);
+                Globals.getInstance().ShowActivity(ActivityEnum.MainActivity);
+            }
+
         }
     }
 
