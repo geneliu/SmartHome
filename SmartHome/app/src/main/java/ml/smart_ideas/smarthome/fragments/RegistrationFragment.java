@@ -4,7 +4,6 @@ import android.app.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.text.method.PasswordTransformationMethod;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 
 import ml.smart_ideas.smarthome.R;
 
-import ml.smart_ideas.smarthome.core.MessageEventListener;
+import ml.smart_ideas.smarthome.core.eventlisteners.MessageEventListener;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.ws.connection.ServerCommunication;
 

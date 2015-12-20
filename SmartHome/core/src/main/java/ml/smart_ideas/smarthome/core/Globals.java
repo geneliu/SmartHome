@@ -10,6 +10,10 @@ import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
+import ml.smart_ideas.smarthome.core.eventlisteners.DialogEventListener;
+import ml.smart_ideas.smarthome.core.eventlisteners.EventListener;
+import ml.smart_ideas.smarthome.core.eventlisteners.MessageEventListener;
+import ml.smart_ideas.smarthome.core.eventlisteners.RefreshEventListener;
 import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.db.House;
 import ml.smart_ideas.smarthome.db.Room;
@@ -54,10 +58,15 @@ public class Globals {
 
     public void setUser(User user) {
         _user = user;
+        if(user != null)
+            SaveSharedPreferences.setUserName(getContext(), _user.getUsername());
+        else
+            SaveSharedPreferences.clearUserName(getContext());
     }
 
     public void setUser(String username, String password, String ime, String prezime) {
         _user = new User(username, password, ime, prezime);
+        SaveSharedPreferences.setUserName(getContext(), _user.getUsername());
     }
 
     public NavigationEnum getNavigationEnum() {

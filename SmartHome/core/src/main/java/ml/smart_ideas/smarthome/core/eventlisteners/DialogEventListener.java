@@ -1,4 +1,4 @@
-package ml.smart_ideas.smarthome.core;
+package ml.smart_ideas.smarthome.core.eventlisteners;
 
 import com.activeandroid.Model;
 

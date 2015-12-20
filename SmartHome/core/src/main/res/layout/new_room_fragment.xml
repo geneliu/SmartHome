@@ -10,7 +10,7 @@
         android:id="@+id/new_room_name"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="160dp"
         android:hint="@string/new_room_name"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"

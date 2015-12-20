@@ -29,4 +29,7 @@
     <string name="dialog_item_edit">Uredi</string>
     <string name="prompt_delete_house_message">Jeste li sigurni da želite obrisati ovu kuću?</string>
     <string name="prompt_delete">Obriši</string>
+    <string name="prompt_delete_room_message">Jeste li sigurni da želite obrisati ovu prostoriju?</string>
+    <string name="new_house">Nova kuća</string>
+    <string name="new_room">Nova prostorija</string>
 </resources>

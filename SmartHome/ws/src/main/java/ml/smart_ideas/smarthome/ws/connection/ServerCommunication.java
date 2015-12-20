@@ -87,11 +87,9 @@ public class ServerCommunication {
                                     userModelResponse.getPassword(),
                                     userModelResponse.getName(),
                                     userModelResponse.getSurname());
-                            SaveSharedPreferences.setUserName(Globals.getInstance().getContext(), username);
                             Log.d("ServerCommunication", "Created new local user.");
                         } else {
                             Globals.getInstance().setUser(user);
-                            SaveSharedPreferences.setUserName(Globals.getInstance().getContext(),username);
                         }
                         Log.d("ServerCommunication", "User " + stringUsername + " successfully signed in.");
                         //  Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);

@@ -33,4 +33,11 @@ public class SaveSharedPreferences {
         editor.clear(); //clear all stored data
         editor.commit();
     }
+
+    public static boolean checkSavedUser(){
+        if(getUserName(Globals.getInstance().getContext()).length() == 0)
+            return false;
+        else
+            return true;
+    }
 }

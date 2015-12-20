@@ -1,6 +1,5 @@
 package ml.smart_ideas.smarthome.core.fragments;
 
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,9 +16,9 @@ import com.melnykov.fab.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-import ml.smart_ideas.smarthome.core.DialogEventListener;
+import ml.smart_ideas.smarthome.core.eventlisteners.DialogEventListener;
 import ml.smart_ideas.smarthome.core.LongClickDialog;
-import ml.smart_ideas.smarthome.core.RefreshEventListener;
+import ml.smart_ideas.smarthome.core.eventlisteners.RefreshEventListener;
 import ml.smart_ideas.smarthome.core.adapters.HouseAdapter;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.Globals;

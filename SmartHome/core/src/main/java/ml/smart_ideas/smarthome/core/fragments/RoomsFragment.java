@@ -15,11 +15,11 @@ import com.melnykov.fab.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-import ml.smart_ideas.smarthome.core.DialogEventListener;
+import ml.smart_ideas.smarthome.core.eventlisteners.DialogEventListener;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.LongClickDialog;
 import ml.smart_ideas.smarthome.core.R;
-import ml.smart_ideas.smarthome.core.RefreshEventListener;
+import ml.smart_ideas.smarthome.core.eventlisteners.RefreshEventListener;
 import ml.smart_ideas.smarthome.core.adapters.RoomAdapter;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;

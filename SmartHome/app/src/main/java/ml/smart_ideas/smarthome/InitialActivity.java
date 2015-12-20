@@ -16,7 +16,7 @@ import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
-import ml.smart_ideas.smarthome.core.EventListener;
+import ml.smart_ideas.smarthome.core.eventlisteners.EventListener;
 import ml.smart_ideas.smarthome.core.fragments.HousesFragment;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.db.User;
@@ -49,18 +49,16 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
             if (savedInstanceState != null) {
                 return;
             }
-            if(SaveSharedPreferences.getUserName(Globals.getInstance().getContext()).length() == 0)
+            if(SaveSharedPreferences.checkSavedUser())
             {
-                Globals.getInstance().ShowFragment(FragmentEnum.LoginFragment,true);
-            }
-            else
-            {
-
                 User user = User.checkExistingUser(SaveSharedPreferences.getUserName(Globals.getInstance().getContext()));
                 Globals.getInstance().setUser(user);
                 Globals.getInstance().ShowActivity(ActivityEnum.MainActivity);
             }
-
+            else
+            {
+                Globals.getInstance().ShowFragment(FragmentEnum.LoginFragment, true);
+            }
         }
     }
 

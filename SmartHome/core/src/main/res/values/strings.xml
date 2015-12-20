@@ -30,4 +30,6 @@
     <string name="prompt_delete">Delete</string>
     <string name="prompt_delete_house_message">Are you sure you want to delete this house?</string>
     <string name="prompt_delete_room_message">Are you sure you want to delete this room?</string>
+    <string name="new_room">New room</string>
+    <string name="new_house">New house</string>
 </resources>

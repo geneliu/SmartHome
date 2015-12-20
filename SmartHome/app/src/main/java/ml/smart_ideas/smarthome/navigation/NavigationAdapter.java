@@ -124,14 +124,10 @@ public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
                 if (navOptions.getIsSettings()) {
                     Toast.makeText(Globals.getInstance().getContext(), "Settings", Toast.LENGTH_SHORT).show();
                 } else if (navOptions.getIsLogout()) {
-                    SaveSharedPreferences.clearUserName(Globals.getInstance().getContext());
                     //Globals.getInstance().setAppStateEnum(AppStateEnum.NotSignedIn);
                     Globals.getInstance().Logout();
-                    Toast.makeText(Globals.getInstance().getContext(), "Logout", Toast.LENGTH_SHORT).show();
                 }
             }
-
-
         }
     };
 

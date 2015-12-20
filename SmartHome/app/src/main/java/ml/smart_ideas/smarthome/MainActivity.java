@@ -1,28 +1,27 @@
 package ml.smart_ideas.smarthome;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import ml.smart_ideas.smarthome.core.EventListener;
+import ml.smart_ideas.smarthome.core.SaveSharedPreferences;
+import ml.smart_ideas.smarthome.core.eventlisteners.EventListener;
 import ml.smart_ideas.smarthome.core.Globals;
-import ml.smart_ideas.smarthome.core.adapters.HouseAdapter;
 import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
@@ -41,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     private NavigationAdapter adapter;
     private List<House> houses;
     private Fragment currentFragment;
+
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,10 +132,20 @@ public class MainActivity extends AppCompatActivity implements EventListener {
             //ToogleNavigationDrawer(getBackFragment());
             getFragmentManager().popBackStack();
         } else {
-            //super.onBackPressed();
-            ShowActivity(ActivityEnum.InitialActivity);
-        }
 
+            if (doubleBackToExitPressedOnce) {
+                Logout();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, R.string.press_back_again_logout, Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() { doubleBackToExitPressedOnce = false; }
+            }, 2000);
+        }
     }
 
 
@@ -195,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     public void Logout() {
 
         Globals.getInstance().setUser(null);
+        //SaveSharedPreferences.setUserName(Globals.getInstance().getContext(),"");
     //    ClearBackStack();
        // clear();
 

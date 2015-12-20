@@ -42,21 +42,17 @@ public class NewRoomFragment extends Fragment {
             room=Globals.getInstance().getCurrentRoom();
             ETname.setText(room.getName());
             btnKreiraj.setText(R.string.update_button);
+            Globals.getInstance().ShowTitle(room.getName());
         }
         else
         {
             btnKreiraj.setText(R.string.new_room_button);
+            Globals.getInstance().ShowTitle(Globals.getInstance().getContext().getString(R.string.new_room));
         }
 
 
         TVmessage = (TextView)viewInflater.findViewById(R.id.TVMessageRoom);
         TVmessage.setText("");
-
-
-
-
-        Globals.getInstance().ShowTitle(Globals.getInstance().getContext().getString(R.string.houses_fragment_title));
-
 
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion < android.os.Build.VERSION_CODES.LOLLIPOP){
