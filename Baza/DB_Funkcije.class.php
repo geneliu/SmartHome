@@ -60,6 +60,38 @@ class DB_Funckije{
 		return false;
 		
 	}
-    
+    public function saveToFileTable($path,$username)
+    {
+        $id=$this->getUserID($username);
+        $today = date("Y-m-d H:i:s");
+        $q="insert into files(path,date,user) values('".$path."','".$today."','".$id."')";
+        $this->baza->updateDB($q);
+    }
+    public function getUserID($username)
+    {
+        $q= "Select id from users where username='".$username."'";
+        $podaci = $this->baza->selectDB($q);
+        if($podaci != null){
+            while($red=$podaci->fetch_array()){
+                $id=$red['id'];
+                return $id;
+            }
+        }
+        return false;
+    }
+
+    public function getLastFile($username)
+    {
+        $id=$this->getUserID($username);
+        $q="select path from files where user='".$id."' Group by id Order Desc Limit 1";
+        $podaci = $this->baza->selectDB($q);
+        if($podaci != null){
+            while($red=$podaci->fetch_array()){
+                return $red['path'];
+            }
+        }
+        return false;
+    }
+
     
 }
