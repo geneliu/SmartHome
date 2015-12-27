@@ -12,10 +12,10 @@ public class Slider extends Model {
     public Slider(){
         super();
     }
-    public Slider(boolean state,short sliderValue,Element element){
+    public Slider(boolean state,Element element){
         super();
         this.state = state;
-        this.sliderValue = sliderValue;
+        this.sliderValue = 20;
         this.element = element;
         save();
     }
@@ -29,7 +29,7 @@ public class Slider extends Model {
     private boolean state;
 
     @Column(name = "slider_value")
-    private short sliderValue;
+    private int sliderValue;
 
     @Column(name = "Element",onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
     private Element element;
@@ -46,10 +46,10 @@ public class Slider extends Model {
         save();
     }
 
-    public short getSliderValue(){
+    public int getSliderValue(){
         return sliderValue;
     }
-    public void setSliderValue(short sliderValue){
+    public void setSliderValue(int sliderValue){
         this.sliderValue = sliderValue;
         save();
     }

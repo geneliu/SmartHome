@@ -28,7 +28,7 @@ import ml.smart_ideas.smarthome.db.House;
 import ml.smart_ideas.smarthome.db.Room;
 
 
-public class RoomsFragment extends Fragment implements RefreshEventListener,DialogEventListener {
+public class RoomsFragment extends Fragment implements RefreshEventListener, DialogEventListener {
 
     RoomAdapter adapter;
     ListView listView;
@@ -76,7 +76,7 @@ public class RoomsFragment extends Fragment implements RefreshEventListener,Dial
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 Globals.getInstance().setCurrentRoom(rooms.get(position));
-                //Globals.getInstance().ShowFragment(FragmentEnum.ElementsFragment);
+                Globals.getInstance().ShowFragment(FragmentEnum.ElementsFragment);
             }
         });
 
@@ -114,5 +114,10 @@ public class RoomsFragment extends Fragment implements RefreshEventListener,Dial
     public void deletePrompt(String message, Model model) {
         LongClickDialog yesNoDialog = LongClickDialog.newYesNo(message, model);
         yesNoDialog.show(getFragmentManager(), "");
+    }
+
+    @Override
+    public void createDialog(Model model) {
+
     }
 }

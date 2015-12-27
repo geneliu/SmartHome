@@ -29,7 +29,7 @@ import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.db.House;
 
 
-public class HousesFragment extends Fragment implements RefreshEventListener,DialogEventListener{
+public class HousesFragment extends Fragment implements RefreshEventListener, DialogEventListener {
     HouseAdapter adapter;
 
     ListView listView;
@@ -64,7 +64,7 @@ public class HousesFragment extends Fragment implements RefreshEventListener,Dia
         return viewInflater;
     }
 
-    public void InitializeFragment(){
+    public void InitializeFragment() {
         User user = Globals.getInstance().getUser();
         if (user.getKuce().size() > 0)
             linearLayoutEmpty.setVisibility(View.INVISIBLE);
@@ -111,8 +111,13 @@ public class HousesFragment extends Fragment implements RefreshEventListener,Dia
     }
 
     @Override
-    public void deletePrompt(String message,Model model){
+    public void deletePrompt(String message, Model model) {
         LongClickDialog yesNoDialog = LongClickDialog.newYesNo(message, model);
-        yesNoDialog.show(getFragmentManager(),"");
+        yesNoDialog.show(getFragmentManager(), "");
+    }
+
+    @Override
+    public void createDialog(Model model) {
+
     }
 }

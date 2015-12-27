@@ -5,10 +5,11 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
 
+import ml.smart_ideas.smarthome.db.enums.Category;
 import ml.smart_ideas.smarthome.db.enums.ElementEnum;
 
 
-@Table(name = "Elementi")
+@Table(name = "Elements")
 public class Element extends Model{
 
     //region Constructors
@@ -16,11 +17,12 @@ public class Element extends Model{
     public Element(){
         super();
     }
-    public Element(String name, Room room, Category Category){
+    public Element(String name, Room room, Category category){
         super();
         this.name = name;
         this.room = room;
-        this.Category = Category;
+        this.category = category;
+        save();
     }
 
     //endregion
@@ -33,8 +35,8 @@ public class Element extends Model{
     @Column(name = "Room",onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
     private Room room;
 
-    @Column(name = "Category",onDelete = Column.ForeignKeyAction.RESTRICT,onUpdate = Column.ForeignKeyAction.CASCADE)
-    private Category Category;
+    @Column(name = "category")
+    private Category category;
 
     //endregion
 
@@ -57,10 +59,10 @@ public class Element extends Model{
     }
 
     public Category getCategory(){
-        return Category;
+        return category;
     }
-    public void setCategory(Category Category){
-        this.Category = Category;
+    public void setCategory(Category category){
+        this.category = category;
         save();
     }
 

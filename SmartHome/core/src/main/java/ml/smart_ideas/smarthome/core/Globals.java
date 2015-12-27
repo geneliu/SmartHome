@@ -14,6 +14,7 @@ import ml.smart_ideas.smarthome.core.eventlisteners.DialogEventListener;
 import ml.smart_ideas.smarthome.core.eventlisteners.EventListener;
 import ml.smart_ideas.smarthome.core.eventlisteners.MessageEventListener;
 import ml.smart_ideas.smarthome.core.eventlisteners.RefreshEventListener;
+import ml.smart_ideas.smarthome.db.Element;
 import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.db.House;
 import ml.smart_ideas.smarthome.db.Room;
@@ -47,6 +48,7 @@ public class Globals {
 
     private House currentHouse;
     private Room currentRoom;
+    private Element currentElement;
 
     //endregion
 
@@ -109,6 +111,14 @@ public class Globals {
 
     public void setCurrentRoom(Room room) {
         currentRoom = room;
+    }
+
+    public Element getCurrentElement() {
+        return currentElement;
+    }
+
+    public void setCurrentElement(Element element) {
+        currentElement = element;
     }
 
     public FragmentStateEnum getFragmentState() {
@@ -192,6 +202,10 @@ public class Globals {
     public void deletePrompt(String message, Model model){
         if(dialogEventListener != null)
             dialogEventListener.deletePrompt(message,model);
+    }
+    public void createDialog(Model model){
+        if(dialogEventListener != null)
+            dialogEventListener.createDialog(model);
     }
 
     //endregion
