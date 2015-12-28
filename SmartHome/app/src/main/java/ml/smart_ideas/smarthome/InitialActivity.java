@@ -148,6 +148,11 @@ public class InitialActivity extends AppCompatActivity implements EventListener 
         }
     }
 
+    @Override
+    public void ClearBackStack(int levelsIgnored) {
+
+    }
+
     private void ToogleNavigationDrawer(Fragment fragment){ToogleNavigationDrawer(fragment,false);}
     private void ToogleNavigationDrawer(Fragment fragment, boolean forceRefresh){
 /*

@@ -95,6 +95,35 @@ public class Element extends Model{
         else return ElementEnum.None;
     }
 
+    public void clearElement(){
+        ElementEnum elementEnum = checkElement();
+        switch (elementEnum){
+            case Both:
+                Switch aSwitch = getSwitch();
+                Slider slider = getSlider();
+                aSwitch.delete();
+                slider.delete();
+                break;
+            case Switch:
+                Switch aaSwitch = getSwitch();
+                aaSwitch.delete();
+                break;
+            case Slider:
+                Slider aSlider = getSlider();
+                aSlider.delete();
+                break;
+        }
+    }
+
+    public void addSwitch(){
+        clearElement();
+        Switch aSwitch = new Switch(false,this);
+    }
+    public void addSlider(){
+        clearElement();
+        Slider slider = new Slider(false,this);
+    }
+
     //endregion
 
 }

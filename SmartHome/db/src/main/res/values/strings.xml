@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DB</string>
+    <string name="category_heating">Heating</string>
+    <string name="category_cooling">Cooling</string>
+    <string name="category_lighting">Lighting</string>
+    <string name="category_windows">Windows</string>
+    <string name="category_other">Other</string>
 </resources>

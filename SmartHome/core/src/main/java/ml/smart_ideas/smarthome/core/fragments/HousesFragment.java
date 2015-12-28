@@ -36,6 +36,7 @@ public class HousesFragment extends Fragment implements RefreshEventListener, Di
     ImageView imageView;
     FloatingActionButton floatingActionButton;
     LinearLayout linearLayoutEmpty;
+    User user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,17 +66,18 @@ public class HousesFragment extends Fragment implements RefreshEventListener, Di
     }
 
     public void InitializeFragment() {
-        User user = Globals.getInstance().getUser();
-        if (user.getKuce().size() > 0)
+        user = Globals.getInstance().getUser();
+        if (user.getHouses().size() > 0)
             linearLayoutEmpty.setVisibility(View.INVISIBLE);
+        else
+            linearLayoutEmpty.setVisibility(View.VISIBLE);
 
         refreshHouses();
-        final List<House> houses = user.getKuce();
 
         listView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
-                Globals.getInstance().setCurrentHouse(houses.get(position));
+                Globals.getInstance().setCurrentHouse(user.getHouses().get(position));
                 Globals.getInstance().ShowFragment(FragmentEnum.RoomsFragment);
             }
         });
@@ -83,7 +85,7 @@ public class HousesFragment extends Fragment implements RefreshEventListener, Di
         listView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                LongClickDialog longClickDialog = LongClickDialog.newInstance(houses.get(position));
+                LongClickDialog longClickDialog = LongClickDialog.newInstance(user.getHouses().get(position));
                 longClickDialog.show(getFragmentManager(), "");
                 return true;
             }
@@ -98,8 +100,13 @@ public class HousesFragment extends Fragment implements RefreshEventListener, Di
 
 
     private void refreshHouses() {
+        if (user.getHouses().size() > 0)
+            linearLayoutEmpty.setVisibility(View.INVISIBLE);
+        else
+            linearLayoutEmpty.setVisibility(View.VISIBLE);
+
         adapter = new HouseAdapter(getActivity(), new ArrayList<House>());
-        List<House> houses = Globals.getInstance().getUser().getKuce();
+        List<House> houses = user.getHouses();
         adapter.addAll(houses);
         listView.setAdapter(adapter);
     }

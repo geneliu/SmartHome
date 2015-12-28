@@ -55,10 +55,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
 
-        //adapter = new HouseAdapter(this, new ArrayList<House>(), true);
         adapter = new NavigationAdapter(this,mDrawerList);
-        //houses = Globals.getInstance().getUser().getKuce();
-        //adapter.addAll(houses);
 
         mDrawerList.setAdapter(adapter);
 
@@ -73,17 +70,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
         Globals.getInstance().addListener(this);
         Globals.getInstance().setContext(getApplicationContext());
-/*
-        mDrawerList.setOnItemClickListener(new ListView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView parent, View view, int position, long id) {
-                Globals.getInstance().setCurrentHouse(houses.get(position));
-                Globals.getInstance().PressBack();
-                ClearBackStack();
-                Globals.getInstance().ShowFragment(FragmentEnum.RoomsFragment);
-            }
-        });
-*/
+
         if (findViewById(R.id.fragment_container) != null) {
 
             // u slučaju postojanja fragmenta
@@ -194,6 +181,12 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         }
     }
 
+    @Override
+    public void ClearBackStack(int levelsIgnored) {
+        for (int i = 1 + levelsIgnored; i < getFragmentManager().getBackStackEntryCount(); i++) {
+            getFragmentManager().popBackStack();
+        }
+    }
 
 
     @Override

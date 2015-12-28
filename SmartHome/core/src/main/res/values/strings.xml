@@ -20,7 +20,9 @@
     <string name="new_room_name">Room name</string>
     <string name="update_button">Save</string>
     <string name="error_new_room_no_name">Room has to be named.</string>
+    <string name="error_new_element_no_name">Element has to be named.</string>
     <string name="new_room_button">Create</string>
+    <string name="new_element_button">Create</string>
     <string name="no_houses_message">There are no houses yet. New ones will be showed here.</string>
     <string name="no_rooms_message">There are no rooms yet. New ones will be showed here.</string>
     <string name="no_elements_message">There are no elements yet. New ones will be showed here.</string>
@@ -30,6 +32,14 @@
     <string name="prompt_delete">Delete</string>
     <string name="prompt_delete_house_message">Are you sure you want to delete this house?</string>
     <string name="prompt_delete_room_message">Are you sure you want to delete this room?</string>
+    <string name="prompt_delete_element_message">Are you sure you want to delete this element?</string>
     <string name="new_room">New room</string>
     <string name="new_house">New house</string>
+    <string name="new_element">New element</string>
+    <string name="new_element_name">Element name</string>
+    <string name="rb_switch">Switch</string>
+    <string name="rb_slider">Slider</string>
+    <string name="slider_degrees">°C</string>
+    <string name="switch_name">Switch element</string>
+    <string name="category_name">Category name</string>
 </resources>

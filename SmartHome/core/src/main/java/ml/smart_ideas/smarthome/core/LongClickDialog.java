@@ -35,9 +35,13 @@ public class LongClickDialog extends DialogFragment {
         if (object.getClass() == House.class) {
             frag.setHouse((House) object);
         }
-        if(object.getClass() == Room.class)
+        else if(object.getClass() == Room.class)
         {
             frag.setRoom((Room) object);
+        }
+        else if(object.getClass() == Element.class)
+        {
+            frag.setElement((Element) object);
         }
         args.putString("title", frag.getName());
         frag.setArguments(args);
@@ -85,7 +89,7 @@ public class LongClickDialog extends DialogFragment {
     }
 
 
-    //Getters and setter
+    //region Getters and setters
     public House getHouse() {
         return house;
     }
@@ -105,7 +109,14 @@ public class LongClickDialog extends DialogFragment {
         isSet=true;
         objectForList= ObjectForList.Room;
     }
-    //EndOfRegion
+
+    public void setElement(Element element) {
+        this.element = element;
+        isSet=true;
+        objectForList= ObjectForList.Element;
+    }
+
+    //endregion
 
 
     public void setObjectForList(ObjectForList objectForList) {
@@ -130,6 +141,11 @@ public class LongClickDialog extends DialogFragment {
     private void deleteRoom(Room room)
     {
         Globals.getInstance().deletePrompt(Globals.getInstance().getContext().getString(R.string.prompt_delete_room_message),room);
+    }
+
+    private void deleteElement(Element element)
+    {
+        Globals.getInstance().deletePrompt(Globals.getInstance().getContext().getString(R.string.prompt_delete_element_message),element);
     }
 
 
@@ -158,6 +174,15 @@ public class LongClickDialog extends DialogFragment {
                     deleteRoom(room);
                 }
             }
+            else if(objectForList == ObjectForList.Element)
+            {
+                if(which == 0){
+                    Globals.getInstance().setCurrentElement(element);
+                    Globals.getInstance().ShowFragment(FragmentEnum.NewElementFragment);
+                } else if (which ==1) {
+                    deleteElement(element);
+                }
+            }
         }
     };
 
@@ -173,6 +198,8 @@ public class LongClickDialog extends DialogFragment {
     public void setModel(Model model) {
         this.yesNoModel = model;
     }
+
+
 
     private enum ObjectForList {
         YesNo,

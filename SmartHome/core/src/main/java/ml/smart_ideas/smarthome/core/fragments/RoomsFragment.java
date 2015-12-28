@@ -34,6 +34,7 @@ public class RoomsFragment extends Fragment implements RefreshEventListener, Dia
     ListView listView;
     FloatingActionButton floatingActionButton;
     LinearLayout linearLayoutEmpty;
+    House house;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,8 +47,6 @@ public class RoomsFragment extends Fragment implements RefreshEventListener, Dia
         linearLayoutEmpty = (LinearLayout) viewInflater.findViewById(R.id.empty_list);
 
         InitializeFragment();
-
-        House house = Globals.getInstance().getCurrentHouse();
 
         Globals.getInstance().ShowTitle(house.getName());
         Globals.getInstance().setAppStateEnum(AppStateEnum.SignedIn);
@@ -66,16 +65,13 @@ public class RoomsFragment extends Fragment implements RefreshEventListener, Dia
     }
 
     public void InitializeFragment() {
-        House house = Globals.getInstance().getCurrentHouse();
-        if (house.getProstorije().size() > 0)
-            linearLayoutEmpty.setVisibility(View.INVISIBLE);
+        house = Globals.getInstance().getCurrentHouse();
 
-        final List<Room> rooms = house.getProstorije();
         refreshRooms();
         listView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
-                Globals.getInstance().setCurrentRoom(rooms.get(position));
+                Globals.getInstance().setCurrentRoom(house.getRooms().get(position));
                 Globals.getInstance().ShowFragment(FragmentEnum.ElementsFragment);
             }
         });
@@ -83,7 +79,7 @@ public class RoomsFragment extends Fragment implements RefreshEventListener, Dia
         listView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                LongClickDialog longClickDialog = LongClickDialog.newInstance(rooms.get(position));
+                LongClickDialog longClickDialog = LongClickDialog.newInstance(house.getRooms().get(position));
                 longClickDialog.show(getFragmentManager(), "");
                 return true;
             }
@@ -98,9 +94,13 @@ public class RoomsFragment extends Fragment implements RefreshEventListener, Dia
 
 
     private void refreshRooms() {
-        House house = Globals.getInstance().getCurrentHouse();
+        if (house.getRooms().size() > 0)
+            linearLayoutEmpty.setVisibility(View.INVISIBLE);
+        else
+            linearLayoutEmpty.setVisibility(View.VISIBLE);
+
         adapter = new RoomAdapter(getActivity(), new ArrayList<Room>());
-        List<Room> rooms = house.getProstorije();
+        List<Room> rooms = house.getRooms();
         adapter.addAll(rooms);
         listView.setAdapter(adapter);
     }

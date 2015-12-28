@@ -18,12 +18,12 @@ public class User extends Model {
         super();
     }
 
-    public User(String username, String password, String ime, String prezime) {
+    public User(String username, String password, String name, String surname) {
         super();
         this.username = username;
         this.password = password;
-        this.ime = ime;
-        this.prezime = prezime;
+        this.name = name;
+        this.surname = surname;
         save();
     }
 
@@ -37,11 +37,11 @@ public class User extends Model {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "ime")
-    private String ime;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "prezime")
-    private String prezime;
+    @Column(name = "surname")
+    private String surname;
 
     //endregion
 
@@ -66,29 +66,26 @@ public class User extends Model {
         save();
     }
 
-    public String getIme() {
-        return this.ime;
+    public String getName() {
+        return this.name;
     }
 
-    public void setIme(String ime) {
-        this.ime = ime;
+    public void setName(String name) {
+        this.name = name;
         save();
     }
 
-    public String getPrezime() {
-        return this.prezime;
+    public String getSurname() {
+        return this.surname;
     }
 
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
+    public void setSurname(String surname) {
+        this.surname = surname;
         save();
     }
 
-    public List<House> getKuce() {
-        return //new Select().from(House.class)
-                //.where("User = ?", this.getId())
-                //.execute();
-                getMany(House.class, "User");
+    public List<House> getHouses() {
+        return getMany(House.class, "User");
     }
 
     //endregion
@@ -107,18 +104,18 @@ public class User extends Model {
 
         this.username = updatedUser.getUsername();
         this.password = updatedUser.getPassword();
-        this.ime = updatedUser.getIme();
-        this.prezime = updatedUser.getPrezime();
+        this.name = updatedUser.getName();
+        this.surname = updatedUser.getSurname();
 
         this.save();
     }
 
-    public void addHouse(String Naziv, String Address) {
-        House house = new House(Naziv,Address,this);
+    public void addHouse(String Name, String Address) {
+        House house = new House(Name,Address,this);
         save();
     }
 
-    public void deleteSveKuce(){
+    public void deleteAllHouses(){
         new Delete()
                 .from(House.class)
                 .where(" = ? ", this.getId())

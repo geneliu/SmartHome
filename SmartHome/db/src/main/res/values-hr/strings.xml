@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DB</string>
+    <string name="category_heating">Grijanje</string>
+    <string name="category_cooling">Klimatizacija</string>
+    <string name="category_lighting">Rasvjeta</string>
+    <string name="category_windows">Prozori</string>
+    <string name="category_other">Ostalo</string>
+</resources>

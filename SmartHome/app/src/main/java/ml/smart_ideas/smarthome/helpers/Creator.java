@@ -8,6 +8,7 @@ import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.fragments.ElementsFragment;
 import ml.smart_ideas.smarthome.core.fragments.HousesFragment;
+import ml.smart_ideas.smarthome.core.fragments.NewElementFragment;
 import ml.smart_ideas.smarthome.core.fragments.NewHouseFragment;
 import ml.smart_ideas.smarthome.core.fragments.NewRoomFragment;
 import ml.smart_ideas.smarthome.core.fragments.RoomsFragment;
@@ -29,6 +30,7 @@ public class Creator {
             case RoomsFragment: return new RoomsFragment();
             case NewRoomFragment: return new NewRoomFragment();
             case ElementsFragment: return new ElementsFragment();
+            case NewElementFragment: return new NewElementFragment();
             default: return new LoginFragment();
         }
     }

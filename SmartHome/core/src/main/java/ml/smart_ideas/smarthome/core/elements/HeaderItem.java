@@ -1,6 +1,7 @@
 package ml.smart_ideas.smarthome.core.elements;
 
 
+import ml.smart_ideas.smarthome.core.enums.CategoryHelp;
 import ml.smart_ideas.smarthome.db.Element;
 import ml.smart_ideas.smarthome.db.enums.Category;
 
@@ -11,7 +12,10 @@ public class HeaderItem implements ElementItem{
 
     public HeaderItem(Category category){
         this.category = category;
-        categoryName = category.name();
+        if(category != null)
+            categoryName = CategoryHelp.getCategoryName(category);
+        else
+            categoryName = "";
     }
 
     public String getCategoryName(){

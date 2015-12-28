@@ -13,6 +13,7 @@ public interface EventListener {
     void ShowFragment(FragmentEnum fragmentEnum,boolean addToBackStack);
     void ShowTitle(String title);
     void ClearBackStack();
+    void ClearBackStack(int levelsIgnored);
     void RefreshNavigation();
     void Logout();
 }

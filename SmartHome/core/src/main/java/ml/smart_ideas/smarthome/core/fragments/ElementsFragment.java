@@ -21,6 +21,8 @@ import ml.smart_ideas.smarthome.core.LongClickDialog;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.adapters.ElementAdapter;
 import ml.smart_ideas.smarthome.core.elements.ElementItem;
+import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
+import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
 import ml.smart_ideas.smarthome.core.eventlisteners.DialogEventListener;
 import ml.smart_ideas.smarthome.core.eventlisteners.RefreshEventListener;
 import ml.smart_ideas.smarthome.db.Room;
@@ -46,10 +48,7 @@ public class ElementsFragment extends Fragment implements RefreshEventListener,D
         floatingActionButton = (FloatingActionButton) viewInflater.findViewById(R.id.fab_add_element);
         linearLayoutEmpty = (LinearLayout) viewInflater.findViewById(R.id.empty_list);
 
-
         InitializeFragment();
-
-        room = Globals.getInstance().getCurrentRoom();
 
         Globals.getInstance().ShowTitle(room.getName());
 
@@ -66,38 +65,22 @@ public class ElementsFragment extends Fragment implements RefreshEventListener,D
     }
 
     public void InitializeFragment(){
-        User user = Globals.getInstance().getUser();
-        if (user.getKuce().size() > 0)
-            linearLayoutEmpty.setVisibility(View.INVISIBLE);
-
+        room = Globals.getInstance().getCurrentRoom();
         recyclerView.setLongClickable(true);
         refreshElements();
-        final List<ElementItem> elementItems = adapter.getElements();
-
-
-        /*
-        recyclerView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                LongClickDialog longClickDialog = LongClickDialog.newInstance(houses.get(position));
-                longClickDialog.show(getFragmentManager(), "");
-                return true;
-            }
-        });
-        */
-
     }
 
     private void addElement(){
-        if(room.getElements().size() == 0) {
-            room.addSliderElement("Prvi", Category.Grijanje);
-            room.addSliderElement("Drugi", Category.Klimatizacija);
-            refreshElements();
-        }
+        Globals.getInstance().setFragmentState(FragmentStateEnum.New);
+        Globals.getInstance().ShowFragment(FragmentEnum.NewElementFragment);
     }
 
     private void refreshElements() {
-        Log.d("ElementsFragment", "______________________________________________________________");
+        if (room.getElements().size() > 0)
+            linearLayoutEmpty.setVisibility(View.INVISIBLE);
+        else
+            linearLayoutEmpty.setVisibility(View.VISIBLE);
+
         adapter = new ElementAdapter(recyclerView);
     }
 

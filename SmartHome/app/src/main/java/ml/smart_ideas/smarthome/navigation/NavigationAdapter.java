@@ -2,37 +2,22 @@ package ml.smart_ideas.smarthome.navigation;
 
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
-import javax.microedition.khronos.opengles.GL10;
-
-import ml.smart_ideas.smarthome.MainActivity;
 import ml.smart_ideas.smarthome.R;
 import ml.smart_ideas.smarthome.core.Globals;
-import ml.smart_ideas.smarthome.core.SaveSharedPreferences;
-import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
-import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
-import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.db.House;
 
 public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
@@ -57,7 +42,7 @@ public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
             TextView nameSurname = (TextView) convertView.findViewById(R.id.user_name_surname);
             ImageView userImage = (ImageView) convertView.findViewById(R.id.user_image);
 
-            nameSurname.setText(navUser.getUser().getIme() + " " + navUser.getUser().getPrezime());
+            nameSurname.setText(navUser.getUser().getName() + " " + navUser.getUser().getSurname());
 
 
         } else if (navigationItem.getClass() == NavHouse.class) {
@@ -136,7 +121,7 @@ public class NavigationAdapter extends ArrayAdapter<NavigationItem> {
 
         navigationItems.add(new NavUser());
 
-        List<House> houses = Globals.getInstance().getUser().getKuce();
+        List<House> houses = Globals.getInstance().getUser().getHouses();
 
         for (House house : houses) {
             navigationItems.add(new NavHouse(house));

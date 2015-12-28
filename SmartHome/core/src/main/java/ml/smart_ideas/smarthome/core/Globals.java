@@ -66,8 +66,8 @@ public class Globals {
             SaveSharedPreferences.clearUserName(getContext());
     }
 
-    public void setUser(String username, String password, String ime, String prezime) {
-        _user = new User(username, password, ime, prezime);
+    public void setUser(String username, String password, String name, String surname) {
+        _user = new User(username, password, name, surname);
         SaveSharedPreferences.setUserName(getContext(), _user.getUsername());
     }
 
@@ -165,6 +165,10 @@ public class Globals {
     public void ClearBackStack() {
         if (listener != null)
             listener.ClearBackStack();
+    }
+    public void ClearBackStack(int levelsIgnored) {
+        if (listener != null)
+            listener.ClearBackStack(levelsIgnored);
     }
 
     public void RefreshNavigation() {

@@ -49,7 +49,7 @@ public class House extends Model {
         return name;
     }
 
-    public void setNaziv(String name) {
+    public void setName(String name) {
         this.name = name;
         save();
     }
@@ -75,7 +75,7 @@ public class House extends Model {
         save();
     }
 
-    public List<Room> getProstorije() {
+    public List<Room> getRooms() {
         return getMany(Room.class, "House");
     }
 }

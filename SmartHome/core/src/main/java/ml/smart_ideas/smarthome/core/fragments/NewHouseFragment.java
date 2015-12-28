@@ -87,7 +87,7 @@ public class NewHouseFragment extends Fragment{
     private void updateHouse()
     {
         if(checkHouseAttributes()){
-            house.setNaziv(houseName);
+            house.setName(houseName);
             house.setAddress(houseAddress);
             Globals.getInstance().RefreshNavigation();
             //Globals.getInstance().PressBack();

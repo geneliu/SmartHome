@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/element_name"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="110dp"
+        android:hint="@string/new_element_name"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="#ffffff"
+        android:paddingLeft="30dp"
+        android:singleLine="true" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_category"
+        android:background="#ffffff"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rb_switch"
+            android:id="@+id/rb_switch"
+            android:layout_marginRight="50dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rb_slider"
+            android:id="@+id/rb_slider" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_create_new_element"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/create_new_house"
+        android:textColor="@color/accent"
+        android:textSize="16sp"
+        android:stateListAnimator="@null"
+        android:backgroundTint="#ffffff"
+        android:minHeight="50dp"
+        android:height="50dp"
+        android:backgroundTintMode="src_over"
+        android:layout_marginLeft="-5dp"
+        android:layout_marginRight="-5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/message"
+        android:id="@+id/tv_message_element"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/accent"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>
