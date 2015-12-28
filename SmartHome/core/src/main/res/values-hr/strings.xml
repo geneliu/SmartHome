@@ -32,4 +32,13 @@
     <string name="prompt_delete_room_message">Jeste li sigurni da želite obrisati ovu prostoriju?</string>
     <string name="new_house">Nova kuća</string>
     <string name="new_room">Nova prostorija</string>
+    <string name="new_element_button">Kreiraj</string>
+    <string name="new_element_name">Naziv elementa</string>
+    <string name="new_element">Novi element</string>
+    <string name="error_new_element_no_name">Element ne može biti bez imena</string>
+    <string name="category_name">Ime kategorije</string>
+    <string name="prompt_delete_element_message">Jeste li sigurni da želite obrisati ovaj element?</string>
+    <string name="rb_slider">Klizač</string>
+    <string name="rb_switch">Prekidač</string>
+    <string name="switch_name">Prekidač</string>
 </resources>

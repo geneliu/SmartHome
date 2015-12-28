@@ -39,7 +39,7 @@
     <string name="new_element_name">Element name</string>
     <string name="rb_switch">Switch</string>
     <string name="rb_slider">Slider</string>
-    <string name="slider_degrees">°C</string>
+    <string name="slider_degrees" translatable="false">°C</string>
     <string name="switch_name">Switch element</string>
     <string name="category_name">Category name</string>
 </resources>
