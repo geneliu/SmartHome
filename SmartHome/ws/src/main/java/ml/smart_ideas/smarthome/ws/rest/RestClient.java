@@ -1,5 +1,7 @@
 package ml.smart_ideas.smarthome.ws.rest;
 
+import android.util.Log;
+
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Response;
@@ -21,7 +23,10 @@ public class RestClient {
     private static RegistrationInterface registrationInterface;
     private static String baseUrl = "http://smart-ideas.ml/" ;
     public static LoginInterface getLoginClient() {
-        if (loginInterface == null) {
+        if (loginInterface == null ||
+                Utils.getInstance().isHomeServer() != Utils.getInstance().isLastConnectionHome()) {
+
+            Utils.getInstance().setLastConnectionHome(Utils.getInstance().isHomeServer());
 
             OkHttpClient okClient = new OkHttpClient();
             okClient.interceptors().add(new Interceptor() {
@@ -33,7 +38,7 @@ public class RestClient {
             });
 
             Retrofit client = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
+                    .baseUrl(getBaseUrl())
                     .addConverter(String.class, new ToStringConverter())
                     .client(okClient)
                     .addConverterFactory(GsonConverterFactory.create())
@@ -43,7 +48,10 @@ public class RestClient {
         return loginInterface;
     }
     public static RegistrationInterface getRegistrationnClient() {
-        if (registrationInterface == null) {
+        if (registrationInterface == null ||
+                Utils.getInstance().isHomeServer() != Utils.getInstance().isLastConnectionHome()) {
+
+            Utils.getInstance().setLastConnectionHome(Utils.getInstance().isHomeServer());
 
             OkHttpClient okClient = new OkHttpClient();
             okClient.interceptors().add(new Interceptor() {
@@ -55,7 +63,7 @@ public class RestClient {
             });
 
             Retrofit client = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
+                    .baseUrl(getBaseUrl())
                     .addConverter(String.class, new ToStringConverter())
                     .client(okClient)
                     .addConverterFactory(GsonConverterFactory.create())
@@ -65,10 +73,25 @@ public class RestClient {
         return registrationInterface;
     }
 
+    private static String getBaseUrl(){
+        String baseUrl = "";
+        if(Utils.getInstance().isHomeServer()) {
+            String currentIP = Utils.getIPAddress(true);
+            if (currentIP.contains("1.2.3"))
+                baseUrl = "http://1.2.3.28/";
+            else
+                baseUrl =  "http://smart-ideas.asuscomm.com/";
+        }
+        else
+            baseUrl = "http://smart-ideas.ml/";
+        Log.d("RestClient","Connecting using: " + baseUrl);
+        return baseUrl;
+    }
+
     public interface LoginInterface {
 
         @FormUrlEncoded
-        @POST("/new/login.php")
+        @POST("/login.php")
         Call<UserModel> login(
                 @Field("username") String username,
                 @Field("password") String password
@@ -76,7 +99,7 @@ public class RestClient {
     }
     public interface RegistrationInterface {
 
-        @POST("/new/register.php")
+        @POST("/register.php")
         Call<ReplyModel> register(@Body UserModel user);
     }
 }

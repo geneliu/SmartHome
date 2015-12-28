@@ -79,6 +79,27 @@
             android:textColor="@color/accent"
             android:textSize="14sp" />
 
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rb_home_server"
+                android:id="@+id/rbHomeServer"
+                android:layout_marginRight="50dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rb_remote_server"
+                android:id="@+id/rbRemoteServer" />
+        </RadioGroup>
+
 
     </LinearLayout>
 </ScrollView>

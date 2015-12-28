@@ -26,5 +26,7 @@
     <string name="nav_settings">Postavke</string>
     <string name="nav_logout">Odjava</string>
     <string name="press_back_again_logout">Ponovno pritisnite natrag za odjavu</string>
+    <string name="rb_home_server">Vlastiti server</string>
+    <string name="rb_remote_server">Udaljeni server</string>
 
 </resources>

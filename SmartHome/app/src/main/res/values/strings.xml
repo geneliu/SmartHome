@@ -26,5 +26,7 @@
     <string name="nav_settings">Settings</string>
     <string name="nav_logout">Logout</string>
     <string name="press_back_again_logout">Press back again to logout.</string>
+    <string name="rb_home_server">Home server</string>
+    <string name="rb_remote_server">Remote server</string>
 
 </resources>
