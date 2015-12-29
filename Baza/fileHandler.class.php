@@ -157,4 +157,9 @@ class fileHandler{
         return $this->username;
     }
 
+    public function setUsername($json)
+    {
+        $this->username=$json->username;
+    }
+
 }
