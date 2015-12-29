@@ -8,9 +8,21 @@ $data= $handler->getBasicJson($json);
 $handler->setUsername($data);
 
 
-if($handler->saveFile($json,$handler->getUsername())==true)
+if($handler->saveFile($json,$handler->getUsername())!=false)
 {
     $response["error"]= "false";
+    if(!empty($handler->getValues()))
+    {
+        $response["changes"]= "true";
+    }
+    else
+    {
+        $response["changes"]= "false";
+    }
+    foreach($handler->getValues() as $value)
+    {
+        $response[$value->oldID]="$value->newID";
+    }
 }
 else
 {

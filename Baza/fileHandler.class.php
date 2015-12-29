@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__) .'/DB_Funkcije.class.php');
 require_once(dirname(__FILE__) .'/UserInfo.php');
+require_once(dirname(__FILE__) .'/houseID.php');
 
 
 class fileHandler{
@@ -9,6 +10,15 @@ class fileHandler{
     private $target_dir ="./Files/";
     private $baza;
     private $username;
+    private $values= array();
+
+    /**
+     * @return array
+     */
+    public function getValues()
+    {
+        return $this->values;
+    }
 
 
     function __construct() {
@@ -17,7 +27,11 @@ class fileHandler{
     }
     public function saveFile($jsonFile,$username)
     {
+
+
         $successfull= true;
+        $jsonFile=$this->checkForBigIds($jsonFile);
+       // var_dump($jsonFile);
         $user_dir= $this->target_dir . $username. "/";
         $this->checkIfFolderExist($username);
         $today= date("Y-m-d_H:i:s");
@@ -30,8 +44,12 @@ class fileHandler{
 
         $this->baza->saveToFileTable($target_file,$username);
 
+        if($successfull==false) return false;
+        if(!empty($this->getValues())) return $this->values;
         return $successfull;
     }
+
+
 
     public function checkIfFolderExist($username)
     {
@@ -41,8 +59,48 @@ class fileHandler{
             mkdir($user_dir,0777,true);
         }
 
-
     }
+
+    public function checkForBigIds($jsonFIle)
+    {
+        $data = json_decode($jsonFIle);
+        $i=0;
+        $newIDs= array();
+        $newData= $this->readFile($this->username);
+        foreach($data->houses as $house)
+        {
+            if($house->remoteID >=10000)
+            {
+                $id=$this->getFreeID($newData,$newIDs);
+                array_push($this->values,new houseID($house->remoteID,$id));
+                $data->houses[$i]->remoteID= "$id";
+                array_push($newIDs,$id);
+
+            }
+            $i++;
+        }
+        return json_encode($data);
+    }
+
+    public function getFreeID($data,$newIDs)
+    {
+        $temp=false;
+        $i=1;
+        while($temp==false) {
+            $exist=false;
+            foreach ($data->houses as $house) {
+                if ($i == $house->remoteID || in_array($i,$newIDs)) {
+                        $exist=true;
+                }
+
+            }
+            if($exist==false) $temp=true;
+            else $i++;
+        }
+
+        return $i;
+    }
+
 
     public function readFile($username)
     {
