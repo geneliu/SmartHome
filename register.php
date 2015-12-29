@@ -5,7 +5,7 @@ $response = array("error" => FALSE);
 
 $json = file_get_contents('php://input');
 $userData = json_decode($json);
-$greska=$db->registrirajKorisnika($userData->{"username"}, $userData->{"password"}, $userData->{"ime"}, $userData->{"prezime"});
+$greska=$db->registrirajKorisnika($userData->{"username"}, $userData->{"password"}, $userData->{"name"}, $userData->{"surname"});
 
 if($greska=="true")
 {
