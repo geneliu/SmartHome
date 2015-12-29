@@ -19,7 +19,7 @@ public class Utils {
     }
 
 
-    private boolean isHomeServer = true;
+    private boolean isHomeServer = false;
 
     public boolean isHomeServer() {
         return isHomeServer;
@@ -29,7 +29,7 @@ public class Utils {
         this.isHomeServer = isHomeServer;
     }
 
-    private boolean isLastConnectionHome = true;
+    private boolean isLastConnectionHome = false;
 
     public boolean isLastConnectionHome() {
         return isLastConnectionHome;
