@@ -10,6 +10,10 @@ import java.util.List;
 
 @Table(name = "Houses")
 public class House extends Model {
+
+    @Column(name="remoteID")
+    private Long remoteID;
+
     @Column(name = "name")
     private String name;
 
@@ -28,6 +32,8 @@ public class House extends Model {
         this.name = name;
         this.address = address;
         this.user = user;
+        save();
+        this.remoteID= this.getId()+10000;
         save();
     }
 
@@ -61,6 +67,14 @@ public class House extends Model {
     public void setAddress(String address) {
         this.address = address;
         save();
+    }
+
+    public Long getRemoteID() {
+        return remoteID;
+    }
+
+    public void setRemoteID(Long remoteID) {
+        this.remoteID = remoteID;
     }
 
     public void updateHouse(House updatedHouse) {
