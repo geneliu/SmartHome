@@ -5,6 +5,8 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,6 +25,12 @@ public class House extends Model {
     @Column(name = "User",onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
     private User user;
 
+
+
+
+    @Column(name = "last_modified")
+    private String last_modified;
+
     public House() {
         super();
     }
@@ -32,6 +40,7 @@ public class House extends Model {
         this.name = name;
         this.address = address;
         this.user = user;
+        this.setLast_modified();
         save();
         this.remoteID= this.getId()+10000;
         save();
@@ -76,6 +85,16 @@ public class House extends Model {
     public void setRemoteID(Long remoteID) {
         this.remoteID = remoteID;
     }
+
+    public String getLast_modified() {
+        return last_modified;
+    }
+
+    public void setLast_modified() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        this.last_modified = sdf.format(new Date());
+    }
+
 
     public void updateHouse(House updatedHouse) {
         this.name = updatedHouse.getName();
