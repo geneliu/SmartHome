@@ -60,19 +60,6 @@
         android:textColor="@color/accent"
         android:layout_marginTop="20dp" />
 
-    <TextView
-        android:layout_width="289dp"
-        android:layout_height="0dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginTop="30dp"
-        android:id="@+id/txtRegister"
-        android:hint="@string/dont_have_account"
-        android:layout_gravity="center_horizontal"
-        android:textSize="14sp"
-        android:textColor="@color/accent"
-        android:layout_weight="0.23"
-        android:gravity="center_vertical|center_horizontal" />
-
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,6 +80,19 @@
             android:text="@string/rb_remote_server"
             android:id="@+id/rbRemoteServer" />
     </RadioGroup>
+
+    <TextView
+        android:layout_width="289dp"
+        android:layout_height="0dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="30dp"
+        android:id="@+id/txtRegister"
+        android:hint="@string/dont_have_account"
+        android:layout_gravity="center_horizontal"
+        android:textSize="14sp"
+        android:textColor="@color/accent"
+        android:layout_weight="0.23"
+        android:gravity="center_vertical|center_horizontal" />
 
 
 </LinearLayout>

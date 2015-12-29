@@ -8,7 +8,7 @@
     <string name="username">Korisničko ime</string>
     <string name="password">Lozinka</string>
     <string name="repeatPassword">Ponovite lozinku</string>
-    <string name="btn_login">Prijavi se</string>
+    <string name="btn_login">Prijava</string>
     <string name="btn_register">Potvrdi</string>
     <string name="dont_have_account">Nemaš račun? Registriraj se ovdje.</string>
     <string name="houses">Primjer kuće</string>
