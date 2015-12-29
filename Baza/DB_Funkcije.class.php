@@ -83,7 +83,7 @@ class DB_Funckije{
     public function getLastFile($username)
     {
         $id=$this->getUserID($username);
-        $q="select path from files where user='".$id."' Group by id Order Desc Limit 1";
+        $q="select path from files where user='".$id."' Group by id Desc Limit 1";
         $podaci = $this->baza->selectDB($q);
         if($podaci != null){
             while($red=$podaci->fetch_array()){
@@ -92,6 +92,7 @@ class DB_Funckije{
         }
         return false;
     }
+
 
     
 }
