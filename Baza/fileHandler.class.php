@@ -71,7 +71,8 @@ class fileHandler{
         {
             if($house->remoteID >=10000)
             {
-                $id=$this->getFreeID($newData,$newIDs);
+              if($newData != false)  $id=$this->getFreeID($newData,$newIDs);
+                else $id=$i+1;
                 array_push($this->values,new houseID($house->remoteID,$id));
                 $data->houses[$i]->remoteID= "$id";
                 array_push($newIDs,$id);
@@ -105,7 +106,7 @@ class fileHandler{
     public function readFile($username)
     {
         $path=$this->baza->getLastFile($username);
-        $file= file_get_contents($path);
+        if($path !=false) $file= file_get_contents($path);
        return json_decode($file);
 
 

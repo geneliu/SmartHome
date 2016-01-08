@@ -14,6 +14,7 @@ if($handler->saveFile($json,$handler->getUsername())!=false)
     if(!empty($handler->getValues()))
     {
         $response["changes"]= "true";
+        $diffs= array();
     }
     else
     {
@@ -21,7 +22,16 @@ if($handler->saveFile($json,$handler->getUsername())!=false)
     }
     foreach($handler->getValues() as $value)
     {
-        $response[$value->oldID]="$value->newID";
+
+       // $response["diffs"][$value->oldID]="$value->newID";
+       // $response["diffs"][$value->oldID]="$value->newID";
+       $pep['old_id']= $value->oldID;
+        $pep['new_id']= $value->newID;
+        array_push($diffs,$pep);
+    }
+    if(!empty($handler->getValues()))
+    {
+        $response["diffs"]=$diffs;
     }
 }
 else
