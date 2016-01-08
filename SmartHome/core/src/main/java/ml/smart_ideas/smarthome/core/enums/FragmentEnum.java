@@ -12,4 +12,5 @@ public enum FragmentEnum {
     NewRoomFragment,
     ElementsFragment,
     NewElementFragment,
+    TestClass,
 }

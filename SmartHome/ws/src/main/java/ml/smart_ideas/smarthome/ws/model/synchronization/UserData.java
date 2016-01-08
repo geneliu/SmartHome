@@ -8,7 +8,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Example {
+public class UserData {
 
     @SerializedName("error")
     @Expose
@@ -73,5 +73,6 @@ public class Example {
     public void setHouses(List<House> houses) {
         this.houses = houses;
     }
+    public void setHouse(House house) { this.houses.add(house);}
 
 }

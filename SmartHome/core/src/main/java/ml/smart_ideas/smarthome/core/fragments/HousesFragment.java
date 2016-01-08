@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -38,6 +39,8 @@ public class HousesFragment extends Fragment implements RefreshEventListener, Di
     LinearLayout linearLayoutEmpty;
     User user;
 
+    Button btn; //temp button
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,11 +59,26 @@ public class HousesFragment extends Fragment implements RefreshEventListener, Di
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addHouse();
+                 addHouse();
+                //  Globals.getInstance().ShowFragment(FragmentEnum.TestClass);
             }
         });
         Globals.getInstance().addRefreshListener(this);
         Globals.getInstance().addDialogListener(this);
+
+        //temp
+
+       btn= (Button) viewInflater.findViewById(R.id.btnTemp);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Globals.getInstance().ShowFragment(FragmentEnum.TestClass);
+            }
+        });
+
+
+
+        //end temp
 
         return viewInflater;
     }

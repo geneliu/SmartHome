@@ -1,21 +1,21 @@
 package ml.smart_ideas.smarthome.ws.connection;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.google.gson.Gson;
 
-import ml.smart_ideas.smarthome.core.SaveSharedPreferences;
 import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
-import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.db.User;
+import ml.smart_ideas.smarthome.ws.Helpers.DataParser;
 import ml.smart_ideas.smarthome.ws.R;
+import ml.smart_ideas.smarthome.ws.model.UpdateIdModel;
 import ml.smart_ideas.smarthome.ws.model.UserModel;
 import ml.smart_ideas.smarthome.ws.model.ReplyModel;
+import ml.smart_ideas.smarthome.ws.model.synchronization.UserData;
 import ml.smart_ideas.smarthome.ws.rest.RestClient;
 import retrofit.Call;
 import retrofit.Callback;
@@ -160,6 +160,42 @@ public class ServerCommunication {
             }
         });
     }
+
+    public void SynchronizeDataWithServer()
+    {
+       User user= Globals.getInstance().getUser();
+        UserData userData= DataParser.userDataToSimpleJsonObject(user);
+        RestClient.SynchronizationInterface service = RestClient.sendDataToServer();
+        Call<UpdateIdModel> call= service.SynchronizeToServer(userData);
+
+        call.enqueue(new Callback<UpdateIdModel>() {
+            @Override
+            public void onResponse(Response<UpdateIdModel> response) {
+
+                Log.d("ServerCommunication", "Status Code = " + response.code());
+                if (response.isSuccess()) {
+                    // (status code 200, 201)
+                    UpdateIdModel result = response.body();
+                    String error = result.getError();
+                    Log.d("ServerCommunication", "response = error:" + new Gson().toJson(error));
+                    if(error != "true")
+                    {
+
+                    }
+
+                } else {
+                    // (like 400,401,403 etc)
+                    String hello="hello";
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+    }
+
 
     private void setAppStateEnum(AppStateEnum appStateEnum) {
         Globals globals = Globals.getInstance();

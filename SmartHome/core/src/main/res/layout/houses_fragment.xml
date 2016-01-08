@@ -43,5 +43,12 @@
             fab:fab_colorNormal="@color/accent"
             fab:fab_colorPressed="@color/accent"
             fab:fab_colorRipple="@color/accent_dark" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temp"
+            android:id="@+id/btnTemp"
+            android:layout_gravity="center_horizontal|bottom" />
     </FrameLayout>
 </LinearLayout>

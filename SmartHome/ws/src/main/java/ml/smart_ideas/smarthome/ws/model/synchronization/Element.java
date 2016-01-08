@@ -16,10 +16,10 @@ public class Element {
     private String categoryID;
     @SerializedName("sliders")
     @Expose
-    private List<Slider> sliders = new ArrayList<Slider>();
+    private Slider slider;
     @SerializedName("switchers")
     @Expose
-    private List<Switcher> switchers = new ArrayList<Switcher>();
+    private  Switcher switcher;
 
     /**
      *
@@ -57,40 +57,19 @@ public class Element {
         this.categoryID = categoryID;
     }
 
-    /**
-     *
-     * @return
-     *     The sliders
-     */
-    public List<Slider> getSliders() {
-        return sliders;
+    public Slider getSlider() {
+        return slider;
     }
 
-    /**
-     *
-     * @param sliders
-     *     The sliders
-     */
-    public void setSliders(List<Slider> sliders) {
-        this.sliders = sliders;
+    public void setSlider(Slider slider) {
+        this.slider = slider;
     }
 
-    /**
-     *
-     * @return
-     *     The switchers
-     */
-    public List<Switcher> getSwitchers() {
-        return switchers;
+    public Switcher getSwitcher() {
+        return switcher;
     }
 
-    /**
-     *
-     * @param switchers
-     *     The switchers
-     */
-    public void setSwitchers(List<Switcher> switchers) {
-        this.switchers = switchers;
+    public void setSwitcher(Switcher switcher) {
+        this.switcher = switcher;
     }
-
 }

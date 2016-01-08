@@ -8,8 +8,10 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
+import ml.smart_ideas.smarthome.ws.model.UpdateIdModel;
 import ml.smart_ideas.smarthome.ws.model.UserModel;
 import ml.smart_ideas.smarthome.ws.model.ReplyModel;
+import ml.smart_ideas.smarthome.ws.model.synchronization.UserData;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -21,6 +23,7 @@ import retrofit.http.POST;
 public class RestClient {
     private static LoginInterface loginInterface;
     private static RegistrationInterface registrationInterface;
+    private static SynchronizationInterface synchronizationInterface;
     private static String baseUrl = "http://smart-ideas.ml/" ;
     public static LoginInterface getLoginClient() {
         if (loginInterface == null ||
@@ -73,6 +76,33 @@ public class RestClient {
         return registrationInterface;
     }
 
+    public static SynchronizationInterface sendDataToServer()
+    {
+        if (synchronizationInterface == null ||
+                Utils.getInstance().isHomeServer() != Utils.getInstance().isLastConnectionHome()) {
+
+            Utils.getInstance().setLastConnectionHome(Utils.getInstance().isHomeServer());
+
+            OkHttpClient okClient = new OkHttpClient();
+            okClient.interceptors().add(new Interceptor() {
+                @Override
+                public Response intercept(Chain chain) throws IOException {
+                    Response response = chain.proceed(chain.request());
+                    return response;
+                }
+            });
+
+            Retrofit client = new Retrofit.Builder()
+                    .baseUrl(getBaseUrl())
+                    .addConverter(String.class, new ToStringConverter())
+                    .client(okClient)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            synchronizationInterface = client.create(SynchronizationInterface.class);
+        }
+        return synchronizationInterface;
+    }
+
     private static String getBaseUrl(){
         String baseUrl = "";
         if(Utils.getInstance().isHomeServer()) {
@@ -101,5 +131,11 @@ public class RestClient {
 
         @POST("/register.php")
         Call<ReplyModel> register(@Body UserModel user);
+    }
+    public interface SynchronizationInterface{
+
+        @POST("/testFile.php")
+        Call<UpdateIdModel> SynchronizeToServer(@Body
+                                                UserData userData);
     }
 }
