@@ -87,7 +87,10 @@ public class User extends Model {
     public List<House> getHouses() {
         return getMany(House.class, "User");
     }
-
+    public House getHouse(int id)
+    {
+        return new Select().from(House.class).where("RemoteID = ?",id).executeSingle();
+    }
     //endregion
 
     //region Methods

@@ -11,6 +11,7 @@ import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.ws.Helpers.DataParser;
+import ml.smart_ideas.smarthome.ws.Helpers.DatabaseUpdateHelper;
 import ml.smart_ideas.smarthome.ws.R;
 import ml.smart_ideas.smarthome.ws.model.UpdateIdModel;
 import ml.smart_ideas.smarthome.ws.model.UserModel;
@@ -164,7 +165,7 @@ public class ServerCommunication {
     public void SynchronizeDataWithServer()
     {
        User user= Globals.getInstance().getUser();
-        UserData userData= DataParser.userDataToSimpleJsonObject(user);
+        UserData userData= DataParser.userDataToCompleteJsonObject(user);
         RestClient.SynchronizationInterface service = RestClient.sendDataToServer();
         Call<UpdateIdModel> call= service.SynchronizeToServer(userData);
 
@@ -180,7 +181,7 @@ public class ServerCommunication {
                     Log.d("ServerCommunication", "response = error:" + new Gson().toJson(error));
                     if(error != "true")
                     {
-
+                        DatabaseUpdateHelper.updateHouseRemoteIds(result);
                     }
 
                 } else {
@@ -195,6 +196,42 @@ public class ServerCommunication {
             }
         });
     }
+
+
+    public void SynchronizeDataFromServer()
+    {
+        User user= Globals.getInstance().getUser();
+        UserData userData= DataParser.userDataToCompleteJsonObject(user);
+        RestClient.SynchronizationInterface service = RestClient.sendDataToServer();
+        Call<UserData> call = service.CheckForChanges(userData);
+
+        call.enqueue(new Callback<UserData>() {
+            @Override
+            public void onResponse(Response<UserData> response) {
+
+                Log.d("ServerCommunication", "Status Code = " + response.code());
+                if (response.isSuccess()) {
+                    // (status code 200, 201)
+                    UserData result = response.body();
+                    String error = result.getError();
+                    if(error != "true")
+                    {
+                        DataParser.jsonObjectToDatabase(result);
+                    }
+
+                } else {
+                    // (like 400,401,403 etc)
+                    String hello="hello";
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+    }
+
 
 
     private void setAppStateEnum(AppStateEnum appStateEnum) {

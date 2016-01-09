@@ -8,6 +8,7 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
+import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.ws.model.UpdateIdModel;
 import ml.smart_ideas.smarthome.ws.model.UserModel;
 import ml.smart_ideas.smarthome.ws.model.ReplyModel;
@@ -137,5 +138,10 @@ public class RestClient {
         @POST("/testFile.php")
         Call<UpdateIdModel> SynchronizeToServer(@Body
                                                 UserData userData);
+        @POST("/getJson.php")
+        Call<UserData> CheckForChanges(@Body UserData userData);
     }
+
+
+
 }

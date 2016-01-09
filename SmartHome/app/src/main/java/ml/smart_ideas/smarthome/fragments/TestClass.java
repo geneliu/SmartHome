@@ -36,6 +36,7 @@ public class TestClass extends Fragment implements MessageEventListener {
         View viewInflater = inflater.inflate(R.layout.test_class, container, false);
         ButterKnife.bind(this, viewInflater);
         Button btn= (Button) viewInflater.findViewById(R.id.button);
+        Button btn1= (Button) viewInflater.findViewById(R.id.btnCheckServer);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +46,17 @@ public class TestClass extends Fragment implements MessageEventListener {
                 hello+="dudo";
             }
         });
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // addHouse(); //temp
+
+                ServerCommunication.getInstance().SynchronizeDataFromServer();
+
+            }
+        });
+
 
 
         return viewInflater;

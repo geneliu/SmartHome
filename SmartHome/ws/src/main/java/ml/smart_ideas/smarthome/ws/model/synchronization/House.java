@@ -113,5 +113,6 @@ public class House {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+    public void setRoom(Room room) {this.rooms.add(room); }
 
 }

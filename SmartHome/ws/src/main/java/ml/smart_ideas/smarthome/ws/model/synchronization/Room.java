@@ -51,5 +51,6 @@ public class Room {
     public void setElements(List<Element> elements) {
         this.elements = elements;
     }
+    public void setElement(Element element) {this.elements.add(element); }
 
 }

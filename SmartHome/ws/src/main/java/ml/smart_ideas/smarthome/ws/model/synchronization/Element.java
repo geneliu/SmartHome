@@ -1,8 +1,6 @@
 package ml.smart_ideas.smarthome.ws.model.synchronization;
 
 
-import java.util.ArrayList;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -19,7 +17,7 @@ public class Element {
     private Slider slider;
     @SerializedName("switchers")
     @Expose
-    private  Switcher switcher;
+    private Switch aSwitch;
 
     /**
      *
@@ -65,11 +63,11 @@ public class Element {
         this.slider = slider;
     }
 
-    public Switcher getSwitcher() {
-        return switcher;
+    public Switch getaSwitch() {
+        return aSwitch;
     }
 
-    public void setSwitcher(Switcher switcher) {
-        this.switcher = switcher;
+    public void setaSwitch(Switch aSwitch) {
+        this.aSwitch = aSwitch;
     }
 }
