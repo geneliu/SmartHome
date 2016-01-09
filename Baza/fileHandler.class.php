@@ -136,11 +136,10 @@ class fileHandler{
 
 
             array_push($info,new UserInfo($house->remoteID,$house->last_modified));
-            echo $house->remoteID;
-            echo " ";
+
 
         }
-        echo "\n";
+
         return $info;
     }
 
@@ -160,7 +159,7 @@ class fileHandler{
             if($this->compareDates($fileReceived,$v->remoteID,$v->date) != false)
             {
                 array_push($remoteIDs,$v->remoteID);
-                echo $v->remoteID;
+            //    echo $v->remoteID;
             }
 
         }
@@ -193,6 +192,7 @@ class fileHandler{
             if($this->isRemotedIdInList($ids,$house->remoteID) == false)
             {
                 unset($latestFile->houses[$i]);
+                $latestFile->houses = array_values($latestFile->houses);
             }
             $i++;
         }

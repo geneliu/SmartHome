@@ -7,8 +7,6 @@ $data= $handler->getBasicJson($json);
 $checkDates=$handler->getInfo($data);
 $testUser=$handler->getLatestFile();
 
-echo "\n Different files: ";
 $hh= $handler->compare($checkDates,$testUser);
 $jsonData=$handler->sendDataBackToUser($hh);
-echo "\n";
 echo json_encode($jsonData);
