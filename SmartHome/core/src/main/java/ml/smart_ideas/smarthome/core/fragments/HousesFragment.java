@@ -138,6 +138,7 @@ public class HousesFragment extends Fragment implements RefreshEventListener, Di
     @Override
     public void deletePrompt(String message, Model model) {
         LongClickDialog yesNoDialog = LongClickDialog.newYesNo(message, model);
+        Globals.getInstance().setFragmentState(FragmentStateEnum.Deleting);
         yesNoDialog.show(getFragmentManager(), "");
     }
 

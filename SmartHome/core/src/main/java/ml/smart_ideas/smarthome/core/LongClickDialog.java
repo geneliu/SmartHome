@@ -3,6 +3,7 @@ package ml.smart_ideas.smarthome.core;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
@@ -161,6 +162,7 @@ public class LongClickDialog extends DialogFragment {
                     Globals.getInstance().setCurrentHouse(house);
                     Globals.getInstance().ShowFragment(FragmentEnum.NewHouseFragment);
                 } else if (which == 1) {//PROPMT DELETE
+                    Globals.getInstance().setCurrentHouse(house);
                     deleteHouse(house);
                 }
             }
@@ -189,6 +191,10 @@ public class LongClickDialog extends DialogFragment {
     DialogInterface.OnClickListener onYesNoClickListener = new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
             if (which == 0) {//DELETE
+                if(Globals.getInstance().getFragmentState()==FragmentStateEnum.Deleting) {
+                    House house = Globals.getInstance().getCurrentHouse();
+                  if(house.getRemoteID()<10000) SaveSharedPreferences.saveDeletedHouses(Globals.getInstance().getContext(), house.getRemoteID().toString());
+                }
                 yesNoModel.delete();
                 Globals.getInstance().Refresh();
             }

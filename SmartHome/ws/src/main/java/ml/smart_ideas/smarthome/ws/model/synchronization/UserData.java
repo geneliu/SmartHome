@@ -20,6 +20,18 @@ public class UserData {
     @Expose
     private List<House> houses = new ArrayList<House>();
 
+    @SerializedName("deleted")
+    @Expose
+    private List<String> deleted = new ArrayList<String>();
+
+    public List<String> getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(List<String> deleted) {
+        this.deleted = deleted;
+    }
+
     /**
      *
      * @return

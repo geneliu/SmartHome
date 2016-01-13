@@ -1,8 +1,10 @@
 package ml.smart_ideas.smarthome.ws.Helpers;
 
+import android.content.SharedPreferences;
 import android.transition.Slide;
 
 import ml.smart_ideas.smarthome.core.Globals;
+import ml.smart_ideas.smarthome.core.SaveSharedPreferences;
 import ml.smart_ideas.smarthome.db.Element;
 import ml.smart_ideas.smarthome.db.House;
 import ml.smart_ideas.smarthome.db.Room;
@@ -91,6 +93,7 @@ public class DataParser {
 
             userData.setHouse(houseWS);
         }
+        userData.setDeleted(SaveSharedPreferences.readDeletedHouses(Globals.getInstance().getContext()));
         return userData;
     }
 
@@ -132,7 +135,7 @@ public class DataParser {
                 }
             }
         }
-
+            SaveSharedPreferences.clearDeletedList(Globals.getInstance().getContext());
     }
 
 

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import ml.smart_ideas.smarthome.R;
+import ml.smart_ideas.smarthome.core.SaveSharedPreferences;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.Globals;
@@ -52,7 +53,8 @@ public class TestClass extends Fragment implements MessageEventListener {
             public void onClick(View v) {
                 // addHouse(); //temp
 
-                ServerCommunication.getInstance().SynchronizeDataFromServer();
+              ServerCommunication.getInstance().SynchronizeDataFromServer();
+                //SaveSharedPreferences.saveDeletedHouses(Globals.getInstance().getContext(), "hallo");
 
             }
         });
