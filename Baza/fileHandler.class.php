@@ -62,7 +62,6 @@ class fileHandler{
     {
         $user_dir= $this->target_dir . $username. "/";
         $target_file = $user_dir . $RemoteID . ".txt";
-
         $fileToSave= fopen($target_file,"w") or die($successfull=false);
         fwrite($fileToSave,$jsonFile);
 
@@ -80,17 +79,27 @@ class fileHandler{
 
     }
 
-    public function checkForBigIds($jsonFIle)
+public function    checkIfFolderEmpty()
+{
+
+    $user_dir= $this->target_dir . $this->username. "/";
+    $iterator = new \FilesystemIterator($user_dir);
+    $isDirEmpty = !$iterator->valid();
+    return $isDirEmpty;
+}
+
+    public function checkForBigIds($data)
     {
-        $data = json_decode($jsonFIle);
         $i=0;
         $newIDs= array();
         $newData= $this->readFile($this->username);
+
+        echo $this->checkIfFolderEmpty();
         foreach($data->houses as $house)
         {
             if($house->remoteID >=10000)
             {
-              if($newData != false)  $id=$this->getFreeID($newData,$newIDs);
+              if($this->checkIfFolderEmpty() != 1)  $id=$this->getFreeID($newData,$newIDs);
                 else $id=$i+1;
                 array_push($this->values,new houseID($house->remoteID,$id));
                 $data->houses[$i]->remoteID= "$id";
@@ -99,7 +108,8 @@ class fileHandler{
             }
             $i++;
         }
-        return json_encode($data);
+       // echo json_encode($data);
+        return $data;
     }
 
     public function getFreeID($data,$newIDs)
@@ -150,7 +160,6 @@ class fileHandler{
         return json_encode($response);
 
     }
-
     public function getListOfDates($data)
     {
         foreach($data->houses as $houses)
@@ -170,14 +179,14 @@ class fileHandler{
     {
         $info = array();
         $this->username=$data->username;
-        foreach($data->houses as $house)
-        {
+
+            foreach ($data->houses as $house) {
 
 
-            array_push($info,new UserInfo($house->remoteID,$house->last_modified));
+                array_push($info, new UserInfo($house->remoteID, $house->last_modified));
 
 
-        }
+            }
 
         return $info;
     }
@@ -189,24 +198,26 @@ class fileHandler{
         return $transform;
     }
 
-    public function compare($fileReceived,$latestUserFile)
+    public function compare($fileReceived,$latestUserFile,$data)
     {
         $remoteIDs= array();
+        $latestUserFileIDs= array();
         foreach($latestUserFile as $v)
         {
-            if($this->compareDates($fileReceived,$v->remoteID,$v->date) != false) {
+            $temp=$this->compareDates($fileReceived,$v->remoteID,$v->date,$data);
+            if($this->compareDates($fileReceived,$v->remoteID,$v->date,$data) == true) {
                 array_push($remoteIDs, $v->remoteID);
-
-
             }
-
-
+            array_push($latestUserFileIDs,$v->remoteID);
         }
+
+
+        $this->saveNewHouses($data,$fileReceived);
 
         return $remoteIDs;
     }
 
-    public function compareDates($fileReceived,$remotedID,$date)
+    public function compareDates($fileReceived,$remotedID,$date,$data)
     {
         $temp= false;
         foreach($fileReceived as $v)
@@ -214,12 +225,41 @@ class fileHandler{
 
             if($v->remoteID==$remotedID && $v->date < $date)
                 return true;
+            if($v->remoteID==$remotedID && $v->date > $date)
+            {
+                $this->saveHouse($data,$v->remoteID);
+            }
             if($v->remoteID==$remotedID) $temp=true;
+
 
         }
         if($temp==false) return true;
         return false;
     }
+
+    public function saveHouse($data,$remoteID)
+    {
+        foreach($data->houses as $house)
+        {
+           if($house->remoteID==$remoteID)
+           {
+
+               $this->saveToFolder(json_encode($house),$this->username,$house->remoteID);
+           }
+        }
+    }
+
+    public function saveNewHouses($data,$latestUserFileIds)
+    {
+        foreach($data->houses as $house)
+        {
+            if(!in_array($house->remoteID,$latestUserFileIds))
+            {
+                $this->saveToFolder(json_encode($house),$this->username,$house->remoteID);
+            }
+        }
+    }
+
 
     public function sendDataBackToUser($ids)
     {
