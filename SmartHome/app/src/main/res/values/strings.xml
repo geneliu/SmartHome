@@ -28,5 +28,7 @@
     <string name="press_back_again_logout">Press back again to logout.</string>
     <string name="rb_home_server">Home server</string>
     <string name="rb_remote_server">Remote server</string>
+    <string name="menu_item_synchronize">Synchronize</string>
+    <string name="successful_sync">Synchronizing successful</string>
 
 </resources>

@@ -11,6 +11,7 @@ import ml.smart_ideas.smarthome.db.Room;
 import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.db.enums.Category;
 import ml.smart_ideas.smarthome.db.enums.ElementEnum;
+import ml.smart_ideas.smarthome.ws.model.synchronization.Diff;
 import ml.smart_ideas.smarthome.ws.model.synchronization.Slider;
 import ml.smart_ideas.smarthome.ws.model.synchronization.Switch;
 import ml.smart_ideas.smarthome.ws.model.synchronization.UserData;
@@ -20,21 +21,6 @@ import ml.smart_ideas.smarthome.ws.model.synchronization.UserData;
  */
 public class DataParser {
 
-    public static UserData userDataToSimpleJsonObject(User user)
-    {
-        UserData userData= new UserData();
-        userData.setError("false");
-        userData.setUsername(user.getUsername());
-        for (House house: user.getHouses()) {
-            ml.smart_ideas.smarthome.ws.model.synchronization.House houseWS= new ml.smart_ideas.smarthome.ws.model.synchronization.House();
-            houseWS.setName(house.getName());
-           // houseWS.setAdress(house.getAddress());
-            houseWS.setLastModified(house.getLast_modified());
-            houseWS.setRemoteID(String.valueOf(house.getRemoteID()));
-            userData.setHouse(houseWS);
-        }
-        return userData;
-    }
 
     public static UserData userDataToCompleteJsonObject(User user)
     {
@@ -101,6 +87,8 @@ public class DataParser {
     {
         User user= Globals.getInstance().getUser();
 
+
+        //dohvacanje pristiglih kuca
         for(ml.smart_ideas.smarthome.ws.model.synchronization.House houseWS : userData.getHouses())
         {
 
@@ -111,10 +99,13 @@ public class DataParser {
             newHouse.setLast_modified();
             newHouse.save();
 
+            //dohvacanje soba
             for(ml.smart_ideas.smarthome.ws.model.synchronization.Room roomWS: houseWS.getRooms())
             {
                 Room newRoom=new Room(roomWS.getName(),newHouse);
 
+
+                //dohvacanje elemenata
                 for(ml.smart_ideas.smarthome.ws.model.synchronization.Element elementWS: roomWS.getElements())
                 {
                     Category category = null;
@@ -135,6 +126,16 @@ public class DataParser {
                 }
             }
         }
+
+        for(Diff diffs: userData.getDiffs())
+        {
+            House house= user.getHouse(Integer.parseInt(diffs.getOldId()));
+            house.setRemoteID(Long.valueOf(diffs.getNewId()));
+            house.save();
+        }
+
+
+
             SaveSharedPreferences.clearDeletedList(Globals.getInstance().getContext());
     }
 

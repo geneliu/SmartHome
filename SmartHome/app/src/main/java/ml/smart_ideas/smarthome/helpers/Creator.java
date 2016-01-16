@@ -14,7 +14,6 @@ import ml.smart_ideas.smarthome.core.fragments.NewRoomFragment;
 import ml.smart_ideas.smarthome.core.fragments.RoomsFragment;
 import ml.smart_ideas.smarthome.fragments.LoginFragment;
 import ml.smart_ideas.smarthome.fragments.RegistrationFragment;
-import ml.smart_ideas.smarthome.fragments.TestClass;
 
 /**
  * Created by mario on 21.11.2015..
@@ -32,7 +31,6 @@ public class Creator {
             case NewRoomFragment: return new NewRoomFragment();
             case ElementsFragment: return new ElementsFragment();
             case NewElementFragment: return new NewElementFragment();
-            case TestClass: return new TestClass();
             default: return new LoginFragment();
         }
     }

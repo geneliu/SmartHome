@@ -6,5 +6,6 @@ package ml.smart_ideas.smarthome.core.enums;
 public enum AppStateEnum {
     NotSignedIn,
     LoggingIn,
-    SignedIn
+    SignedIn,
+    Here,
 }

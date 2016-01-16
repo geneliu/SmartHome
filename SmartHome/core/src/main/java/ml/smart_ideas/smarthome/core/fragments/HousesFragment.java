@@ -3,6 +3,9 @@ package ml.smart_ideas.smarthome.core.fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,6 +29,7 @@ import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.R;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentStateEnum;
+import ml.smart_ideas.smarthome.core.eventlisteners.SyncEventListener;
 import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.db.House;
 
@@ -44,6 +48,7 @@ public class HousesFragment extends Fragment implements RefreshEventListener, Di
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         View viewInflater = inflater.inflate(R.layout.houses_fragment, container, false);
 
         listView = (ListView) viewInflater.findViewById(R.id.list_of_houses);
@@ -66,22 +71,12 @@ public class HousesFragment extends Fragment implements RefreshEventListener, Di
         Globals.getInstance().addRefreshListener(this);
         Globals.getInstance().addDialogListener(this);
 
-        //temp
-
-       btn= (Button) viewInflater.findViewById(R.id.btnTemp);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Globals.getInstance().ShowFragment(FragmentEnum.TestClass);
-            }
-        });
-
-
-
-        //end temp
 
         return viewInflater;
     }
+
+
+
 
     public void InitializeFragment() {
         user = Globals.getInstance().getUser();
@@ -146,4 +141,6 @@ public class HousesFragment extends Fragment implements RefreshEventListener, Di
     public void createDialog(Model model) {
 
     }
+
+
 }

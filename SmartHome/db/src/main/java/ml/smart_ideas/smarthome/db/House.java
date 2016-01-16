@@ -93,6 +93,7 @@ public class House extends Model {
     public void setLast_modified() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         this.last_modified = sdf.format(new Date());
+        save();
     }
 
 

@@ -14,6 +14,7 @@ import ml.smart_ideas.smarthome.core.eventlisteners.DialogEventListener;
 import ml.smart_ideas.smarthome.core.eventlisteners.EventListener;
 import ml.smart_ideas.smarthome.core.eventlisteners.MessageEventListener;
 import ml.smart_ideas.smarthome.core.eventlisteners.RefreshEventListener;
+import ml.smart_ideas.smarthome.core.eventlisteners.SyncEventListener;
 import ml.smart_ideas.smarthome.db.Element;
 import ml.smart_ideas.smarthome.db.User;
 import ml.smart_ideas.smarthome.db.House;
@@ -192,6 +193,26 @@ public class Globals {
         if(refreshEventListener != null)
             refreshEventListener.refresh();
     }
+    //endregion
+
+
+    //region Sync list
+    private SyncEventListener syncEventListener;
+
+
+    public void addSyncEventListener(SyncEventListener syncEventListener) {
+        this.syncEventListener = syncEventListener;
+    }
+
+    public void SyncData()
+    {
+        if(syncEventListener !=null)
+            syncEventListener.syncData();
+    }
+
+
+
+
 
     //endregion
 

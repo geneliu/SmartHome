@@ -1,4 +1,4 @@
-package ml.smart_ideas.smarthome.ws.model;
+package ml.smart_ideas.smarthome.ws.model.synchronization;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -83,6 +83,7 @@ public class NewRoomFragment extends Fragment {
         else
         {
             House currentHouse= Globals.getInstance().getCurrentHouse();
+            currentHouse.setLast_modified();
             currentHouse.addRoom(roomName);
             //Globals.getInstance().PressBack();
             Globals.getInstance().ClearBackStack();
@@ -99,6 +100,7 @@ public class NewRoomFragment extends Fragment {
         }
         else
         {
+            Globals.getInstance().getCurrentHouse().setLast_modified();
             room.setName(roomName);
             room.updateRoom(room);
             //Globals.getInstance().setFragmentState(FragmentStateEnum.Off);

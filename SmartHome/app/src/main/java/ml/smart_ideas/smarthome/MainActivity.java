@@ -26,13 +26,15 @@ import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
 import ml.smart_ideas.smarthome.core.enums.AppStateEnum;
 import ml.smart_ideas.smarthome.core.enums.FragmentEnum;
 import ml.smart_ideas.smarthome.core.enums.NavigationEnum;
+import ml.smart_ideas.smarthome.core.eventlisteners.SyncEventListener;
 import ml.smart_ideas.smarthome.core.fragments.HousesFragment;
 import ml.smart_ideas.smarthome.db.House;
 import ml.smart_ideas.smarthome.helpers.Creator;
 import ml.smart_ideas.smarthome.navigation.NavigationAdapter;
+import ml.smart_ideas.smarthome.ws.connection.ServerCommunication;
 
 
-public class MainActivity extends AppCompatActivity implements EventListener {
+public class MainActivity extends AppCompatActivity implements EventListener,SyncEventListener {
     private DrawerLayout mdrawer;
     private ListView mDrawerList;
     private Toolbar toolbar;
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
         Globals.getInstance().addListener(this);
         Globals.getInstance().setContext(getApplicationContext());
+        Globals.getInstance().addSyncEventListener(this);
 
         if (findViewById(R.id.fragment_container) != null) {
 
@@ -79,20 +82,26 @@ public class MainActivity extends AppCompatActivity implements EventListener {
             }
             Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);
         }
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_initial, menu);
+        getMenuInflater().inflate(R.menu.menu_sync, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
 
+
+        int id = item.getItemId();
+        if(id== R.id.synchronizeData) {
+            ServerCommunication.getInstance().SynchronizeDataFromServer();
+        }
         //nema opcija
         //if (id == R.id.action_settings) {
         //    return true;
@@ -250,6 +259,19 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void syncData() {
+
+        Globals.getInstance().setAppStateEnum(AppStateEnum.Here);
+    //   Globals.getInstance().Refresh();
+        Toast.makeText(this, R.string.successful_sync,
+                Toast.LENGTH_LONG).show();
+        Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment);
+        Globals.getInstance().setAppStateEnum(AppStateEnum.SignedIn);
+
 
     }
 }

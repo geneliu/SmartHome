@@ -24,6 +24,21 @@ public class UserData {
     @Expose
     private List<String> deleted = new ArrayList<String>();
 
+
+    @SerializedName("diffs")
+    @Expose
+    private List<Diff> diffs = new ArrayList<Diff>();
+
+
+
+    public List<Diff> getDiffs() {
+        return diffs;
+    }
+
+    public void setDiffs(List<Diff> diffs) {
+        this.diffs = diffs;
+    }
+
     public List<String> getDeleted() {
         return deleted;
     }

@@ -120,6 +120,7 @@ public class NewElementFragment extends Fragment implements AdapterView.OnItemSe
         if (elementName.equals("")) {
             tvMessage.setText(R.string.error_new_element_no_name);
         } else {
+            Globals.getInstance().getCurrentHouse().setLast_modified();
             Room currentRoom = Globals.getInstance().getCurrentRoom();
             if (rbSwitch.isChecked())
                 currentRoom.addSwitchElement(elementName, selectedCategory);
@@ -135,6 +136,7 @@ public class NewElementFragment extends Fragment implements AdapterView.OnItemSe
         if (elementName.equals("")) {
             tvMessage.setText(R.string.error_new_room_no_name);
         } else {
+            Globals.getInstance().getCurrentHouse().setLast_modified();
             element.setName(elementName);
             element.setCategory(selectedCategory);
 
