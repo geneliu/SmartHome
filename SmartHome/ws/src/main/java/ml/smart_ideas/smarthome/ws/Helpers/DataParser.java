@@ -83,23 +83,20 @@ public class DataParser {
         return userData;
     }
 
-    public static void jsonObjectToDatabase(UserData userData)
+    public static void jsonObjectToDatabase(User user, UserData userData)
     {
-        User user= Globals.getInstance().getUser();
-
-
         //dohvacanje pristiglih kuca
         for(ml.smart_ideas.smarthome.ws.model.synchronization.House houseWS : userData.getHouses())
         {
-
             House house= user.getHouse(Integer.parseInt(houseWS.getRemoteID()));
-         if(house != null)   house.delete();
+            if(house != null)
+                house.delete();
             House newHouse= new House(houseWS.getName(),houseWS.getAdress(),user);
             newHouse.setRemoteID(Long.valueOf(houseWS.getRemoteID()));
             newHouse.setLast_modified();
             newHouse.save();
 
-            //dohvacanje soba
+            //dohvacanje prostorija
             for(ml.smart_ideas.smarthome.ws.model.synchronization.Room roomWS: houseWS.getRooms())
             {
                 Room newRoom=new Room(roomWS.getName(),newHouse);

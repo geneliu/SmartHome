@@ -163,7 +163,7 @@ public class ServerCommunication {
         SynchronizeDataFromServer(Globals.getInstance().getUser(), false);
     }
 
-    public void SynchronizeDataFromServer(User user, final boolean isAutoSync)
+    public void SynchronizeDataFromServer(final User user, final boolean isAutoSync)
     {
         UserData userData= DataParser.userDataToCompleteJsonObject(user);
         RestClient.SynchronizationInterface service = RestClient.sendDataToServer();
@@ -180,7 +180,7 @@ public class ServerCommunication {
                     String error = result.getError();
                     if(error != "true")
                     {
-                        DataParser.jsonObjectToDatabase(result);
+                        DataParser.jsonObjectToDatabase(user,result);
                         if(isAutoSync == false)
                             Globals.getInstance().SyncData();
                     }
