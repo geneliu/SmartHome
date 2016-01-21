@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import ml.smart_ideas.smarthome.core.SaveSharedPreferences;
 import ml.smart_ideas.smarthome.core.eventlisteners.EventListener;
 import ml.smart_ideas.smarthome.core.Globals;
 import ml.smart_ideas.smarthome.core.enums.ActivityEnum;
@@ -31,6 +29,7 @@ import ml.smart_ideas.smarthome.core.fragments.HousesFragment;
 import ml.smart_ideas.smarthome.db.House;
 import ml.smart_ideas.smarthome.helpers.Creator;
 import ml.smart_ideas.smarthome.navigation.NavigationAdapter;
+import ml.smart_ideas.smarthome.ws.AutoSyncService;
 import ml.smart_ideas.smarthome.ws.connection.ServerCommunication;
 
 
@@ -82,7 +81,8 @@ public class MainActivity extends AppCompatActivity implements EventListener,Syn
             }
             Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment, true);
         }
-
+        if(AutoSyncService.isRunning() == false)
+            startService(new Intent(this,AutoSyncService.class));
 
     }
 
@@ -265,12 +265,12 @@ public class MainActivity extends AppCompatActivity implements EventListener,Syn
     @Override
     public void syncData() {
 
-        Globals.getInstance().setAppStateEnum(AppStateEnum.Here);
-    //   Globals.getInstance().Refresh();
+        //Globals.getInstance().setAppStateEnum(AppStateEnum.Here);
+        Globals.getInstance().Refresh();
         Toast.makeText(this, R.string.successful_sync,
                 Toast.LENGTH_LONG).show();
-        Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment);
-        Globals.getInstance().setAppStateEnum(AppStateEnum.SignedIn);
+        //Globals.getInstance().ShowFragment(FragmentEnum.HousesFragment);
+        //Globals.getInstance().setAppStateEnum(AppStateEnum.SignedIn);
 
 
     }

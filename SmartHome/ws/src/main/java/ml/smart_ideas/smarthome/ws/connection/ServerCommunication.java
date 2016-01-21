@@ -159,10 +159,12 @@ public class ServerCommunication {
         });
     }
 
+    public void SynchronizeDataFromServer(){
+        SynchronizeDataFromServer(Globals.getInstance().getUser(), false);
+    }
 
-    public void SynchronizeDataFromServer()
+    public void SynchronizeDataFromServer(User user, final boolean isAutoSync)
     {
-        User user= Globals.getInstance().getUser();
         UserData userData= DataParser.userDataToCompleteJsonObject(user);
         RestClient.SynchronizationInterface service = RestClient.sendDataToServer();
         Call<UserData> call = service.CheckForChanges(userData);
@@ -179,7 +181,8 @@ public class ServerCommunication {
                     if(error != "true")
                     {
                         DataParser.jsonObjectToDatabase(result);
-                        Globals.getInstance().SyncData();
+                        if(isAutoSync == false)
+                            Globals.getInstance().SyncData();
                     }
 
                 } else {
